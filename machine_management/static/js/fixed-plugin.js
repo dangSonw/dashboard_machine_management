@@ -135,23 +135,47 @@ function sidebarColor(a) {
   a.classList.toggle("border-white");
   a.classList.toggle("border-slate-700");
 
-  sidenavCard.classList.remove(activeSidenavCardColorClassFrom);
-  sidenavCard.classList.remove(activeSidenavCardColorClassTo);
+  if (sidenavCard) {
+    sidenavCard.classList.remove(activeSidenavCardColorClassFrom);
+    sidenavCard.classList.remove(activeSidenavCardColorClassTo);
+  }
   
-  sidenavCardIcon.classList.remove(activeSidenavCardIconColorClassFrom);
-  sidenavCardIcon.classList.remove(activeSidenavCardIconColorClassTo);
+  if (sidenavCardIcon) {
+    sidenavCardIcon.classList.remove(activeSidenavCardIconColorClassFrom);
+    sidenavCardIcon.classList.remove(activeSidenavCardIconColorClassTo);
+  }
   
-  sidenavIcon.classList.remove(activeSidenavIconColorClassFrom);
-  sidenavIcon.classList.remove(activeSidenavIconColorClassTo);
+  if (sidenavIcon) {
+    sidenavIcon.classList.remove(activeSidenavIconColorClassFrom);
+    sidenavIcon.classList.remove(activeSidenavIconColorClassTo);
+  }
   
-  sidenavCard.classList.add(checkedSidenavCardColorFrom);
-  sidenavCard.classList.add(checkedSidenavCardColorTo);
+  if (sidenavCard) {
+    sidenavCard.classList.add(checkedSidenavCardColorFrom);
+    sidenavCard.classList.add(checkedSidenavCardColorTo);
+  }
   
-  sidenavCardIcon.classList.add(checkedSidenavCardIconColorClassFrom);
-  sidenavCardIcon.classList.add(checkedSidenavCardIconColorClassTo);
+  if (sidenavCardIcon) {
+    sidenavCardIcon.classList.add(checkedSidenavCardIconColorClassFrom);
+    sidenavCardIcon.classList.add(checkedSidenavCardIconColorClassTo);
+  }
   
-  sidenavIcon.classList.add(checkedSidenavIconColorFrom);
-  sidenavIcon.classList.add(checkedSidenavIconColorTo);
+  if (sidenavIcon) {
+    sidenavIcon.classList.add(checkedSidenavIconColorFrom);
+    sidenavIcon.classList.add(checkedSidenavIconColorTo);
+  }
+
+  var primaryColorIcons = document.querySelectorAll("[primary-color-icon]");
+  for (var j = 0; j < primaryColorIcons.length; j++) {
+    if (activeSidenavIconColorClassFrom) {
+      primaryColorIcons[j].classList.remove(activeSidenavIconColorClassFrom);
+    }
+    if (activeSidenavIconColorClassTo) {
+      primaryColorIcons[j].classList.remove(activeSidenavIconColorClassTo);
+    }
+    primaryColorIcons[j].classList.add(checkedSidenavIconColorFrom);
+    primaryColorIcons[j].classList.add(checkedSidenavIconColorTo);
+  }
 }
 
 // sidenav style
@@ -288,8 +312,10 @@ var mini_spans = sidenav.querySelectorAll("span.opacity-0");
 var primary_lists = sidenav.querySelectorAll("ul.pl-4.ml-6");
 var secondary_lists = sidenav.querySelectorAll("ul.pl-0");
 var primary_anchors = sidenav.querySelectorAll("a[collapse_trigger='primary']");
-var sidenav_card_icon = sidenav.querySelector("[sidenav-card-icon]").parentElement;
-var sidenav_card_content = sidenav.querySelector("i[sidenav-card-icon]").parentElement.nextElementSibling;
+var sidenav_card_icon_el = sidenav.querySelector("[sidenav-card-icon]");
+var sidenav_card_icon = sidenav_card_icon_el ? sidenav_card_icon_el.parentElement : null;
+var sidenav_card_content_el = sidenav.querySelector("i[sidenav-card-icon]");
+var sidenav_card_content = sidenav_card_content_el ? sidenav_card_content_el.parentElement.nextElementSibling : null;
 var mini_sidenav_toggle = document.querySelector("[sidenav-mini-toggle]");
 
 mini_sidenav_burger.addEventListener("click", function (e) {
@@ -358,8 +384,8 @@ function mini_sidenav() {
     mini_span.classList.add("min-w-7");
     mini_span.classList.add("opacity-100");
   });
-  sidenav_card_content.classList.add("opacity-0", "w-0", "h-0");
-  sidenav_card_icon.classList.remove("mb-4");
+  if (sidenav_card_content) sidenav_card_content.classList.add("opacity-0", "w-0", "h-0");
+  if (sidenav_card_icon) sidenav_card_icon.classList.remove("mb-4");
 
   top_bread_mini.classList.remove("translate-x-[5px]");
   bottom_bread_mini.classList.remove("translate-x-[5px]");
@@ -370,8 +396,8 @@ function normal_sidenav() {
   sidenav.classList.remove("max-w-24");
   main.classList.add("xl:ml-68");
   main.classList.remove("xl:ml-30");
-  sidenav_card_content.classList.remove("opacity-0", "w-0", "h-0");
-  sidenav_card_icon.classList.add("mb-4");
+  if (sidenav_card_content) sidenav_card_content.classList.remove("opacity-0", "w-0", "h-0");
+  if (sidenav_card_icon) sidenav_card_icon.classList.add("mb-4");
   primary_anchors.forEach((primary_anchor) => {
     primary_anchor.classList.add("after:content-['\\f107']");
   });
@@ -448,8 +474,8 @@ function mini_sidenav_rtl() {
     mini_span.classList.add("min-w-7");
     mini_span.classList.add("opacity-100");
   });
-  sidenav_card_content.classList.add("opacity-0", "w-0", "h-0");
-  sidenav_card_icon.classList.remove("mb-4");
+  if (sidenav_card_content) sidenav_card_content.classList.add("opacity-0", "w-0", "h-0");
+  if (sidenav_card_icon) sidenav_card_icon.classList.remove("mb-4");
 
   top_bread_mini.classList.remove("-translate-x-[5px]");
   bottom_bread_mini.classList.remove("-translate-x-[5px]");
@@ -460,8 +486,8 @@ function normal_sidenav_rtl() {
   sidenav.classList.remove("max-w-24");
   main.classList.add("xl:mr-68");
   main.classList.remove("xl:mr-30");
-  sidenav_card_content.classList.remove("opacity-0", "w-0", "h-0");
-  sidenav_card_icon.classList.add("mb-4");
+  if (sidenav_card_content) sidenav_card_content.classList.remove("opacity-0", "w-0", "h-0");
+  if (sidenav_card_icon) sidenav_card_icon.classList.add("mb-4");
   primary_anchors.forEach((primary_anchor) => {
     primary_anchor.classList.add("after:content-['\\f107']");
   });

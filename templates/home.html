@@ -14,7 +14,7 @@
     <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main Styling -->
     <link href="{% static 'css/soft-ui-dashboard-tailwind.min.css' %}" rel="stylesheet" />
 
@@ -55,9 +55,9 @@
           <li class="mt-0.5 w-full">
             <!-- primary anchor  -->
 
-            <a active_primary collapse_trigger="primary" href="javascript:;" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out text-sm py-2.7 active xl:shadow-soft-xl my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-all after:ml-auto after:inline-block after:rotate-180 after:font-bold after:text-slate-800 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80" aria-expanded="true">
+            <a active_primary href="/" class="ease-soft-in-out text-sm py-2.7 active xl:shadow-soft-xl my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-all dark:text-white dark:opacity-80">
               <!-- big anchor expandable -->
-              <div class="stroke-none shadow-soft-sm bg-gradient-to-tl from-purple-700 to-pink-500 mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
+              <div class="stroke-none shadow-soft-sm bg-gradient-to-tl from-blue-600 to-cyan-400 mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <!-- icon -->
 
                 <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -82,74 +82,8 @@
                 </svg>
               </div>
 
-              <!-- primary span -->
-
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft text-slate-700">Dashboards</span>
             </a>
-
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out" id="dashboardsExamples">
-              <!-- primary collapsable list -->
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <!-- medium list item  -->
-                <li class="w-full">
-                  <!-- medium a -->
-                  <a active_page active_secondary class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-5 relative my-0 mr-4 flex items-center whitespace-nowrap rounded-lg bg-transparent pr-4 font-semibold text-slate-800 shadow-none transition-colors before:absolute before:top-1/2 before:h-2 before:w-2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800 before:content-[''] dark:text-white dark:opacity-100 dark:before:bg-white dark:before:opacity-80" href="../../pages/dashboards/default.html">
-                    <!-- mini span -->
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> D </span>
-
-                    <!-- estended span -->
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Default </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/dashboards/automotive.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> A </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Automotive </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/dashboards/smart-home.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> S </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Smart Home </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <!-- medium a collapsable  -->
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> V </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Virtual Reality <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="vrExamples">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <!-- small a -->
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/dashboards/vr/vr-default.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out text-xs"> V </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> VR Default </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/dashboards/vr/vr-info.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out text-xs"> V </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> VR Info </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/dashboards/crm.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> C </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> CRM </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
 
           <li class="w-full mt-4">
@@ -157,7 +91,7 @@
           </li>
 
           <li class="mt-0.5 w-full">
-            <a collapse_trigger="primary" href="javascript:;" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="pagesExamples" role="button" aria-expanded="false">
+            <a href="#" class="ease-soft-in-out text-sm py-2.7 active my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80">
               <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>office</title>
@@ -175,191 +109,13 @@
               </div>
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pages</span>
             </a>
-
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="pagesExamples">
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> P </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Profile <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="profileExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/profile/overview.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> P </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Profile Overview </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/profile/teams.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> T </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Teams </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/profile/projects.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> A </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> All Projects </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> U </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Users <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="usersExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/users/reports.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> R </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Reports </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/users/new-user.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> N </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> New User </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> A </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Account <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="accountExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/account/settings.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out text-xs"> S </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Settings </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/account/billing.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out text-xs"> B </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Billing </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/account/invoice.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out text-xs"> I </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Invoice </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/account/security.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out text-xs"> S </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Security </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> P </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Projects <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="projectsExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/projects/general.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> G </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> General </span>
-                        </a>
-                      </li>
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/projects/timeline.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> T </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Timeline </span>
-                        </a>
-                      </li>
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/pages/projects/new-project.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> N </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> New Project </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/pricing-page.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> P </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Pricing Page </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/messages.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> M </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Messages </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/rtl-page.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> R </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> RTL </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/widgets.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> W </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Widgets </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/charts.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> C </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Charts </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/sweet-alerts.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> S </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Sweet Alerts </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/pages/notifications.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> N </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Notifications </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
+
 
           <!-- Applications -->
 
           <li class="mt-0.5 w-full">
-            <a collapse_trigger="primary" href="javascript:;" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="applicationsExamples" role="button" aria-expanded="false">
+            <a href="#" class="ease-soft-in-out text-sm py-2.7 active my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80">
               <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>settings</title>
@@ -379,46 +135,13 @@
 
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Applications</span>
             </a>
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="applicationsExamples">
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/applications/kanban.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> K </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Kanban </span>
-                  </a>
-                </li>
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/applications/wizard.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> W </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Wizard </span>
-                  </a>
-                </li>
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/applications/datatables.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> D </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> DataTables </span>
-                  </a>
-                </li>
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/applications/calendar.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> C </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Calendar </span>
-                  </a>
-                </li>
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/applications/analytics.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> A </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Analytics </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            
           </li>
 
           <!-- Ecommerce  -->
 
           <li class="mt-0.5 w-full">
-            <a collapse_trigger="primary" href="javascript:;" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+            <a href="#" class="ease-soft-in-out text-sm py-2.7 active my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80">
               <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <svg class="text-dark" width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>basket</title>
@@ -437,92 +160,10 @@
 
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Ecommerce</span>
             </a>
-
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="ecommerceExamples">
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/ecommerce/overview.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> O </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Overview </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> P </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Products <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="productsExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/ecommerce/products/new-product.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> N </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> New Product </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/ecommerce/products/edit-product.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> E </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Edit Product </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/ecommerce/products/product-page.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> P </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Product Page </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/ecommerce/products/products-list.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> P </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Products List </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> O </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Orders <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="ordersExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/ecommerce/orders/list.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> O </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Order List </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/ecommerce/orders/details.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> O </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Order Details </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="../../pages/ecommerce/referral.html">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> R </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Referral </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </li>
 
           <li class="mt-0.5 w-full">
-            <a collapse_trigger="primary" href="javascript:;" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="authExamples" role="button" aria-expanded="false">
+            <a href="#" class="ease-soft-in-out text-sm py-2.7 active my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80">
               <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>document</title>
@@ -541,195 +182,8 @@
 
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Authentication</span>
             </a>
-
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="authExamples">
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> S </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Sign In <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="signinExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/signin/basic.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> B </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Basic </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/signin/cover.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Cover </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/signin/illustration.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> I </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Illustration </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> S </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Sign Up <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="signupExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/signup/basic.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> B </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Basic </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/signup/cover.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Cover </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/signup/illustration.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> I </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Illustration </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> R </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Reset Password <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="resetExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/reset/basic.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> B </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Basic </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/reset/cover.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Cover </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/reset/illustration.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> I </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Illustration </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> L </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Lock <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="lockExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/lock/basic.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> B </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Basic </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/lock/cover.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Cover </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/lock/illustration.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> I </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Illustration </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> 2 </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> 2-Step Verification <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="StepExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/verification/basic.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> B </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Basic </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/verification/cover.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Cover </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/verification/illustration.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> I </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Illustration </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> E </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Error <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="errorExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/error/404.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> E </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Error 404 </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="../../pages/authentication/error/500.html">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> E </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Error 500 </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </li>
+
 
           <li class="mt-0.5 w-full">
             <hr class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
@@ -737,7 +191,7 @@
           </li>
 
           <li class="mt-0.5 w-full">
-            <a collapse_trigger="primary" href="javascript:;" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="basicExamples" role="button" aria-expanded="false">
+            <a href="#" class="ease-soft-in-out text-sm py-2.7 active my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80">
               <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>spaceship</title>
@@ -760,71 +214,10 @@
               </div>
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Basic</span>
             </a>
-
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="basicExamples">
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> G </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Getting Started <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="gettingStartedExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="#" target="_blank">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> Q </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Quick Start </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="#" target="_blank">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> L </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> License </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="#" target="_blank">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Contents </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-
-                <li class="w-full">
-                  <a collapse_trigger="secondary" class="after:ease-soft-in-out after:font-awesome-5-free ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-expanded="false" href="javascript:;">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> F </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Foundation <b class="caret"></b></span>
-                  </a>
-
-                  <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="foundationExample">
-                    <ul class="flex flex-col flex-wrap pl-0 mb-0 list-none transition-all duration-200 ease-soft-in-out">
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="#" target="_blank">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> C </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Colors </span>
-                        </a>
-                      </li>
-
-                      <li class="w-full">
-                        <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-3.4 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors dark:text-white dark:opacity-60" href="#" target="_blank">
-                          <span class="w-0 leading-tight text-center transition-all duration-200 opacity-0 pointer-events-none text-xs ease-soft-in-out"> T </span>
-                          <span class="transition-all duration-100 pointer-events-none ease-soft"> Typography </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </li>
 
           <li class="mt-0.5 w-full">
-            <a collapse_trigger="primary" href="javascript:;" class="ease-soft-in-out text-sm py-2.7 active after:ease-soft-in-out after:font-awesome-5-free my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 after:content-['\f107'] dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white" aria-controls="componentsExamples" role="button" aria-expanded="false">
+            <a href="#" class="ease-soft-in-out text-sm py-2.7 active my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80">
               <div class="stroke-none shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current p-2.5 text-center text-black">
                 <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>customer-support</title>
@@ -844,100 +237,7 @@
               <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Components</span>
             </a>
 
-            <div class="h-auto overflow-hidden transition-all duration-200 ease-soft-in-out max-h-0" id="componentsExamples">
-              <ul class="flex flex-wrap pl-4 mb-0 ml-6 list-none transition-all duration-200 ease-soft-in-out">
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> A </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Alerts </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> B </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Badge </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> B </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Buttons </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> C </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Card </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> C </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Collapse </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> D </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Dropdowns </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> F </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Forms </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> M </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Modal </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> N </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Navs </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> N </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Navbar </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> P </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Progress </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> T </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Tables </span>
-                  </a>
-                </li>
-
-                <li class="w-full">
-                  <a class="ease-soft-in-out py-1.6 ml-5.4 pl-4 text-sm before:-left-4.5 before:h-1.25 before:w-1.25 relative my-0 mr-4 flex items-center whitespace-nowrap bg-transparent pr-4 font-medium text-slate-800/50 shadow-none transition-colors before:absolute before:top-1/2 before:-translate-y-1/2 before:rounded-3xl before:bg-slate-800/50 before:content-[''] dark:text-white dark:opacity-60 dark:before:bg-white dark:before:opacity-80" href="#" target="_blank">
-                    <span class="w-0 text-center transition-all duration-200 opacity-0 pointer-events-none ease-soft-in-out"> T </span>
-                    <span class="transition-all duration-100 pointer-events-none ease-soft"> Tooltips </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            
           </li>
 
           <li class="mt-0.5 w-full">
@@ -964,22 +264,10 @@
       </div>
 
       <div class="pt-4 mx-4 mt-4">
-        <!-- load phantom colors for card after: -->
         <p class="invisible hidden text-red-600 text-orange after:bg-gradient-to-tl after:from-gray-900 after:to-slate-800 after:bg-gradient-to-tl after:from-blue-600 after:to-cyan-400 after:bg-gradient-to-tl after:from-red-500 after:to-yellow-400 after:bg-gradient-to-tl after:from-green-600 after:to-lime-400 after:bg-gradient-to-tl after:from-red-600 after:to-rose-400 after:bg-gradient-to-tl after:from-slate-600 after:to-slate-300 text-lime-500 text-cyan-500"></p>
         <div sidenav-card class="after:opacity-65 after:bg-gradient-to-tl after:from-slate-600 after:to-slate-300 relative flex min-w-0 flex-col items-center break-words rounded-2xl border-0 border-solid border-blue-900 bg-white bg-clip-border shadow-none after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl after:content-['']">
           <div class="absolute w-full h-full bg-center bg-cover mb-7 rounded-2xl" style="background-image: url('{% static 'img/curved-images/white-curved.jpg' %}')"></div>
-          <div class="relative z-20 flex-auto w-full p-4 text-left text-white">
-            <div class="flex items-center justify-center w-8 h-8 mb-4 text-center bg-white bg-center rounded-lg icon shadow-soft-2xl">
-              <i sidenav-card-icon class="top-0 z-10 text-transparent ni leading-none ni-diamond text-lg bg-gradient-to-tl from-slate-600 to-slate-300 bg-clip-text opacity-80" aria-hidden="true"></i>
-            </div>
-            <div class="transition-all duration-200 ease-nav-brand">
-              <h6 class="mb-0 text-white">Need help?</h6>
-              <p class="mt-0 mb-4 font-semibold leading-tight text-xs">Pray god</p>
-              <a href="#" target="_blank" class="inline-block w-full px-8 py-2 mb-0 font-bold text-center text-black uppercase transition-all ease-in bg-white border-0 border-white rounded-lg shadow-soft-md bg-150 leading-pro text-xs hover:shadow-soft-2xl hover:scale-102">therichpost</a>
-            </div>
-          </div>
         </div>
-        <!-- pro btn  -->
       </div>
     </aside>
 
@@ -1033,7 +321,7 @@
                 <span class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
                   <i class="fas fa-search" aria-hidden="true"></i>
                 </span>
-                <input type="text" class="pl-9 text-sm focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
+                <input type="text" class="pl-9 text-sm focus:shadow-soft-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 ease-soft w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-300 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
               </div>
             </div>
             <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
@@ -1172,7 +460,7 @@
                         </div>
                       </div>
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
-                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl">
+                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
                           <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white" aria-hidden="true"></i>
                         </div>
                       </div>
@@ -1192,7 +480,7 @@
                         </div>
                       </div>
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
-                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl">
+                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
                           <i class="ni leading-none ni-world text-lg relative top-3.5 text-white" aria-hidden="true"></i>
                         </div>
                       </div>
@@ -1215,7 +503,7 @@
                         </div>
                       </div>
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
-                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl">
+                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
                           <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white" aria-hidden="true"></i>
                         </div>
                       </div>
@@ -1235,7 +523,7 @@
                         </div>
                       </div>
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
-                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500 shadow-soft-2xl">
+                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
                           <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white" aria-hidden="true"></i>
                         </div>
                       </div>
@@ -1403,7 +691,7 @@
                   <div class="flex flex-wrap mt-0 -mx-3">
                     <div class="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
                       <div class="flex mb-2">
-                        <div class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-purple-700 to-pink-500 text-neutral-900">
+                        <div class="flex items-center justify-center w-5 h-5 mr-2 text-center bg-center rounded fill-current shadow-soft-2xl bg-gradient-to-tl from-blue-600 to-cyan-400 text-neutral-900" primary-color-icon>
                           <svg width="10px" height="10px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>document</title>
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -1596,9 +884,9 @@
           </div>
           <a href="javascript:void(0)" class="switch-trigger background-color">
             <div class="my-2 text-left" sidenav-colors>
-              <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-purple-700 to-pink-500 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-slate-700 text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" active-color data-color-from="purple-700" data-color-to="pink-500" onclick="sidebarColor(this)"></span>
+              <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-blue-600 to-cyan-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-slate-700 text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" active-color data-color-from="blue-600" data-color-to="cyan-400" onclick="sidebarColor(this)"></span>
               <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-gray-900 to-slate-800 dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="gray-900" data-color-to="slate-800" onclick="sidebarColor(this)"></span>
-              <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-blue-600 to-cyan-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="blue-600" data-color-to="cyan-400" onclick="sidebarColor(this)"></span>
+              <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-purple-700 to-pink-500 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="purple-700" data-color-to="pink-500" onclick="sidebarColor(this)"></span>
               <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-green-600 to-lime-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="green-600" data-color-to="lime-400" onclick="sidebarColor(this)"></span>
               <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-red-500 to-yellow-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="red-500" data-color-to="yellow-400" onclick="sidebarColor(this)"></span>
               <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-red-600 to-rose-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="red-600" data-color-to="rose-400" onclick="sidebarColor(this)"></span>
@@ -1610,8 +898,8 @@
             <p class="leading-normal text-sm dark:opacity-60">Choose between 2 different sidenav types.</p>
           </div>
           <div class="flex">
-            <button transparent-style-btn class="inline-block w-full px-4 py-3 mb-2 font-bold text-center text-white uppercase align-middle transition-all border border-transparent border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-purple-700 to-pink-500 bg-fuchsia-500 hover:border-fuchsia-500 dark:pointer-events-none dark:cursor-not-allowed" data-class="bg-transparent" active-style>Transparent</button>
-            <button white-style-btn class="inline-block w-full px-4 py-3 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-fuchsia-500 bg-none text-fuchsia-500 hover:border-fuchsia-500 dark:pointer-events-none dark:cursor-not-allowed" data-class="bg-white">White</button>
+            <button transparent-style-btn class="inline-block w-full px-4 py-3 mb-2 font-bold text-center text-white uppercase align-middle transition-all border border-transparent border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-600 xl-max:to-cyan-400 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-blue-600 to-cyan-400 bg-blue-500 hover:border-blue-500 dark:pointer-events-none dark:cursor-not-allowed" data-class="bg-transparent" active-style>Transparent</button>
+            <button white-style-btn class="inline-block w-full px-4 py-3 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-600 xl-max:to-cyan-400 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-blue-500 bg-none text-blue-500 hover:border-blue-500 dark:pointer-events-none dark:cursor-not-allowed" data-class="bg-white">White</button>
           </div>
           <p class="block mt-2 leading-normal text-sm xl:hidden">You can change the sidenav type just on desktop view.</p>
           <!-- Navbar Fixed -->
@@ -1640,11 +928,11 @@
         </div>
       </div>
     </div>
-</body>
-  <script src="{% static 'js/chartjs.min.js' %}"></script>
-  <script src="{% static 'js/threejs.js' %}"></script>
-  <script src="{% static 'js/orbit-controls.js' %}"></script>
-  <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
-  <!-- main script file  -->
-  <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+    <script src="{% static 'js/chartjs.min.js' %}"></script>
+    <script src="{% static 'js/threejs.js' %}"></script>
+    <script src="{% static 'js/orbit-controls.js' %}"></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <!-- main script file  -->
+    <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+  </body>
 </html>
