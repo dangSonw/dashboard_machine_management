@@ -35,10 +35,52 @@ def home(request):
     }
     return render(request, "home.html", context)
 
+
+from django.core.paginator import Paginator
+
 @login_required(login_url="/authentication/login")
 def list_pcb(request):
-    logs = Machine_Logs.objects.all().order_by('-created')[:100]
-    return render(request, "list_pcb.html", {"logs": logs})
+    logs_query = Machine_Logs.objects.all().order_by('-id')
+    total_logs = logs_query.count()
+    
+    error_fields = [
+        'caminput', 'grayfilter', 'shape01', 'pos01', 'label01', 
+        'switch01', 'shape02', 'pos02', 'switch02'
+    ]
+    
+    error_stats = []
+    if total_logs > 0:
+        for field in error_fields:
+            error_count = logs_query.filter(**{field: -1}).count()
+            percentage = round((error_count / total_logs) * 100, 2)
+            error_stats.append({
+                'label': field.replace('_', ' ').title(),
+                'count': error_count,
+                'percentage': percentage
+            })
+    else:
+        for field in error_fields:
+            error_stats.append({
+                'label': field.replace('_', ' ').title(),
+                'count': 0,
+                'percentage': 0
+            })
+
+    # Pagination logic
+    paginator = Paginator(logs_query, 20)  # Show 20 logs per page
+    page_number = request.GET.get('page')
+    logs = paginator.get_page(page_number)
+    
+    # Calculate machine_name for breadcrumbs
+    machine_name = logs[0].machine.name if logs and logs[0].machine else "Machine Logs"
+    
+    context = {
+        "logs": logs,
+        "error_stats": error_stats,
+        "total_logs": total_logs,
+        "machine_name": machine_name
+    }
+    return render(request, "list_pcb.html", context)
 
 @login_required(login_url="/authentication/login")
 def plc_control(request):

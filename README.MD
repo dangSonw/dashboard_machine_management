@@ -56,4 +56,5 @@
 7. **Refresh the page**
     ```bash
     python manage.py flush
+>>>>>>> master
     ```

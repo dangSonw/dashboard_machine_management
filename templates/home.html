@@ -27,6 +27,7 @@
     
     <!-- sidenav  -->
 
+<<<<<<< HEAD
     <aside mini="false" class="fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto transition-all duration-200 -translate-x-full bg-white border-0 shadow-none xl:ml-4 dark:bg-gray-950 ease-soft-in-out z-990 max-w-64 rounded-2xl xl:translate-x-0 xl:bg-transparent" id="sidenav-main">
       <!-- header -->
 
@@ -270,6 +271,9 @@
         </div>
       </div>
     </aside>
+=======
+    {% include "partials/_sidebar.html" %}
+>>>>>>> master
 
     <main class="relative h-full max-h-screen transition-all duration-200 ease-soft-in-out xl:ml-68 rounded-xl">
       <!-- Navbar -->
@@ -329,12 +333,16 @@
               <!-- <li class="flex items-center">
               <a class="inline-block px-8 py-2 mb-0 mr-4 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in text-xs hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
             </li> -->
+<<<<<<< HEAD
               <li class="flex items-center">
                 <a href="../../pages/authentication/signin/illustration.html" class="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500 dark:text-white">
                   <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
                   <span class="hidden sm:inline">Sign In</span>
                 </a>
               </li>
+=======
+              
+>>>>>>> master
               <li class="flex items-center pl-4 xl:hidden">
                 <a sidenav-trigger class="block p-0 transition-all ease-nav-brand text-sm text-slate-500 dark:text-white" href="javascript:;" aria-expanded="false">
                   <div class="w-4.5 overflow-hidden">
@@ -452,10 +460,16 @@
                     <div class="flex flex-wrap -mx-3">
                       <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
+<<<<<<< HEAD
                           <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Today's Money</p>
                           <h5 class="mb-0 font-bold dark:text-white">
                             $53,000
                             <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
+=======
+                          <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total PLC Logs</p>
+                          <h5 class="mb-0 font-bold dark:text-white">
+                            {{ total_plc }}
+>>>>>>> master
                           </h5>
                         </div>
                       </div>
@@ -472,16 +486,26 @@
                     <div class="flex flex-wrap -mx-3">
                       <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
+<<<<<<< HEAD
                           <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Today's Users</p>
                           <h5 class="mb-0 font-bold dark:text-white">
                             2,300
                             <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
+=======
+                          <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total OK</p>
+                          <h5 class="mb-0 font-bold dark:text-white">
+                            {{ total_ok }}
+>>>>>>> master
                           </h5>
                         </div>
                       </div>
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
                         <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
+<<<<<<< HEAD
                           <i class="ni leading-none ni-world text-lg relative top-3.5 text-white" aria-hidden="true"></i>
+=======
+                          <i class="ni leading-none ni-trophy text-lg relative top-3.5 text-white" aria-hidden="true"></i>
+>>>>>>> master
                         </div>
                       </div>
                     </div>
@@ -495,15 +519,22 @@
                     <div class="flex flex-wrap -mx-3">
                       <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
+<<<<<<< HEAD
                           <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">New Clients</p>
                           <h5 class="mb-0 font-bold dark:text-white">
                             +3,462
                             <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span>
+=======
+                          <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total NG</p>
+                          <h5 class="mb-0 font-bold dark:text-white">
+                            {{ total_ng }}
+>>>>>>> master
                           </h5>
                         </div>
                       </div>
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
                         <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
+<<<<<<< HEAD
                           <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white" aria-hidden="true"></i>
                         </div>
                       </div>
@@ -525,6 +556,9 @@
                       <div class="w-4/12 max-w-full px-3 text-right flex-0">
                         <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-blue-600 to-cyan-400 shadow-soft-2xl" primary-color-icon>
                           <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white" aria-hidden="true"></i>
+=======
+                          <i class="ni leading-none ni-notification-70 text-lg relative top-3.5 text-white" aria-hidden="true"></i>
+>>>>>>> master
                         </div>
                       </div>
                     </div>
@@ -536,6 +570,7 @@
             <div class="flex flex-wrap mt-6 -mx-3">
               <div class="w-full max-w-full px-3 flex-0 lg:w-10/12">
                 <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid dark:bg-gray-950 border-black-125 shadow-soft-xl dark:shadow-soft-dark-xl rounded-2xl bg-clip-border">
+<<<<<<< HEAD
                   <div class="p-4 pb-0 mb-0 rounded-t-4">
                     <div class="flex justify-between">
                       <h6 class="mb-2 dark:text-white">Sales by Country</h6>
@@ -670,6 +705,14 @@
                         </tr>
                       </tbody>
                     </table>
+=======
+<div class="p-4 pb-0 mb-0 rounded-t-4">
+                  </div>
+                  <div class="p-4">
+                    <div class="w-full min-h-[360px]">
+                      <canvas id="chart-weekly-card" class="w-full min-h-[360px]"></canvas>
+                    </div>
+>>>>>>> master
                   </div>
                 </div>
               </div>
@@ -677,6 +720,7 @@
           </div>
         </div>
         <div class="flex flex-wrap mt-6 -mx-3">
+<<<<<<< HEAD
           <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-5/12 lg:flex-none">
             <div class="relative z-20 flex flex-col min-w-0 break-words bg-white border-0 border-solid dark:bg-gray-950 border-black-125 shadow-soft-xl dark:shadow-soft-dark-xl rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
@@ -808,12 +852,28 @@
               <div class="flex-auto p-4">
                 <div>
                   <canvas id="chart-line" height="300"></canvas>
+=======
+          <div class="w-full max-w-full px-3 mb-6 flex-0 lg:w-full">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid dark:bg-gray-950 border-black-125 shadow-soft-xl dark:shadow-soft-dark-xl rounded-2xl bg-clip-border">
+              <div class="p-4 pb-0 mb-0 rounded-t-4">
+                <div class="flex justify-between items-center">
+                  <h6 class="mb-1 dark:text-white">Monthly PLC Stats</h6>
+                  <p class="mb-0 text-sm text-slate-500 dark:text-white/70">Last 12 months</p>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="w-full min-h-[60px]">
+                  <canvas id="monthlyChart" class="w-full min-h-[60px]"></canvas>
+>>>>>>> master
                 </div>
               </div>
             </div>
           </div>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         <div class="flex flex-wrap -mx-3">
           <div class="w-full max-w-full px-3 flex-0">
             <div id="globe" class="absolute right-0 mt-24 lg-max:overflow-hidden top-1/10 sm:mt-4 lg:mr-24">
@@ -929,10 +989,57 @@
       </div>
     </div>
     <script src="{% static 'js/chartjs.min.js' %}"></script>
+<<<<<<< HEAD
+=======
+    <script src="{% static 'js/home.js' %}"></script>
+>>>>>>> master
     <script src="{% static 'js/threejs.js' %}"></script>
     <script src="{% static 'js/orbit-controls.js' %}"></script>
     <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
     <!-- main script file  -->
+<<<<<<< HEAD
     <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+=======
+<script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+    <script>
+      async function fetchWeeklyCardStats() {
+        try {
+          const response = await fetch('{% url "api_weekly_stats" %}');
+          const data = await response.json();
+          const canvas = document.getElementById('chart-weekly-card');
+
+          if (window.chartWeeklyCardInstance) {
+            window.chartWeeklyCardInstance.destroy();
+            window.chartWeeklyCardInstance = null;
+          }
+
+          const ctx = canvas.getContext('2d');
+          window.chartWeeklyCardInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: data.labels,
+              datasets: [
+                { label: 'Total', data: data.data_total, borderColor: 'rgba(99, 102, 241, 1)', backgroundColor: 'rgba(99, 102, 241, 0.2)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: 'rgba(99, 102, 241, 1)' },
+                { label: 'OK', data: data.data_pass, borderColor: 'rgba(34, 197, 94, 1)', backgroundColor: 'rgba(34, 197, 94, 0.2)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: 'rgba(34, 197, 94, 1)' },
+                { label: 'NG', data: data.data_fail, borderColor: 'rgba(239, 68, 68, 1)', backgroundColor: 'rgba(239, 68, 68, 0.2)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: 'rgba(239, 68, 68, 1)' }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { position: 'top' } },
+              scales: { y: { beginAtZero: true, min: 0 } }
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching weekly card stats:', error);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        fetchWeeklyCardStats();
+      });
+    </script>
+>>>>>>> master
   </body>
 </html>

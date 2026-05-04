@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="apple-touch-icon" sizes="76x76" href="{%static 'img/apple-icon.png' %}" />
     <link rel="icon" type="image/png" href="{%static 'img/favicon.png' %}" />
-    <title>Logs Images - NSUTC2026</title>
+    <title>User List - NSUTC2026</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
@@ -16,7 +16,7 @@
 </head>
 <body class="m-0 font-sans antialiased font-normal text-left leading-default text-base dark:bg-slate-950 bg-gray-50 text-slate-500 dark:text-white">
 
-    {% include "partials/_sidebar.html" %}
+    {% include 'partials/_sidebar.html' %}
 
     <main class="relative h-full max-h-screen transition-all duration-200 ease-soft-in-out xl:ml-68 rounded-xl">
         <nav navbar-main class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 mt-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start" navbar-scroll="true">
@@ -30,13 +30,13 @@
                             </a>
                         </li>
                         <li class="text-sm pl-2 leading-normal before:float-left before:pr-2 before:text-gray-600 before:content-['/']">
-                            <span class="text-gray-500 dark:text-white">Docs</span>
+                            <span class="text-gray-500 dark:text-white">Pages</span>
                         </li>
                         <li class="text-sm pl-2 leading-normal before:float-left before:pr-2 before:text-gray-600 before:content-['/']">
-                            <span class="text-gray-500 dark:text-white">Logs Images</span>
+                            <span class="text-gray-500 dark:text-white">User List</span>
                         </li>
                     </ol>
-                    <h6 class="mb-0 font-bold capitalize dark:text-white">Logs Images</h6>
+                    <h6 class="mb-0 font-bold capitalize dark:text-white">User List</h6>
                 </nav>
 
                 <div class="flex items-center">
@@ -86,74 +86,63 @@
         <div class="w-full px-6 py-6 mx-auto">
             <div class="flex flex-wrap -mx-3">
                 <div class="w-full px-3 mb-6">
-                    <h4 class="text-2xl font-bold text-slate-700 dark:text-white">Logs Images Browser</h4>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Current path: {{ subpath|default:"/" }}</p>
+                    <h4 class="text-2xl font-bold text-slate-700 dark:text-white">User Management</h4>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Total Users: {{ users.count }}</p>
                 </div>
             </div>
 
             <div class="flex flex-wrap -mx-3">
                 <div class="w-full px-3">
                     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xs p-6">
-                        <div class="mb-6 flex items-center justify-between">
-                            <h5 class="text-xl font-bold text-slate-700 dark:text-white">File Browser</h5>
-                            {% if parent_path %}
-                            <a href="?path={{ parent_path }}" class="px-3 py-2 text-sm font-semibold text-white bg-gradient-to-tl from-blue-600 to-cyan-400 rounded-lg hover:opacity-90">
-                                <i class="fas fa-arrow-up mr-1"></i> Go Up
-                            </a>
-                            {% endif %}
+                        <div class="mb-6">
+                            <h5 class="text-xl font-bold text-slate-700 dark:text-white">All Users</h5>
                         </div>
-
-                        {% if files %}
                         <div class="overflow-x-auto">
                             <table class="w-full text-left border-collapse">
                                 <thead>
                                     <tr>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Name</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Type</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Size</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Modified</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Actions</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">ID</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Username</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Email</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">First Name</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Last Name</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Staff Status</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Active</th>
+                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Date Joined</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for file in files %}
+                                    {% for user in users %}
                                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">
-                                            <div class="flex items-center gap-2">
-                                                {% if file.is_dir %}
-                                                <i class="fas fa-folder text-warning"></i>
-                                                {% else %}
-                                                <i class="{{ file.icon }}"></i>
-                                                {% endif %}
-                                                <span class="font-medium">{{ file.name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ file.type }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ file.size|default:"-" }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ file.mod_time }}</td>
+                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.id }}</td>
+                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800 font-medium">{{ user.username }}</td>
+                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.email|default:"-" }}</td>
+                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.first_name|default:"-" }}</td>
+                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.last_name|default:"-" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
-                                            {% if file.is_dir %}
-                                            <a href="?path={{ file.rel_path }}" class="px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-                                                <i class="fas fa-folder-open mr-1"></i> Open
-                                            </a>
+                                            {% if user.is_staff %}
+                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">Staff</span>
                                             {% else %}
-                                            <a href="{% url 'serve_log_image' %}?path={{ file.rel_path }}" target="_blank" class="px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600">
-                                                <i class="fas fa-eye mr-1"></i> View
-                                            </a>
+                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-gray-500 rounded-full">User</span>
                                             {% endif %}
                                         </td>
+                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
+                                            {% if user.is_active %}
+                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Active</span>
+                                            {% else %}
+                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Inactive</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.date_joined|date:"Y-m-d H:i" }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">No users found.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
                         </div>
-                        {% else %}
-                        <div class="text-center py-12">
-                            <i class="fas fa-folder-open text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
-                            <p class="text-slate-500 dark:text-slate-400">No files found in this directory.</p>
-                            <p class="text-sm text-slate-400 dark:text-slate-500 mt-2">Make sure the log image directory exists and contains files.</p>
-                        </div>
-                        {% endif %}
                     </div>
                 </div>
             </div>
