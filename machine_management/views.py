@@ -139,6 +139,8 @@ def api_plc_status(request):
         x15 = plc_comm.read_device('X15')
         x100 = plc_comm.read_device('X100')
         x112 = plc_comm.read_device('X112')
+        x110 = plc_comm.read_device('X110')
+        x117 = plc_comm.read_device('X117')
         x151 = plc_comm.read_device('X151')
         x152 = plc_comm.read_device('X152')
         y1 = plc_comm.read_device('Y1')
@@ -161,6 +163,8 @@ def api_plc_status(request):
             'x15': x15[0] if x15 else 0,
             'x100': x100[0] if x100 else 0,
             'x112': x112[0] if x112 else 0,
+            'x110': x110[0] if x110 else 0,
+            'x117': x117[0] if x117 else 0,
             'x151': x151[0] if x151 else 0,
             'x152': x152[0] if x152 else 0,
             'y1': y1[0] if y1 else 0,

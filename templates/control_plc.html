@@ -228,6 +228,32 @@
                             <div class="flex flex-nowrap justify-between gap-6 px-4 overflow-x-auto">
                                 <div class="flex flex-col items-center gap-2">
                                     <div class="flex items-center gap-3">
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                            onmousedown="controlMomentary('X110', 1, event)" 
+                                            onmouseup="controlMomentary('X110', 0, event)" 
+                                            ontouchstart="controlMomentary('X110', 1, event)" 
+                                            ontouchend="controlMomentary('X110', 0, event)">
+                                            <i class="fas fa-power-off mr-2 text-lg"></i>SERVO ON
+                                        </button>
+                                    </div>
+                                    <span id="val_X110_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X110 OFF</span>
+                                </div>
+
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="flex items-center gap-3">
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-red-600 to-rose-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                            onmousedown="controlMomentary('X117', 1, event)" 
+                                            onmouseup="controlMomentary('X117', 0, event)" 
+                                            ontouchstart="controlMomentary('X117', 1, event)" 
+                                            ontouchend="controlMomentary('X117', 0, event)">
+                                            <i class="fas fa-times-circle mr-2 text-lg"></i>SERVO OFF
+                                        </button>
+                                    </div>
+                                    <span id="val_X117_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X117 OFF</span>
+                                </div>
+
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="flex items-center gap-3">
                                         <button class="px-6 py-3 text-white bg-gradient-to-tl from-red-600 to-rose-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
                                             onmousedown="controlMomentary('X100', 1, event)" 
                                             onmouseup="controlMomentary('X100', 0, event)" 

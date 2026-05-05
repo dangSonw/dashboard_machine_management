@@ -153,6 +153,14 @@ function pollPlcStatus() {
                 $('#val_X112_servo').text(data.x112 ? 'X112 ON' : 'X112 OFF');
                 $('#val_X112_servo').removeClass().addClass(data.x112 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
+            if (data.x110 !== undefined) {
+                $('#val_X110_servo').text(data.x110 ? 'X110 ON' : 'X110 OFF');
+                $('#val_X110_servo').removeClass().addClass(data.x110 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
+            if (data.x117 !== undefined) {
+                $('#val_X117_servo').text(data.x117 ? 'X117 ON' : 'X117 OFF');
+                $('#val_X117_servo').removeClass().addClass(data.x117 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
             if (data.x151 !== undefined) {
                 $('#val_X151_light').text(data.x151 ? 'X151 ON' : 'X151 OFF');
                 $('#val_X151_light').removeClass().addClass(data.x151 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
