@@ -133,9 +133,17 @@ function pollPlcStatus() {
                 $('#val_X10').text(data.x10 ? 'ON' : 'OFF');
                 $('#val_X10').removeClass().addClass(data.x10 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
+            if (data.x14 !== undefined) {
+                $('#val_X14').text(data.x14 ? 'ON' : 'OFF');
+                $('#val_X14').removeClass().addClass(data.x14 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+                $('#val_X14_menu').text(data.x14 ? 'X14 ON' : 'X14 OFF');
+                $('#val_X14_menu').removeClass().addClass(data.x14 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
             if (data.x15 !== undefined) {
                 $('#val_X15').text(data.x15 ? 'ON' : 'OFF');
                 $('#val_X15').removeClass().addClass(data.x15 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
+                $('#val_X15_menu').text(data.x15 ? 'X15 ON' : 'X15 OFF');
+                $('#val_X15_menu').removeClass().addClass(data.x15 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
             if (data.x100 !== undefined) {
                 $('#val_X100').text(data.x100 ? 'ON' : 'OFF');

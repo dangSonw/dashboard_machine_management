@@ -135,6 +135,7 @@ def api_plc_status(request):
         m100 = plc_comm.read_device('M100')
         m5000 = plc_comm.read_device('M5000')
         x10 = plc_comm.read_device('X10')
+        x14 = plc_comm.read_device('X14')
         x15 = plc_comm.read_device('X15')
         x100 = plc_comm.read_device('X100')
         y1 = plc_comm.read_device('Y1')
@@ -153,6 +154,7 @@ def api_plc_status(request):
             'm100': m100[0] if m100 else 0,
             'm5000': m5000[0] if m5000 else 0,
             'x10': x10[0] if x10 else 0,
+            'x14': x14[0] if x14 else 0,
             'x15': x15[0] if x15 else 0,
             'x100': x100[0] if x100 else 0,
             'y1': y1[0] if y1 else 0,
