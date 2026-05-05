@@ -30,34 +30,34 @@ class Machine(models.Model):
 
 class Machine_Logs(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE, null=True, blank=True)
+    processing_time = models.FloatField(null=True, blank=True, help_text="Thời gian xử lý")
     
-    process_time_ms = models.FloatField(null=True, blank=True)
-    caminput = models.IntegerField(null=True, blank=True)
-    grayfilter = models.IntegerField(null=True, blank=True)
-    shape01 = models.IntegerField(null=True, blank=True)
-    pos01 = models.IntegerField(null=True, blank=True)
-    label01 = models.IntegerField(null=True, blank=True)
-    switch01 = models.IntegerField(null=True, blank=True)
-    posy01 = models.IntegerField(null=True, blank=True)
-    posy02 = models.IntegerField(null=True, blank=True)
-    posx01 = models.IntegerField(null=True, blank=True)
-    posx02 = models.IntegerField(null=True, blank=True)
-    shape02 = models.IntegerField(null=True, blank=True)
-    pos02 = models.IntegerField(null=True, blank=True)
-    switch02 = models.IntegerField(null=True, blank=True)
-    totalarea01 = models.IntegerField(null=True, blank=True)
-    numoflabels01 = models.IntegerField(null=True, blank=True)
-    resultdisplay = models.IntegerField(null=True, blank=True)
+    misaligned_component = models.IntegerField(null=True, blank=True, help_text="Số lượng linh kiện bị lệch vị trí")
+    misaligned_component_conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy của việc phát hiện linh kiện bị lệch (0 -> 1)")
+    
+    missing_component = models.IntegerField(null=True, blank=True, help_text="Số lượng linh kiện bị thiếu")
+    missing_component_conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy khi phát hiện linh kiện bị thiếu")
+    
+    missing_label = models.IntegerField(null=True, blank=True, help_text="Số lượng nhãn (label) bị thiếu")
+    missing_label_conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy của việc phát hiện thiếu nhãn")
+    
+    missing_pin = models.IntegerField(null=True, blank=True, help_text="Số lượng chân (pin) bị thiếu")
+    missing_pin_conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy khi phát hiện thiếu chân pin")
+    
+    wrong_polarity = models.IntegerField(null=True, blank=True, help_text="Số lượng linh kiện bị sai cực")
+    wrong_polarity_conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy của việc phát hiện sai cực")
+    
+    status = models.CharField(max_length=100, null=True, blank=True)
     
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Log ID: {self.id} - Result: {self.resultdisplay}"
+        return f"Log ID: {self.id} - Status: {self.status}"
 
 class Machine_Logs_Images(models.Model):
     image_url = models.ImageField(upload_to='machine_logs_images')
     machine_log = models.ForeignKey(Machine_Logs, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.machine_log.code_product
+        return f"Image for Log {self.machine_log.id}"

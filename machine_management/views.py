@@ -22,8 +22,8 @@ def home(request):
     # Lấy tổng số lượng bản ghi (đại diện cho tổng số lượng PLC đã chạy)
     total_plc = Machine_Logs.objects.count()
     
-    # Điều kiện lỗi (dựa trên các trường -1)
-    error_condition = Q(caminput=-1) | Q(grayfilter=-1) | Q(shape01=-1) | Q(pos01=-1) | Q(label01=-1) | Q(switch01=-1) | Q(pos02=-1) | Q(switch02=-1) | Q(resultdisplay=-1) | Q(shape02=-1)
+    # Điều kiện lỗi
+    error_condition = Q(status='NG')
     
     total_ng = Machine_Logs.objects.filter(error_condition).count()
     total_ok = total_plc - total_ng
@@ -44,14 +44,14 @@ def list_pcb(request):
     total_logs = logs_query.count()
     
     error_fields = [
-        'caminput', 'grayfilter', 'shape01', 'pos01', 'label01', 
-        'switch01', 'shape02', 'pos02', 'switch02'
+        'misaligned_component', 'missing_component', 'missing_label', 
+        'missing_pin', 'wrong_polarity'
     ]
     
     error_stats = []
     if total_logs > 0:
         for field in error_fields:
-            error_count = logs_query.filter(**{field: -1}).count()
+            error_count = logs_query.filter(**{field + '__gt': 0}).count()
             percentage = round((error_count / total_logs) * 100, 2)
             error_stats.append({
                 'label': field.replace('_', ' ').title(),
@@ -265,7 +265,7 @@ def api_weekly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_time)
     
-    error_condition = Q(caminput=-1) | Q(grayfilter=-1) | Q(shape01=-1) | Q(pos01=-1) | Q(label01=-1) | Q(switch01=-1) | Q(pos02=-1) | Q(switch02=-1) | Q(resultdisplay=-1) | Q(shape02=-1)
+    error_condition = Q(status='NG')
     
     grouped_total = logs.annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
     grouped_pass = logs.exclude(error_condition).annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
@@ -308,7 +308,7 @@ def api_monthly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_date)
     
-    error_condition = Q(caminput=-1) | Q(grayfilter=-1) | Q(shape01=-1) | Q(pos01=-1) | Q(label01=-1) | Q(switch01=-1) | Q(pos02=-1) | Q(switch02=-1) | Q(resultdisplay=-1) | Q(shape02=-1)
+    error_condition = Q(status='NG')
 
     grouped_total = logs.annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
     grouped_pass = logs.exclude(error_condition).annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')

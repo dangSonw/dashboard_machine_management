@@ -18,16 +18,11 @@ def user_list(request):
     return render(request, 'user_list.html', context)
 
 ERROR_FIELDS = {
-    'caminput': 'Cam Input',
-    'grayfilter': 'Gray Filter',
-    'shape01': 'Shape 01',
-    'pos01': 'Pos 01',
-    'label01': 'Label 01',
-    'switch01': 'Switch 01',
-    'shape02': 'Shape 02',
-    'pos02': 'Pos 02',
-    'switch02': 'Switch 02',
-    'resultdisplay': 'Result Display'
+    'misaligned_component': 'Misaligned Component',
+    'missing_component': 'Missing Component',
+    'missing_label': 'Missing Label',
+    'missing_pin': 'Missing Pin',
+    'wrong_polarity': 'Wrong Polarity'
 }
 
 def list_pcb(request):
@@ -35,11 +30,11 @@ def list_pcb(request):
     logs = Machine_Logs.objects.all().order_by('-created')
     
     total_logs = Machine_Logs.objects.count()
-    error_condition = Q(caminput=-1) | Q(grayfilter=-1) | Q(shape01=-1) | Q(pos01=-1) | Q(label01=-1) | Q(switch01=-1) | Q(pos02=-1) | Q(switch02=-1) | Q(resultdisplay=-1) | Q(shape02=-1)
+    error_condition = Q(status='NG')
     total_errors = Machine_Logs.objects.filter(error_condition).count()
     error_percentage = round((total_errors / total_logs * 100), 2) if total_logs > 0 else 0
     
-    agg_args = {f"{f}_err": Count('id', filter=Q(**{f: -1})) for f in ERROR_FIELDS}
+    agg_args = {f"{f}_err": Count('id', filter=Q(**{f"{f}__gt": 0})) for f in ERROR_FIELDS}
     error_counts_dict = Machine_Logs.objects.aggregate(**agg_args)
     
     error_stats = [

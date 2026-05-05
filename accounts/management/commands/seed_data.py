@@ -151,35 +151,31 @@ class Command(BaseCommand):
                 )
 
                 # Pass / Fail status determination
-                # Make majority PASS (1), some fail (0)
                 is_pass = random.random() < 0.7
                 
-                # If pass, all 10 checking values are 1.
-                # If fail, mix 0 and 1 ensuring at least one is 0.
-                if is_pass:
-                    vals = [1] * 10
-                else:
-                    vals = [1 if random.random() > 0.4 else 0 for _ in range(10)]
-                    if all(v == 1 for v in vals):
-                        vals[0] = 0 # Force at least one fail
+                status = 'OK'
+                error_cols = ['misaligned_component', 'missing_component', 'missing_label', 'missing_pin', 'wrong_polarity']
+                row_data = {col: 0 for col in error_cols}
+                row_data.update({f"{col}_conf": round(random.uniform(0.8, 1.0), 2) for col in error_cols})
+                
+                if not is_pass:
+                    status = 'NG'
+                    num_faults = random.randint(1, min(3, len(error_cols)))
+                    fault_cols = random.sample(error_cols, num_faults)
+                    for col in fault_cols:
+                        row_data[col] = random.randint(1, 3)
+                        row_data[f"{col}_conf"] = round(random.uniform(0.9, 0.99), 2)
                         
-                caminput_val, grayfilter_val, shape01_val, pos01_val, label01_val, switch01_val, shape02_val, pos02_val, switch02_val, res_disp_val = vals
+                datetime_str = created_time.strftime("%Y%m%d_%H%M%S")
 
                 log_objects.append(
                     Machine_Logs(
                         machine=machine,
-                        process_time_ms=random.uniform(50.0, 100.0),
-                        caminput=caminput_val,
-                        grayfilter=grayfilter_val,
-                        shape01=shape01_val,
-                        pos01=pos01_val,
-                        label01=label01_val,
-                        switch01=switch01_val,
-                        shape02=shape02_val,
-                        pos02=pos02_val,
-                        switch02=switch02_val,
-                        resultdisplay=res_disp_val,
+                        datetime=datetime_str,
+                        processing_time=random.uniform(50.0, 100.0),
+                        status=status,
                         created=created_time,
+                        **row_data
                     )
                 )
 

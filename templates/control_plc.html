@@ -86,6 +86,154 @@
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Control and monitor PLC operations</p>
                 </div>
             </div>
+            
+            <div class="flex flex-wrap -mx-3 mt-4">
+                <!-- Connection Status -->
+                <div class="w-full px-3 mb-6">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                            <h6 class="dark:text-white">Connection Status</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+                                <div class="mb-4 sm:mb-0">
+                                    <span id="plc_connection_dot" class="badge badge-danger px-2 py-1 rounded text-xs text-white bg-red-500">Chưa kết nối PLC</span>
+                                    <p id="status_note" class="text-sm mt-2 mb-0 text-slate-500 dark:text-white/80">Hệ thống đang chờ kết nối...</p>
+                                </div>
+                                <button class="btn btn-outline-info btn-sm px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white transition-all" onclick="toggleConnect()">KẾT NỐI PLC</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Power System -->
+                <div class="w-full px-3 mb-6 lg:w-1/2">
+                    <div id="x200-power-card" class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-850 dark:shadow-dark-xl">
+                        <div class="p-6 flex flex-col justify-center h-full">
+                            <div class="flex items-center justify-center mb-6">
+                                <div id="led-x200" class="w-4 h-4 rounded-full bg-slate-400 mr-3 shadow-sm transition-all duration-300"></div>
+                                <h5 id="x200-status-text" class="mb-0 text-slate-700 font-bold dark:text-white">HỆ THỐNG ĐANG TẮT</h5>
+                            </div>
+                            <button id="btn-x200-power" onclick="onPowerSystem()" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md"><i class="fa fa-power-off mr-2"></i> BẬT HỆ THỐNG (X200)</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Monitor Status -->
+                <div class="w-full px-3 mb-6 lg:w-1/2">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-850 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                            <h6 class="dark:text-white">Monitor</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                    <div class="text-xs text-slate-500 mb-1">Cycle Time</div>
+                                    <div id="val_cycle_time" class="font-bold text-lg dark:text-white">0</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                    <div class="text-xs text-slate-500 mb-1">D10 (In)</div>
+                                    <div id="val_D10" class="font-bold text-lg dark:text-white">0</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                    <div class="text-xs text-slate-500 mb-1">D14 (OK)</div>
+                                    <div id="val_D14" class="font-bold text-lg dark:text-white">0</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                    <div class="text-xs text-slate-500 mb-1">D16 (NG)</div>
+                                    <div id="val_D16" class="font-bold text-lg dark:text-white">0</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                    <div class="text-xs text-slate-500 mb-1">D12 (Out)</div>
+                                    <div id="val_D12" class="font-bold text-lg dark:text-white">0</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                    <div class="text-xs text-slate-500 mb-1">D20 (Rate)</div>
+                                    <div id="val_D20" class="font-bold text-lg dark:text-white">0</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                                <div>M100: <span id="val_M100" class="badge badge-secondary px-2 py-1 rounded text-xs bg-slate-400 text-white ml-1">OFF</span></div>
+                                <div>X15: <span id="val_X15" class="badge badge-secondary px-2 py-1 rounded text-xs bg-slate-400 text-white ml-1">OFF</span></div>
+                                <div>Y1: <span id="val_Y1" class="badge badge-secondary px-2 py-1 rounded text-xs bg-slate-400 text-white ml-1">OFF</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Manual Control -->
+                <div class="w-full px-3 mb-6">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                            <h6 class="dark:text-white">Manual Controls</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-wrap gap-3">
+                                <button class="px-4 py-2 text-white bg-gradient-to-tl from-blue-600 to-cyan-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm" onclick="controlY1('start')">Bật Y1 (M5001)</button>
+                                <button class="px-4 py-2 text-white bg-gradient-to-tl from-purple-700 to-pink-500 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm" onmousedown="controlMomentary('X10', 1, event)" onmouseup="controlMomentary('X10', 0, event)" ontouchstart="controlMomentary('X10', 1, event)" ontouchend="controlMomentary('X10', 0, event)">Nhấn nhả X10</button>
+                                <button class="px-4 py-2 text-white bg-gradient-to-tl from-gray-900 to-slate-800 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm" onclick="pulseCommand('M10', 500)">Pulse M10</button>
+                                <button class="px-4 py-2 text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm dark:bg-slate-900 dark:text-white dark:border-slate-700" onclick="pulseLightOff(500)">Pulse Light OFF</button>
+                                <button class="px-4 py-2 text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm dark:bg-slate-900 dark:text-white dark:border-slate-700" onmousedown="controlLightOffMomentary(1, event)" onmouseup="controlLightOffMomentary(0, event)" ontouchstart="controlLightOffMomentary(1, event)" ontouchend="controlLightOffMomentary(0, event)">Momentary Light OFF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Parameters -->
+                <div class="w-full px-3 mb-6">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                            <h6 class="dark:text-white">Parameters</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">D500</label>
+                                    <input id="input_D500" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">D502</label>
+                                    <input id="input_D502" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">D300</label>
+                                    <input id="input_D300" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">D302</label>
+                                    <input id="input_D302" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">D304</label>
+                                    <input id="input_D304" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">D306</label>
+                                    <input id="input_D306" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
+                                </div>
+                            </div>
+                            <div class="mt-4 flex justify-end">
+                                <button onclick="saveParameters()" class="px-6 py-2 text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-semibold"><i class="fas fa-save mr-2"></i> Lưu Tham Số</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Debug Log -->
+                <div class="w-full px-3 mb-6">
+                    <div class="relative flex flex-col min-w-0 break-words bg-[#1e1e1e] border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+                        <div class="p-4 pb-0 mb-0 border-b-0 rounded-t-2xl bg-[#1e1e1e]">
+                            <h6 class="text-white"><i class="fas fa-terminal mr-2"></i>Debug Logs</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div id="plc-debug-log" class="h-64 overflow-y-auto text-xs font-mono bg-[#0d0d0d] p-3 rounded border border-slate-700 text-slate-300">
+                                <!-- Logs appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 

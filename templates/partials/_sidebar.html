@@ -135,12 +135,20 @@
         </a>
       </li>
 
+      <!-- Logout -->
+      <li class="mt-0.5 w-full">
+        <form id="logout-form" action="{% url 'logout' %}" method="POST" class="hidden">
+          {% csrf_token %}
+        </form>
+        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;" class="ease-soft-in-out text-sm py-2.7 my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80 rounded-lg transition-all">
+          <div class="stroke-none shadow-soft-2xl bg-white mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
+            <i class="fas fa-sign-out-alt text-slate-700 dark:text-slate-400"></i>
+          </div>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Logout</span>
+        </a>
+      </li>
+
     </ul>
   </div>
 
-  <div class="pt-4 mx-4 mt-4">
-    <div sidenav-card class="after:opacity-65 after:bg-gradient-to-tl after:from-slate-600 after:to-slate-300 relative flex min-w-0 flex-col items-center break-words rounded-2xl border-0 border-solid border-blue-900 bg-white bg-clip-border shadow-none after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl after:content-['']">
-      <div class="absolute w-full h-full bg-center bg-cover mb-7 rounded-2xl" style="background-image: url('{% static 'img/curved-images/white-curved.jpg' %}')"></div>
-    </div>
-  </div>
 </aside>

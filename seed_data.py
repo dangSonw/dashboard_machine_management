@@ -39,8 +39,8 @@ def seed():
 
     # Columns to check for errors according to user requirements
     error_columns = [
-        'caminput', 'grayfilter', 'shape01', 'pos01', 'label01', 
-        'switch01', 'pos02', 'switch02', 'resultdisplay', 'shape02'
+        'misaligned_component', 'missing_component', 'missing_label', 
+        'missing_pin', 'wrong_polarity'
     ]
 
     # Loop from 6 days ago up to today (total 7 days)
@@ -58,26 +58,28 @@ def seed():
             # Logic: 80% pass, 20% fail
             is_pass = random.random() < 0.8
             
-            # Initialize all check columns with 1 (Pass)
-            row_data = {col: 1 for col in error_columns}
+            # Initialize all check columns with 0 (No error)
+            row_data = {col: 0 for col in error_columns}
+            # Initialize confidence levels
+            row_data.update({f"{col}_conf": round(random.uniform(0.8, 1.0), 2) for col in error_columns})
             
+            status = 'OK'
             if not is_pass:
-                # If fail, randomly pick 1 to 3 columns to set to -1
-                num_faults = random.randint(1, 3)
+                status = 'NG'
+                # If fail, randomly pick 1 to 3 columns to have errors
+                num_faults = random.randint(1, min(3, len(error_columns)))
                 fault_cols = random.sample(error_columns, num_faults)
                 for col in fault_cols:
-                    row_data[col] = -1
+                    row_data[col] = random.randint(1, 3) # Randomly 1 to 3 components failed
+                    row_data[f"{col}_conf"] = round(random.uniform(0.9, 0.99), 2)
+            
+            datetime_str = log_time.strftime("%Y%m%d_%H%M%S")
             
             log = Machine_Logs(
                 machine=machine,
-                process_time_ms=round(random.uniform(55.0, 65.0), 2),
-                **row_data,
-                posx01=random.randint(100, 200),
-                posy01=random.randint(100, 200),
-                posx02=random.randint(100, 200),
-                posy02=random.randint(100, 200),
-                totalarea01=random.randint(1000, 2000),
-                numoflabels01=1
+                processing_time=round(random.uniform(55.0, 65.0), 2),
+                status=status,
+                **row_data
             )
             # Create a separate step to set timestamps since bulk_create is used
             log.created = log_time
