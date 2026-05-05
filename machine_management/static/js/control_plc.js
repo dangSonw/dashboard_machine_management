@@ -146,8 +146,20 @@ function pollPlcStatus() {
                 $('#val_X15_menu').removeClass().addClass(data.x15 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
             if (data.x100 !== undefined) {
-                $('#val_X100').text(data.x100 ? 'ON' : 'OFF');
-                $('#val_X100').removeClass().addClass(data.x100 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
+                $('#val_X100_servo').text(data.x100 ? 'X100 ON' : 'X100 OFF');
+                $('#val_X100_servo').removeClass().addClass(data.x100 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
+            if (data.x112 !== undefined) {
+                $('#val_X112_servo').text(data.x112 ? 'X112 ON' : 'X112 OFF');
+                $('#val_X112_servo').removeClass().addClass(data.x112 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
+            if (data.x151 !== undefined) {
+                $('#val_X151_light').text(data.x151 ? 'X151 ON' : 'X151 OFF');
+                $('#val_X151_light').removeClass().addClass(data.x151 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
+            if (data.x152 !== undefined) {
+                $('#val_X152_light').text(data.x152 ? 'X152 ON' : 'X152 OFF');
+                $('#val_X152_light').removeClass().addClass(data.x152 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
             if (data.y1 !== undefined) {
                 $('#val_Y1').text(data.y1 ? 'ON' : 'OFF');

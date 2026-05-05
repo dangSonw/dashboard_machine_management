@@ -17,8 +17,14 @@ class CSVHandler(FileSystemEventHandler):
         self.headers = []
 
         if os.path.exists(self.filepath):
-            self.stdout.write(f"Initial check on {self.filepath}...")
-            self.process_file()
+            with open(self.filepath, mode='r', encoding='utf-8-sig') as f:
+                header_line = f.readline()
+                if header_line:
+                    self.headers = next(csv.reader(io.StringIO(header_line)), [])
+                    self.headers = [h.strip() for h in self.headers]
+            
+            self.last_size = os.path.getsize(self.filepath)
+            self.stdout.write(f"Started monitoring {self.filepath} from offset {self.last_size}. Headers: {self.headers}")
 
     def on_modified(self, event):
         if os.path.abspath(event.src_path) == self.filepath:
@@ -75,27 +81,42 @@ class CSVHandler(FileSystemEventHandler):
                     except ValueError: return None
 
                 try:
-                    Machine_Logs.objects.create(
-                        machine=self.machine,
-                        process_time_ms=parse_float(row.get('process_time_ms')),
-                        caminput=parse_int(row.get('caminput')),
-                        grayfilter=parse_int(row.get('grayfilter')),
-                        shape01=parse_int(row.get('shape01')),
-                        pos01=parse_int(row.get('pos01')),
-                        label01=parse_int(row.get('label01')),
-                        switch01=parse_int(row.get('switch01')),
-                        posy01=parse_int(row.get('posy01')),
-                        posy02=parse_int(row.get('posy02')),
-                        posx01=parse_int(row.get('posx01')),
-                        posx02=parse_int(row.get('posx02')),
-                        shape02=parse_int(row.get('shape02')),
-                        pos02=parse_int(row.get('pos02')),
-                        switch02=parse_int(row.get('switch02')),
-                        totalarea01=parse_int(row.get('totalarea01')),
-                        numoflabels01=parse_int(row.get('numoflabels01')),
-                        resultdisplay=parse_int(row.get('resultdisplay')),
-                    )
-                    success_count += 1
+                    # Map CSV columns to new model fields
+                    log_data = {
+                        'machine': self.machine,
+                    }
+                    
+                    # Numeric fields (Int/Float)
+                    field_mappings = {
+                        'processing_time': parse_float,
+                        'misaligned_component': parse_int,
+                        'misaligned_component_conf': parse_float,
+                        'missing_component': parse_int,
+                        'missing_component_conf': parse_float,
+                        'missing_label': parse_int,
+                        'missing_label_conf': parse_float,
+                        'missing_pin': parse_int,
+                        'missing_pin_conf': parse_float,
+                        'wrong_polarity': parse_int,
+                        'wrong_polarity_conf': parse_float,
+                    }
+
+                    for csv_col, parser in field_mappings.items():
+                        val = row.get(csv_col)
+                        if val is not None and val.strip() != '':
+                            parsed_val = parser(val)
+                            if parsed_val is not None:
+                                log_data[csv_col] = parsed_val
+                    
+                    # String fields
+                    if row.get('status'):
+                        log_data['status'] = row.get('status').strip()
+
+                    # Save only if we have some data beyond just the machine
+                    if len(log_data) > 1:
+                        Machine_Logs.objects.create(**log_data)
+                        success_count += 1
+                        
                 except Exception as e:
                     self.stdout.write(self.style.ERROR(f"Error on row: {row}. Error: {e}"))
             
