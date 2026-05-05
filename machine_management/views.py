@@ -128,8 +128,16 @@ def api_plc_status(request):
             data = {}
             
         d100 = plc_comm.read_device('D100')
+        m10 = plc_comm.read_device('M10')
+        m20 = plc_comm.read_device('M20')
+        m40 = plc_comm.read_device('M40')
         m80 = plc_comm.read_device('M80')
+        m100 = plc_comm.read_device('M100')
         m5000 = plc_comm.read_device('M5000')
+        x10 = plc_comm.read_device('X10')
+        x15 = plc_comm.read_device('X15')
+        x100 = plc_comm.read_device('X100')
+        y1 = plc_comm.read_device('Y1')
         
         d_params = plc_comm.read_device('D300', 20)
         d_params2 = plc_comm.read_device('D500', 3)
@@ -138,8 +146,16 @@ def api_plc_status(request):
             'status': 'ok',
             'data': data,
             'd100': d100[0] if d100 else 0,
+            'm10': m10[0] if m10 else 0,
+            'm20': m20[0] if m20 else 0,
+            'm40': m40[0] if m40 else 0,
             'm80': m80[0] if m80 else 0,
+            'm100': m100[0] if m100 else 0,
             'm5000': m5000[0] if m5000 else 0,
+            'x10': x10[0] if x10 else 0,
+            'x15': x15[0] if x15 else 0,
+            'x100': x100[0] if x100 else 0,
+            'y1': y1[0] if y1 else 0,
             'params': {
                 'D300': d_params[0] if d_params else 0,
                 'D302': d_params[2] if d_params else 0,

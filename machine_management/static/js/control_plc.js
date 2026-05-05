@@ -113,13 +113,33 @@ function pollPlcStatus() {
             
 
             
+            if (data.m10 !== undefined) {
+                $('#val_M10').text(data.m10 ? 'M10 ON' : 'M10 OFF');
+                $('#val_M10').removeClass().addClass(data.m10 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
+            if (data.m20 !== undefined) {
+                $('#val_M20').text(data.m20 ? 'M20 ON' : 'M20 OFF');
+                $('#val_M20').removeClass().addClass(data.m20 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
+            if (data.m40 !== undefined) {
+                $('#val_M40').text(data.m40 ? 'M40 ON' : 'M40 OFF');
+                $('#val_M40').removeClass().addClass(data.m40 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
             if (data.m100 !== undefined) {
                 $('#val_M100').text(data.m100 ? 'ON' : 'OFF');
                 $('#val_M100').removeClass().addClass(data.m100 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
             }
+            if (data.x10 !== undefined) {
+                $('#val_X10').text(data.x10 ? 'ON' : 'OFF');
+                $('#val_X10').removeClass().addClass(data.x10 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            }
             if (data.x15 !== undefined) {
                 $('#val_X15').text(data.x15 ? 'ON' : 'OFF');
                 $('#val_X15').removeClass().addClass(data.x15 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
+            }
+            if (data.x100 !== undefined) {
+                $('#val_X100').text(data.x100 ? 'ON' : 'OFF');
+                $('#val_X100').removeClass().addClass(data.x100 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
             }
             if (data.y1 !== undefined) {
                 $('#val_Y1').text(data.y1 ? 'ON' : 'OFF');
@@ -235,10 +255,10 @@ function onPowerSystem() {
         btn.disabled = true;
         btn.innerHTML = '<i class="zmdi zmdi-rotate-right zmdi-hc-spin"></i>&nbsp; ĐANG BẬT HỆ THỐNG...';
     }
-    if (led) led.className = 'rounded-circle bg-warning mr-2 shadow-sm';
+    if (led) led.className = 'w-4 h-4 rounded-full bg-yellow-500 mr-3 shadow-sm';
     if (statusTxt) {
         statusTxt.innerText = 'Đang gửi X200...';
-        statusTxt.className = 'font-weight-bold text-warning';
+        statusTxt.className = 'mb-0 font-bold text-yellow-500 dark:text-yellow-400';
     }
     if (note) note.innerText = 'Đang gửi lệnh ON POWER (X200) tới PLC...';
 
@@ -255,26 +275,24 @@ function onPowerSystem() {
 
         if (data.status === 'ok') {
             debugLog('OK', '✅ Lệnh X200 (ON POWER) đã được PLC nhận thành công', data);
-            if (led) led.className = 'rounded-circle bg-success mr-2 shadow-sm';
+            if (led) led.className = 'w-4 h-4 rounded-full bg-green-500 mr-3 shadow-sm';
             if (statusTxt) {
                 statusTxt.innerText = '✅ HỆ THỐNG ON';
-                statusTxt.className = 'font-weight-bold text-success';
+                statusTxt.className = 'mb-0 font-bold text-green-500';
             }
             if (note) note.innerText = '✅ X200 ON — Toàn bộ hệ thống đã được bật!';
             if (btn) {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="zmdi zmdi-check"></i>&nbsp; HỆ THỐNG ĐÃ BẬT (X200)';
-                btn.className = 'btn btn-success btn-lg btn-block waves-effect mt-2 shadow';
+                btn.innerHTML = '<i class="fas fa-check"></i>&nbsp; HỆ THỐNG ĐÃ BẬT (X200)';
             }
             setTimeout(() => {
-                if (led) led.className = 'rounded-circle bg-info mr-2 shadow-sm';
+                if (led) led.className = 'w-4 h-4 rounded-full bg-blue-500 mr-3 shadow-sm';
                 if (statusTxt) {
                     statusTxt.innerText = 'HỆ THỐNG SẴN SÀNG';
-                    statusTxt.className = 'font-weight-bold text-info';
+                    statusTxt.className = 'mb-0 font-bold text-blue-500';
                 }
                 if (btn) {
-                    btn.innerHTML = '<i class="zmdi zmdi-power"></i>&nbsp; BẬT HỆ THỐNG (X200)';
-                    btn.className = 'btn btn-success btn-lg btn-block waves-effect mt-2 shadow';
+                    btn.innerHTML = '<i class="fa fa-power-off mr-2"></i> BẬT HỆ THỐNG';
                 }
             }, 6000);
 
@@ -282,10 +300,10 @@ function onPowerSystem() {
             // Thất bại
             const errMsg = `❌ X200 thất bại: ${data.message || 'Không rõ lý do'}`;
             debugLog('ERR', errMsg, data);
-            if (led) led.className = 'rounded-circle bg-danger mr-2 shadow-sm';
+            if (led) led.className = 'w-4 h-4 rounded-full bg-red-500 mr-3 shadow-sm';
             if (statusTxt) {
                 statusTxt.innerText = '❌ LỖI GỬI X200';
-                statusTxt.className = 'font-weight-bold text-danger';
+                statusTxt.className = 'mb-0 font-bold text-red-500';
             }
             if (note) note.innerText = errMsg;
             if (btn) {
