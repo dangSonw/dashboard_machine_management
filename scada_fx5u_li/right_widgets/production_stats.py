@@ -133,13 +133,13 @@ class ProductionStats(tk.Frame):
                     if key not in ("manual_speed", "auto_speed"):
                         entry.config(state="readonly")
 
-            # status
-            if status == 1:
+            # status: 0 = OK, 1 = NG
+            if status == 0:
                 self.status.delete(0, tk.END)
                 self.status.insert(0, "OK")
             else:
                 self.status.delete(0, tk.END)
-                self.status.insert(0, "ER")
+                self.status.insert(0, "NG")
 
         except Exception as e:
             print("UI ERROR:", e)

@@ -37,10 +37,11 @@ def seed():
     now = timezone.now()
     logs_to_create = []
 
-    # Columns to check for errors according to user requirements
+    # Columns to check for errors according to the current Machine_Logs model
     error_columns = [
-        'misaligned_component', 'missing_component', 'missing_label', 
-        'missing_pin', 'wrong_polarity'
+        'empty', 'excess_solder', 'exposed_copper',
+        'misaligned_header', 'missing_component',
+        'scratched', 'solder_bridge'
     ]
 
     # Loop from 6 days ago up to today (total 7 days)
@@ -70,7 +71,7 @@ def seed():
                 num_faults = random.randint(1, min(3, len(error_columns)))
                 fault_cols = random.sample(error_columns, num_faults)
                 for col in fault_cols:
-                    row_data[col] = random.randint(1, 3) # Randomly 1 to 3 components failed
+                    row_data[col] = 1  # Only use binary error values 0 or 1
                     row_data[f"{col}_Conf"] = round(random.uniform(0.9, 0.99), 2)
             
             datetime_str = log_time.strftime("%Y%m%d_%H%M%S")

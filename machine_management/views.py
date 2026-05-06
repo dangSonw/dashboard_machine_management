@@ -22,8 +22,8 @@ def home(request):
     # Lấy tổng số lượng bản ghi (đại diện cho tổng số lượng PLC đã chạy)
     total_plc = Machine_Logs.objects.count()
     
-    # Điều kiện lỗi
-    error_condition = Q(Status='NG')
+    # Điều kiện lỗi: 1 = NG, 0 = OK
+    error_condition = Q(Status='1')
     
     total_ng = Machine_Logs.objects.filter(error_condition).count()
     total_ok = total_plc - total_ng
@@ -293,7 +293,7 @@ def api_weekly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_time)
     
-    error_condition = Q(Status='NG')
+    error_condition = Q(Status='1')
     
     grouped_total = logs.annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
     grouped_pass = logs.exclude(error_condition).annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
@@ -336,7 +336,7 @@ def api_monthly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_date)
     
-    error_condition = Q(Status='NG')
+    error_condition = Q(Status='1')
 
     grouped_total = logs.annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
     grouped_pass = logs.exclude(error_condition).annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
