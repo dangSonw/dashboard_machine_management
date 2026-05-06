@@ -2,6 +2,7 @@ let isConnected = false;
 let pollInterval = null;
 let isEditingParams = false;
 let editTimeout;
+let emptyModeState = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     $(document).on('focus', 'input[id^="input_D"]', function() {
@@ -121,9 +122,10 @@ function pollPlcStatus() {
                 $('#val_M20').text(data.m20 ? 'M20 ON' : 'M20 OFF');
                 $('#val_M20').removeClass().addClass(data.m20 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
-            if (data.m40 !== undefined) {
-                $('#val_M40').text(data.m40 ? 'M40 ON' : 'M40 OFF');
-                $('#val_M40').removeClass().addClass(data.m40 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            if (data.x304 !== undefined) {
+                emptyModeState = data.x304 ? 1 : 0;
+                $('#val_X304').text(data.x304 ? 'X304 ON' : 'X304 OFF');
+                $('#val_X304').removeClass().addClass(data.x304 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
             if (data.m100 !== undefined) {
                 $('#val_M100').text(data.m100 ? 'ON' : 'OFF');
@@ -133,17 +135,17 @@ function pollPlcStatus() {
                 $('#val_X10').text(data.x10 ? 'ON' : 'OFF');
                 $('#val_X10').removeClass().addClass(data.x10 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
-            if (data.x14 !== undefined) {
-                $('#val_X14').text(data.x14 ? 'ON' : 'OFF');
-                $('#val_X14').removeClass().addClass(data.x14 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
-                $('#val_X14_menu').text(data.x14 ? 'X14 ON' : 'X14 OFF');
-                $('#val_X14_menu').removeClass().addClass(data.x14 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            if (data.x124 !== undefined) {
+                $('#val_X124').text(data.x124 ? 'ON' : 'OFF');
+                $('#val_X124').removeClass().addClass(data.x124 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+                $('#val_X124_menu').text(data.x124 ? 'X124 ON' : 'X124 OFF');
+                $('#val_X124_menu').removeClass().addClass(data.x124 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
-            if (data.x15 !== undefined) {
-                $('#val_X15').text(data.x15 ? 'ON' : 'OFF');
-                $('#val_X15').removeClass().addClass(data.x15 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
-                $('#val_X15_menu').text(data.x15 ? 'X15 ON' : 'X15 OFF');
-                $('#val_X15_menu').removeClass().addClass(data.x15 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
+            if (data.x125 !== undefined) {
+                $('#val_X125').text(data.x125 ? 'ON' : 'OFF');
+                $('#val_X125').removeClass().addClass(data.x125 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.9em');
+                $('#val_X125_menu').text(data.x125 ? 'X125 ON' : 'X125 OFF');
+                $('#val_X125_menu').removeClass().addClass(data.x125 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
             if (data.x100 !== undefined) {
                 $('#val_X100_servo').text(data.x100 ? 'X100 ON' : 'X100 OFF');
@@ -551,3 +553,35 @@ window.addEventListener('unhandledrejection', function(event) {
     console.warn('[PLC] Unhandled Promise Rejection:', event.reason);
     event.preventDefault();
 });
+
+function toggleEmptyMode() {
+    if(!isConnected) {
+        alert("Vui lòng kết nối PLC trước khi gửi lệnh!");
+        return;
+    }
+    const note = document.getElementById('status_note');
+    const newState = emptyModeState === 1 ? 0 : 1;
+    
+    note.innerText = `Đang gửi lệnh ${newState === 1 ? 'ON' : 'OFF'} Empty Mode (X304)...`;
+    debugLog('INFO', `Toggle Empty Mode (X304) -> ${newState}`);
+    
+    fetch('/api/plc/command/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({command: 'X304', value: newState})
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            note.innerText = `Lệnh Empty Mode (X304=${newState}) thành công.`;
+            emptyModeState = newState; // update state instantly
+        } else {
+            note.innerText = `❌ Lệnh Empty Mode thất bại: ${data.message || ''}`;
+        }
+    })
+    .catch(err => {
+        note.innerText = `⚠ Lỗi gửi lệnh Empty Mode: ` + err;
+        debugLog('ERR', `Lỗi network khi gửi X304`, err);
+    });
+}
+

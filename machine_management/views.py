@@ -130,13 +130,13 @@ def api_plc_status(request):
         d100 = plc_comm.read_device('D100')
         m10 = plc_comm.read_device('M10')
         m20 = plc_comm.read_device('M20')
-        m40 = plc_comm.read_device('M40')
+        x304 = plc_comm.read_device('X304')
         m80 = plc_comm.read_device('M80')
         m100 = plc_comm.read_device('M100')
         m5000 = plc_comm.read_device('M5000')
         x10 = plc_comm.read_device('X10')
-        x14 = plc_comm.read_device('X14')
-        x15 = plc_comm.read_device('X15')
+        x124 = plc_comm.read_device('X124')
+        x125 = plc_comm.read_device('X125')
         x100 = plc_comm.read_device('X100')
         x112 = plc_comm.read_device('X112')
         x110 = plc_comm.read_device('X110')
@@ -154,13 +154,13 @@ def api_plc_status(request):
             'd100': d100[0] if d100 else 0,
             'm10': m10[0] if m10 else 0,
             'm20': m20[0] if m20 else 0,
-            'm40': m40[0] if m40 else 0,
+            'x304': x304[0] if x304 else 0,
             'm80': m80[0] if m80 else 0,
             'm100': m100[0] if m100 else 0,
             'm5000': m5000[0] if m5000 else 0,
             'x10': x10[0] if x10 else 0,
-            'x14': x14[0] if x14 else 0,
-            'x15': x15[0] if x15 else 0,
+            'x124': x124[0] if x124 else 0,
+            'x125': x125[0] if x125 else 0,
             'x100': x100[0] if x100 else 0,
             'x112': x112[0] if x112 else 0,
             'x110': x110[0] if x110 else 0,

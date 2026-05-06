@@ -17,6 +17,7 @@ class ModeButtons(tk.Frame):
         self._run1step_active = False # trạng thái run 1 step đang giữ
         self._auto_active = False     # trạng thái auto đang giữ
         self._discharge_active = False # trạng thái discharge đang giữ
+        self._empty_active = False    # trạng thái empty đang giữ
 
         # ===== TẠO BUTTON =====
         self.create_button("START", "#22c55e", self.start_action) # Xanh lá
@@ -24,7 +25,7 @@ class ModeButtons(tk.Frame):
         self.create_button("POWER", "#2e7d32", self.power_toggle)
         self.create_origin_button()   # 🔥 ORIGIN (X111)
         self.create_run1step_button() # 🔥 RUN 1 STEP (X112)
-        self.create_button("EMPTY", "#eab308", self.empty_mode) # Vàng cam
+        self.create_button("EMPTY", "#888888", self.empty_mode) # Xám
         self.create_auto_button()     # 🔥 AUTO (X300)
         self.create_discharge_button() # 🔥 DISCHANGE (X306)
 
@@ -182,6 +183,12 @@ class ModeButtons(tk.Frame):
             else:
                 self.buttons["DISCHANGE"].config(bg="#888888")
 
+            # 🔥 EMPTY dùng _empty_active state
+            if self._empty_active:
+                self.buttons["EMPTY"].config(bg="#eab308")  # vàng cam
+            else:
+                self.buttons["EMPTY"].config(bg="#888888")
+
         except Exception as e:
             print("UI ERROR:", e)
 
@@ -190,10 +197,10 @@ class ModeButtons(tk.Frame):
     # ================= LOGIC =================
 
     def start_action(self):
-        threading.Thread(target=self._short_pulse, args=("X15",), daemon=True).start()
+        threading.Thread(target=self._short_pulse, args=("X125",), daemon=True).start()
 
     def stop_action(self):
-        threading.Thread(target=self._short_pulse, args=("X14",), daemon=True).start()
+        threading.Thread(target=self._short_pulse, args=("X124",), daemon=True).start()
 
     def _short_pulse(self, device):
         """Gửi xung 0.5s giống web pulseCommand"""
@@ -293,8 +300,13 @@ class ModeButtons(tk.Frame):
 
     # 🔥 EMPTY (gửi lệnh X304=1 giống hệt web)
     def empty_mode(self):
-        write_bit("X304", 1)
-        print("[EMPTY] X304 = 1")
+        self._empty_active = not self._empty_active
+        if self._empty_active:
+            write_bit("X304", 1)
+            print("[EMPTY] X304 = 1 (ON)")
+        else:
+            write_bit("X304", 0)
+            print("[EMPTY] X304 = 0 (OFF)")
 
     # ================= HOLD 2s =================
     def _hold_pulse(self, device):
