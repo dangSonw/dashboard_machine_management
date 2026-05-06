@@ -64,9 +64,9 @@ def seed():
             # Initialize confidence levels
             row_data.update({f"{col}_Conf": round(random.uniform(0.8, 1.0), 2) for col in error_columns})
             
-            status = 'OK'
+            status = '0'
             if not is_pass:
-                status = 'NG'
+                status = '1'
                 # If fail, randomly pick 1 to 3 columns to have errors
                 num_faults = random.randint(1, min(3, len(error_columns)))
                 fault_cols = random.sample(error_columns, num_faults)

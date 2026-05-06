@@ -23,10 +23,8 @@ def home(request):
     total_plc = Machine_Logs.objects.count()
     
     # Điều kiện lỗi: 1 = NG, 0 = OK
-    error_condition = Q(Status='1')
-    
-    total_ng = Machine_Logs.objects.filter(error_condition).count()
-    total_ok = total_plc - total_ng
+    total_ng = Machine_Logs.objects.filter(Status='1').count()
+    total_ok = Machine_Logs.objects.filter(Status='0').count()
 
     context = {
         'total_plc': total_plc,
@@ -293,11 +291,9 @@ def api_weekly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_time)
     
-    error_condition = Q(Status='1')
-    
     grouped_total = logs.annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
-    grouped_pass = logs.exclude(error_condition).annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
-    grouped_fail = logs.filter(error_condition).annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
+    grouped_pass = logs.filter(Status='0').annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
+    grouped_fail = logs.filter(Status='1').annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
     
     total_map = {item['day'].strftime('%d-%m'): item['count'] for item in grouped_total}
     pass_map = {item['day'].strftime('%d-%m'): item['count'] for item in grouped_pass}
@@ -336,11 +332,9 @@ def api_monthly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_date)
     
-    error_condition = Q(Status='1')
-
     grouped_total = logs.annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
-    grouped_pass = logs.exclude(error_condition).annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
-    grouped_fail = logs.filter(error_condition).annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
+    grouped_pass = logs.filter(Status='0').annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
+    grouped_fail = logs.filter(Status='1').annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
     
     total_map = {item['month'].strftime('%m-%Y'): item['count'] for item in grouped_total if item['month']}
     pass_map = {item['month'].strftime('%m-%Y'): item['count'] for item in grouped_pass if item['month']}

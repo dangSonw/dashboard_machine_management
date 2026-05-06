@@ -53,7 +53,17 @@ class Machine_Logs(models.Model):
     solder_bridge = models.IntegerField(null=True, blank=True, help_text="Lỗi cầu hàn")
     solder_bridge_Conf = models.FloatField(null=True, blank=True)
     
-    Status = models.CharField(max_length=100, null=True, blank=True)
+    Status = models.CharField(
+        max_length=1,
+        null=True,
+        blank=True,
+        default='0',
+        choices=(
+            ('0', 'OK'),
+            ('1', 'NG'),
+        ),
+        help_text="0 = OK (no error), 1 = NG (has error)",
+    )
     
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)

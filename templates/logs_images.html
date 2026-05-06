@@ -99,62 +99,178 @@
                             {% endif %}
                         </div>
 
-                        {% if files %}
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Name</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Type</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Size</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Modified</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for file in files %}
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">
+                        {% if ok_images or ng_images %}
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950/40 p-5">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <div>
                                             <div class="flex items-center gap-2">
-                                                {% if file.is_dir %}
-                                                <i class="fas fa-folder text-warning"></i>
-                                                {% else %}
-                                                <i class="{{ file.icon }}"></i>
-                                                {% endif %}
-                                                <span class="font-medium">{{ file.name }}</span>
+                                                <h6 class="font-bold text-slate-700 dark:text-white m-0">OK</h6>
+                                                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">{{ ok_total|default:ok_images|length }}</span>
                                             </div>
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ file.type }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ file.size|default:"-" }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ file.mod_time }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
-                                            {% if file.is_dir %}
-                                            <a href="?path={{ file.rel_path }}" class="px-3 py-1 text-xs font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-                                                <i class="fas fa-folder-open mr-1"></i> Open
-                                            </a>
+                                            <p class="text-xs text-slate-400 dark:text-slate-500 m-0">Latest images in `LogImage/OK`</p>
+                                        </div>
+                                    </div>
+                                    <a href="?path=OK" class="px-3 py-2 text-xs font-semibold text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:opacity-90">
+                                        <i class="fas fa-folder-open mr-1"></i> View all
+                                    </a>
+                                </div>
+
+                                {% if ok_images %}
+                                <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+                                    {% for img in ok_images %}
+                                    <a href="{% url 'serve_log_image' %}?path={{ img.rel_path }}" target="_blank" class="group block rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/40 hover:shadow-soft-xs transition-shadow">
+                                        <div class="aspect-square w-full overflow-hidden">
+                                            <img src="{% url 'serve_log_image' %}?path={{ img.rel_path }}" alt="{{ img.name }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200" />
+                                        </div>
+                                        <div class="px-2 py-2">
+                                            <p class="text-[11px] font-semibold text-slate-700 dark:text-white truncate m-0">{{ img.name }}</p>
+                                            <p class="text-[10px] text-slate-400 dark:text-slate-500 truncate m-0">{{ img.mod_time }}</p>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <div class="text-center py-10">
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 m-0">No images found in OK.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950/40 p-5">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300">
+                                            <i class="fas fa-xmark"></i>
+                                        </span>
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <h6 class="font-bold text-slate-700 dark:text-white m-0">NG</h6>
+                                                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300">{{ ng_total|default:ng_images|length }}</span>
+                                            </div>
+                                            <p class="text-xs text-slate-400 dark:text-slate-500 m-0">Latest images in `LogImage/NG`</p>
+                                        </div>
+                                    </div>
+                                    <a href="?path=NG" class="px-3 py-2 text-xs font-semibold text-white bg-gradient-to-tl from-red-600 to-rose-400 rounded-lg hover:opacity-90">
+                                        <i class="fas fa-folder-open mr-1"></i> View all
+                                    </a>
+                                </div>
+
+                                {% if ng_images %}
+                                <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+                                    {% for img in ng_images %}
+                                    <a href="{% url 'serve_log_image' %}?path={{ img.rel_path }}" target="_blank" class="group block rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/40 hover:shadow-soft-xs transition-shadow">
+                                        <div class="aspect-square w-full overflow-hidden">
+                                            <img src="{% url 'serve_log_image' %}?path={{ img.rel_path }}" alt="{{ img.name }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200" />
+                                        </div>
+                                        <div class="px-2 py-2">
+                                            <p class="text-[11px] font-semibold text-slate-700 dark:text-white truncate m-0">{{ img.name }}</p>
+                                            <p class="text-[10px] text-slate-400 dark:text-slate-500 truncate m-0">{{ img.mod_time }}</p>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <div class="text-center py-10">
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 m-0">No images found in NG.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% else %}
+                            {% if files %}
+                            <div class="divide-y divide-gray-100 dark:divide-gray-800">
+                                {% for file in files %}
+                                <div class="py-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/40 rounded-xl px-3 transition-colors">
+                                    <div class="flex items-center gap-3 min-w-0">
+                                        {% if file.is_dir %}
+                                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300 shrink-0">
+                                            <i class="fas fa-folder"></i>
+                                        </span>
+                                        <div class="min-w-0">
+                                            <p class="text-sm font-semibold text-slate-700 dark:text-white truncate m-0">{{ file.name }}</p>
+                                            <p class="text-xs text-slate-400 dark:text-slate-500 truncate m-0">Folder</p>
+                                        </div>
+                                        {% else %}
+                                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-100 text-sky-700 dark:bg-sky-900/20 dark:text-sky-300 shrink-0">
+                                            <i class="fas fa-image"></i>
+                                        </span>
+                                        <div class="min-w-0">
+                                            {% if file.is_image %}
+                                            <button type="button" class="text-left w-full" onclick="openImageModal('{% url 'serve_log_image' %}?path={{ file.rel_path }}', '{{ file.name|escapejs }}', '{{ file.mod_time|escapejs }}')">
+                                                <p class="text-sm font-semibold text-slate-700 dark:text-white truncate m-0">{{ file.name }}</p>
+                                            </button>
                                             {% else %}
-                                            <a href="{% url 'serve_log_image' %}?path={{ file.rel_path }}" target="_blank" class="px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600">
+                                            <p class="text-sm font-semibold text-slate-700 dark:text-white truncate m-0">{{ file.name }}</p>
+                                            {% endif %}
+                                            <p class="text-xs text-slate-400 dark:text-slate-500 truncate m-0">{{ file.mod_time }}</p>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="shrink-0 flex items-center gap-2">
+                                        {% if file.is_dir %}
+                                        <a href="?path={{ file.rel_path }}" class="px-3 py-2 text-xs font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                                            <i class="fas fa-folder-open mr-1"></i> Open
+                                        </a>
+                                        {% else %}
+                                            {% if file.is_image %}
+                                            <button type="button" onclick="openImageModal('{% url 'serve_log_image' %}?path={{ file.rel_path }}', '{{ file.name|escapejs }}', '{{ file.mod_time|escapejs }}')" class="px-3 py-2 text-xs font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600">
+                                                <i class="fas fa-eye mr-1"></i> View
+                                            </button>
+                                            {% else %}
+                                            <a href="{% url 'serve_log_image' %}?path={{ file.rel_path }}" target="_blank" class="px-3 py-2 text-xs font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600">
                                                 <i class="fas fa-eye mr-1"></i> View
                                             </a>
                                             {% endif %}
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        {% else %}
-                        <div class="text-center py-12">
-                            <i class="fas fa-folder-open text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
-                            <p class="text-slate-500 dark:text-slate-400">No files found in this directory.</p>
-                            <p class="text-sm text-slate-400 dark:text-slate-500 mt-2">Make sure the log image directory exists and contains files.</p>
-                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="text-center py-12">
+                                <i class="fas fa-folder-open text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
+                                <p class="text-slate-500 dark:text-slate-400">No files found in this directory.</p>
+                                <p class="text-sm text-slate-400 dark:text-slate-500 mt-2">Make sure the log image directory exists and contains files.</p>
+                            </div>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- Image Modal -->
+    <div id="imgModal" class="fixed inset-0 z-[9999] hidden">
+        <div class="absolute inset-0 bg-black/60" onclick="closeImageModal()"></div>
+        <div class="relative flex items-center justify-center min-h-screen p-4">
+            <div class="w-full max-w-5xl bg-white dark:bg-gray-950 rounded-2xl shadow-soft-3xl overflow-hidden border border-gray-100 dark:border-gray-800">
+                <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-gray-800">
+                    <div class="min-w-0">
+                        <p id="imgModalTitle" class="text-sm font-semibold text-slate-700 dark:text-white truncate m-0">Image</p>
+                        <p id="imgModalMeta" class="text-xs text-slate-400 dark:text-slate-500 truncate m-0"></p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a id="imgModalOpenNew" href="#" target="_blank" class="px-3 py-2 text-xs font-semibold text-white bg-slate-700 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-arrow-up-right-from-square mr-1"></i> New tab
+                        </a>
+                        <button type="button" onclick="closeImageModal()" class="px-3 py-2 text-xs font-semibold text-slate-700 dark:text-white bg-gray-100 dark:bg-gray-900 rounded-lg hover:opacity-90">
+                            <i class="fas fa-xmark mr-1"></i> Close
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-900/40">
+                    <img id="imgModalImg" src="" alt="Log image" class="w-full max-h-[75vh] object-contain" />
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div fixed-plugin>
         <a fixed-plugin-button class="fixed px-4 py-2 bg-white cursor-pointer bottom-7 right-7 text-xl z-990 shadow-soft-lg rounded-circle text-slate-700" aria-expanded="false">
@@ -227,5 +343,34 @@
     </div>
     <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
     <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+    <script>
+        function openImageModal(src, title, meta) {
+            const modal = document.getElementById('imgModal');
+            const img = document.getElementById('imgModalImg');
+            const t = document.getElementById('imgModalTitle');
+            const m = document.getElementById('imgModalMeta');
+            const openNew = document.getElementById('imgModalOpenNew');
+
+            img.src = src;
+            t.textContent = title || 'Image';
+            m.textContent = meta || '';
+            openNew.href = src;
+
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imgModal');
+            const img = document.getElementById('imgModalImg');
+            modal.classList.add('hidden');
+            img.src = '';
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeImageModal();
+        });
+    </script>
 </body>
 </html>

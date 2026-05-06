@@ -63,10 +63,47 @@ def list_pcb(request):
     return render(request, 'list_pcb.html', context)
 
 def get_base_log_dir():
-    base_dir = r"D:\LogImage"
-    if not os.path.exists(base_dir):
-        base_dir = os.path.join(settings.BASE_DIR, 'machine_management', 'static', 'imgs_log')
-    return base_dir
+    # Prefer project-local log folder: <BASE_DIR>/data_log/LogImage
+    base_dir = os.path.join(settings.BASE_DIR, 'data_log', 'LogImage')
+    if os.path.exists(base_dir):
+        return base_dir
+
+    # Fallbacks (legacy paths)
+    legacy_dir = r"D:\LogImage"
+    if os.path.exists(legacy_dir):
+        return legacy_dir
+
+    return os.path.join(settings.BASE_DIR, 'machine_management', 'static', 'imgs_log')
+
+
+def _list_image_files(root_dir: str, rel_dir: str):
+    abs_dir = os.path.join(root_dir, rel_dir)
+    results = []
+    if not os.path.isdir(abs_dir):
+        return results
+
+    image_exts = ('.png', '.jpg', '.jpeg', '.jfz', '.bmp', '.webp')
+    for name in os.listdir(abs_dir):
+        if name.startswith('.'):
+            continue
+        abs_path = os.path.join(abs_dir, name)
+        if not os.path.isfile(abs_path):
+            continue
+        if not name.lower().endswith(image_exts):
+            continue
+
+        stats = os.stat(abs_path)
+        mod_time = datetime.datetime.fromtimestamp(stats.st_mtime)
+        results.append(
+            {
+                'name': name,
+                'mod_time': mod_time.strftime('%Y-%m-%d %H:%M:%S'),
+                'rel_path': os.path.relpath(abs_path, root_dir).replace('\\', '/'),
+            }
+        )
+
+    results.sort(key=lambda x: x['mod_time'], reverse=True)
+    return results
 
 def logs_images(request):
     base_dir = get_base_log_dir()
@@ -118,6 +155,7 @@ def logs_images(request):
                     'type': item_type,
                     'size': size_str,
                     'icon': icon,
+                    'is_image': (not is_dir) and item.lower().endswith(('.png', '.jpg', '.jpeg', '.jfz', '.bmp', '.webp')),
                     'rel_path': rel_path
                 })
         except Exception:
@@ -125,10 +163,28 @@ def logs_images(request):
             
     files_info.sort(key=lambda x: (not x['is_dir'], x['name'].lower()))
 
+    # Root split view: show recent images from OK/NG folders nicely
+    normalized_subpath = (subpath or '').strip('/\\')
+    ok_images = []
+    ng_images = []
+    ok_total = 0
+    ng_total = 0
+    if normalized_subpath == '':
+        ok_all = _list_image_files(base_dir, 'OK')
+        ng_all = _list_image_files(base_dir, 'NG')
+        ok_total = len(ok_all)
+        ng_total = len(ng_all)
+        ok_images = ok_all[:60]
+        ng_images = ng_all[:60]
+
     context = {
         'files': files_info,
         'subpath': subpath,
-        'parent_path': parent_path.replace('\\', '/')
+        'parent_path': parent_path.replace('\\', '/'),
+        'ok_images': ok_images,
+        'ng_images': ng_images,
+        'ok_total': ok_total,
+        'ng_total': ng_total,
     }
     return render(request, 'logs_images.html', context)
 

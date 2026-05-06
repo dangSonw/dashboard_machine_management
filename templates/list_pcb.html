@@ -128,7 +128,7 @@
                                 </thead>
                                 <tbody>
                                     {% for log in logs %}
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 {% if log.status == 'NG' %}bg-red-50 dark:bg-red-900/10{% endif %}">
+                                    <tr data-status="{{ log.Status|default:'0' }}" class="hover:bg-gray-50 dark:hover:bg-gray-800 {% if log.Status == '1' %}bg-red-50 dark:bg-red-900/10{% endif %}">
                                         <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ log.id }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.empty > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.empty|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.excess_solder > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.excess_solder|default:"0" }}</td>
@@ -139,17 +139,17 @@
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.solder_bridge > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.solder_bridge|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 text-slate-700 dark:text-white">{{ log.processing_time|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
-                                            {% if log.status == 'OK' %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">OK</span>
+                                            {% if log.Status == '1' %}
+                                            <span class="text-sm font-semibold text-red-600 dark:text-red-400">NG ({{ log.Status|default:'1' }})</span>
                                             {% else %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">{{ log.status|default:"NG" }}</span>
+                                            <span class="text-sm font-semibold text-green-600 dark:text-green-400">OK ({{ log.Status|default:'0' }})</span>
                                             {% endif %}
                                         </td>
                                         <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ log.created|date:"Y-m-d H:i:s" }}</td>
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="12" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">No logs found.</td>
+                                        <td colspan="11" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">No logs found.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

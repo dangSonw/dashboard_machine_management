@@ -153,13 +153,13 @@ class Command(BaseCommand):
                 # Pass / Fail status determination
                 is_pass = random.random() < 0.7
                 
-                status = 'OK'
+                status = '0'
                 error_cols = ['empty', 'excess_solder', 'exposed_copper', 'misaligned_header', 'missing_component', 'scratched', 'solder_bridge']
                 row_data = {col: 0 for col in error_cols}
                 row_data.update({f"{col}_Conf": round(random.uniform(0.8, 1.0), 2) for col in error_cols})
                 
                 if not is_pass:
-                    status = 'NG'
+                    status = '1'
                     num_faults = random.randint(1, min(3, len(error_cols)))
                     fault_cols = random.sample(error_cols, num_faults)
                     for col in fault_cols:
