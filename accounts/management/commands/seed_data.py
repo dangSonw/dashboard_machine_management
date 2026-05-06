@@ -156,7 +156,7 @@ class Command(BaseCommand):
                 status = 'OK'
                 error_cols = ['misaligned_component', 'missing_component', 'missing_label', 'missing_pin', 'wrong_polarity']
                 row_data = {col: 0 for col in error_cols}
-                row_data.update({f"{col}_conf": round(random.uniform(0.8, 1.0), 2) for col in error_cols})
+                row_data.update({f"{col}_Conf": round(random.uniform(0.8, 1.0), 2) for col in error_cols})
                 
                 if not is_pass:
                     status = 'NG'
@@ -164,16 +164,15 @@ class Command(BaseCommand):
                     fault_cols = random.sample(error_cols, num_faults)
                     for col in fault_cols:
                         row_data[col] = random.randint(1, 3)
-                        row_data[f"{col}_conf"] = round(random.uniform(0.9, 0.99), 2)
+                        row_data[f"{col}_Conf"] = round(random.uniform(0.9, 0.99), 2)
                         
                 datetime_str = created_time.strftime("%Y%m%d_%H%M%S")
 
                 log_objects.append(
                     Machine_Logs(
                         machine=machine,
-                        datetime=datetime_str,
                         processing_time=random.uniform(50.0, 100.0),
-                        status=status,
+                        Status=status,
                         created=created_time,
                         **row_data
                     )

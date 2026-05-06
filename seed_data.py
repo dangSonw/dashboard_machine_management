@@ -61,7 +61,7 @@ def seed():
             # Initialize all check columns with 0 (No error)
             row_data = {col: 0 for col in error_columns}
             # Initialize confidence levels
-            row_data.update({f"{col}_conf": round(random.uniform(0.8, 1.0), 2) for col in error_columns})
+            row_data.update({f"{col}_Conf": round(random.uniform(0.8, 1.0), 2) for col in error_columns})
             
             status = 'OK'
             if not is_pass:
@@ -71,14 +71,14 @@ def seed():
                 fault_cols = random.sample(error_columns, num_faults)
                 for col in fault_cols:
                     row_data[col] = random.randint(1, 3) # Randomly 1 to 3 components failed
-                    row_data[f"{col}_conf"] = round(random.uniform(0.9, 0.99), 2)
+                    row_data[f"{col}_Conf"] = round(random.uniform(0.9, 0.99), 2)
             
             datetime_str = log_time.strftime("%Y%m%d_%H%M%S")
             
             log = Machine_Logs(
                 machine=machine,
                 processing_time=round(random.uniform(55.0, 65.0), 2),
-                status=status,
+                Status=status,
                 **row_data
             )
             # Create a separate step to set timestamps since bulk_create is used

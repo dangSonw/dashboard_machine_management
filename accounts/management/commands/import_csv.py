@@ -90,27 +90,29 @@ class CSVHandler(FileSystemEventHandler):
                     field_mappings = {
                         'processing_time': parse_float,
                         'misaligned_component': parse_int,
-                        'misaligned_component_conf': parse_float,
+                        'misaligned_component_Conf': parse_float,
                         'missing_component': parse_int,
-                        'missing_component_conf': parse_float,
+                        'missing_component_Conf': parse_float,
                         'missing_label': parse_int,
-                        'missing_label_conf': parse_float,
+                        'missing_label_Conf': parse_float,
                         'missing_pin': parse_int,
-                        'missing_pin_conf': parse_float,
+                        'missing_pin_Conf': parse_float,
                         'wrong_polarity': parse_int,
-                        'wrong_polarity_conf': parse_float,
+                        'wrong_polarity_Conf': parse_float,
                     }
 
-                    for csv_col, parser in field_mappings.items():
+                    for model_col, parser in field_mappings.items():
+                        # Assume CSV might have lowercased names
+                        csv_col = model_col.lower()
                         val = row.get(csv_col)
                         if val is not None and val.strip() != '':
                             parsed_val = parser(val)
                             if parsed_val is not None:
-                                log_data[csv_col] = parsed_val
+                                log_data[model_col] = parsed_val
                     
                     # String fields
                     if row.get('status'):
-                        log_data['status'] = row.get('status').strip()
+                        log_data['Status'] = row.get('status').strip()
 
                     # Save only if we have some data beyond just the machine
                     if len(log_data) > 1:

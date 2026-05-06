@@ -100,7 +100,7 @@
                                     <span id="plc_connection_dot" class="badge badge-danger px-2 py-1 rounded text-xs text-white bg-red-500">Chưa kết nối PLC</span>
                                     <p id="status_note" class="text-sm mt-2 mb-0 text-slate-500 dark:text-white/80">Hệ thống đang chờ kết nối...</p>
                                 </div>
-                                <button class="btn btn-outline-info btn-sm px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white transition-all" onclick="toggleConnect()">KẾT NỐI PLC</button>
+                                <button class="btn btn-outline-info btn-sm px-4 py-2 border border-slate-500 text-slate-500 rounded hover:bg-slate-500 hover:text-white transition-all" onclick="toggleConnect()">KẾT NỐI PLC</button>
                             </div>
                         </div>
                     </div>
@@ -108,17 +108,17 @@
             
                 <!-- Power System -->
                 <div class="w-full px-3 mb-6 lg:w-1/2">
-                    <div id="power-control-card" class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-850 dark:shadow-dark-xl">
+                    <div id="power-control-card" class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
                         <div class="p-6 flex flex-col justify-center h-full">
                             <div class="flex items-center justify-center mb-6">
                                 <div id="led-x200" class="w-4 h-4 rounded-full bg-slate-400 mr-3 shadow-sm transition-all duration-300"></div>
                                 <h5 id="x200-status-text" class="mb-0 text-slate-700 font-bold dark:text-white">HỆ THỐNG ĐANG TẮT</h5>
                             </div>
                             <div class="flex flex-col gap-8">
-                                <button id="btn-x200-power" onclick="onPowerSystem()" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
+                                <button id="btn-x200-power" onclick="onPowerSystem()" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
                                     <i class="fa fa-power-off mr-2"></i> BẬT HỆ THỐNG
                                 </button>
-                                <button id="btn-m5001-reset" onmousedown="controlMomentary('M5001', 1, event)" onmouseup="controlMomentary('M5001', 0, event)" ontouchstart="controlMomentary('M5001', 1, event)" ontouchend="controlMomentary('M5001', 0, event)" class="w-full px-6 py-4 text-slate-800 font-bold bg-gradient-to-tl from-yellow-500 to-yellow-300 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
+                                <button id="btn-m5001-reset" onmousedown="controlMomentary('M5001', 1, event)" onmouseup="controlMomentary('M5001', 0, event)" ontouchstart="controlMomentary('M5001', 1, event)" ontouchend="controlMomentary('M5001', 0, event)" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
                                     <i class="fa fa-exclamation-triangle mr-2"></i> RESET M5001
                                 </button>
                             </div>
@@ -128,8 +128,8 @@
             
                 <!-- Monitor Status -->
                 <div class="w-full px-3 mb-6 lg:w-1/2">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-850 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                    <div class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-slate-200 border-b-0 rounded-t-2xl dark:bg-slate-600">
                             <h6 class="dark:text-white">Monitor</h6>
                         </div>
                         <div class="flex-auto p-4">
@@ -172,19 +172,19 @@
                         <div class="flex-auto p-4">
                             <div class="flex flex-wrap justify-between gap-32 px-10">
                                 <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="pulseCommand('M10', 500)">
+                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="pulseCommand('M10', 500)">
                                         <i class="fas fa-play mr-1"></i> Auto Mode
                                     </button>
                                     <span id="val_M10" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">M10 OFF</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-blue-600 to-cyan-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="pulseCommand('M20', 500)">
+                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="pulseCommand('M20', 500)">
                                         <i class="fas fa-hand-paper mr-1"></i> Manual Mode
                                     </button>
                                     <span id="val_M20" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">M20 OFF</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-slate-800 bg-gradient-to-tl from-yellow-500 to-yellow-300 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="pulseCommand('M40', 500)">
+                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="pulseCommand('M40', 500)">
                                         <i class="fas fa-box-open mr-1"></i> Empty Mode
                                     </button>
                                     <span id="val_M40" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">M40 OFF</span>
@@ -192,7 +192,7 @@
 
                                 <!-- Start & Stop Buttons -->
                                 <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" 
+                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" 
                                         onmousedown="controlMomentary('X15', 1, event)" 
                                         onmouseup="controlMomentary('X15', 0, event)" 
                                         ontouchstart="controlMomentary('X15', 1, event)" 
@@ -202,7 +202,7 @@
                                     <span id="val_X15_menu" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">X15 OFF</span>
                                 </div>
                                 <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-red-600 to-rose-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" 
+                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" 
                                         onmousedown="controlMomentary('X14', 1, event)" 
                                         onmouseup="controlMomentary('X14', 0, event)" 
                                         ontouchstart="controlMomentary('X14', 1, event)" 
@@ -220,15 +220,15 @@
 
                 <!-- Servo Control -->
                 <div class="w-full px-3 mb-6">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                    <div class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-slate-200 border-b-0 rounded-t-2xl dark:bg-slate-600">
                             <h6 class="dark:text-white">Servo & Camera</h6>
                         </div>
                         <div class="flex-auto p-4">
                             <div class="flex flex-nowrap justify-between gap-6 px-4 overflow-x-auto">
                                 <div class="flex flex-col items-center gap-2">
                                     <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
                                             onmousedown="controlMomentary('X110', 1, event)" 
                                             onmouseup="controlMomentary('X110', 0, event)" 
                                             ontouchstart="controlMomentary('X110', 1, event)" 
@@ -241,7 +241,7 @@
 
                                 <div class="flex flex-col items-center gap-2">
                                     <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-red-600 to-rose-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
                                             onmousedown="controlMomentary('X117', 1, event)" 
                                             onmouseup="controlMomentary('X117', 0, event)" 
                                             ontouchstart="controlMomentary('X117', 1, event)" 
@@ -254,7 +254,7 @@
 
                                 <div class="flex flex-col items-center gap-2">
                                     <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-red-600 to-rose-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
                                             onmousedown="controlMomentary('X100', 1, event)" 
                                             onmouseup="controlMomentary('X100', 0, event)" 
                                             ontouchstart="controlMomentary('X100', 1, event)" 
@@ -267,7 +267,7 @@
                                 
                                 <div class="flex flex-col items-center gap-2">
                                     <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-blue-600 to-cyan-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
                                             onmousedown="controlMomentary('X112', 1, event)" 
                                             onmouseup="controlMomentary('X112', 0, event)" 
                                             ontouchstart="controlMomentary('X112', 1, event)" 
@@ -280,7 +280,7 @@
 
                                 <div class="flex flex-col items-center gap-2">
                                     <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-slate-800 bg-gradient-to-tl from-yellow-600 to-orange-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
+                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
                                             onmousedown="controlMomentary('X151', 1, event)" 
                                             onmouseup="controlMomentary('X151', 0, event)" 
                                             ontouchstart="controlMomentary('X151', 1, event)" 
@@ -309,9 +309,9 @@
                 </div>
             
                 <!-- Parameters -->
-                <div class="w-full px-3 mb-6">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
+                <div class="w-full px-3 mb-6 lg:w-1/2">
+                    <div class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
+                        <div class="p-4 pb-0 mb-0 bg-slate-200 border-b-0 rounded-t-2xl dark:bg-slate-600">
                             <h6 class="dark:text-white">Parameters Servo</h6>
                         </div>
                         <div class="flex-auto p-4">
@@ -342,7 +342,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 flex justify-end">
-                                <button onclick="saveParameters()" class="px-6 py-2 text-white bg-gradient-to-tl from-green-600 to-lime-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-semibold"><i class="fas fa-save mr-2"></i> Lưu Tham Số</button>
+                                <button onclick="saveParameters()" class="px-6 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-semibold"><i class="fas fa-save mr-2"></i> Lưu Tham Số</button>
                             </div>
                         </div>
                     </div>
