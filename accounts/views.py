@@ -22,7 +22,7 @@ ERROR_FIELDS = {
     'missing_component': 'Missing Component',
     'missing_label': 'Missing Label',
     'missing_pin': 'Missing Pin',
-    'wrong_polarity': 'Wrong Polarity'
+    'wrong_polarrity': 'Wrong Polarity'
 }
 
 def list_pcb(request):
@@ -30,7 +30,7 @@ def list_pcb(request):
     logs = Machine_Logs.objects.all().order_by('-created')
     
     total_logs = Machine_Logs.objects.count()
-    error_condition = Q(status='NG')
+    error_condition = Q(Status='NG')
     total_errors = Machine_Logs.objects.filter(error_condition).count()
     error_percentage = round((total_errors / total_logs * 100), 2) if total_logs > 0 else 0
     

@@ -23,7 +23,7 @@ def home(request):
     total_plc = Machine_Logs.objects.count()
     
     # Điều kiện lỗi
-    error_condition = Q(status='NG')
+    error_condition = Q(Status='NG')
     
     total_ng = Machine_Logs.objects.filter(error_condition).count()
     total_ok = total_plc - total_ng
@@ -45,7 +45,7 @@ def list_pcb(request):
     
     error_fields = [
         'misaligned_component', 'missing_component', 'missing_label', 
-        'missing_pin', 'wrong_polarity'
+        'missing_pin', 'wrong_polarrity'
     ]
     
     error_stats = []
@@ -293,7 +293,7 @@ def api_weekly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_time)
     
-    error_condition = Q(status='NG')
+    error_condition = Q(Status='NG')
     
     grouped_total = logs.annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
     grouped_pass = logs.exclude(error_condition).annotate(day=TruncDay('created')).values('day').annotate(count=Count('id')).order_by('day')
@@ -336,7 +336,7 @@ def api_monthly_stats(request):
     
     logs = Machine_Logs.objects.filter(created__gte=start_date)
     
-    error_condition = Q(status='NG')
+    error_condition = Q(Status='NG')
 
     grouped_total = logs.annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
     grouped_pass = logs.exclude(error_condition).annotate(month=TruncMonth('created')).values('month').annotate(count=Count('id')).order_by('month')
