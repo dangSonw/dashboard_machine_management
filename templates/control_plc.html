@@ -97,10 +97,10 @@
                         <div class="flex-auto p-4">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between">
                                 <div class="mb-4 sm:mb-0">
-                                    <span id="plc_connection_dot" class="badge badge-danger px-2 py-1 rounded text-xs text-white bg-red-500">Chưa kết nối PLC</span>
-                                    <p id="status_note" class="text-sm mt-2 mb-0 text-slate-500 dark:text-white/80">Hệ thống đang chờ kết nối...</p>
+                                    <span id="plc_connection_dot" class="badge badge-danger px-2 py-1 rounded text-xs text-white bg-red-500">PLC Disconnected</span>
+                                    <p id="status_note" class="text-sm mt-2 mb-0 text-slate-500 dark:text-white/80">System waiting for connection...</p>
                                 </div>
-                                <button class="btn btn-outline-info btn-sm px-4 py-2 border border-slate-500 text-slate-500 rounded hover:bg-slate-500 hover:text-white transition-all" onclick="toggleConnect()">KẾT NỐI PLC</button>
+                                <button class="btn btn-outline-info btn-sm px-4 py-2 border border-slate-500 text-slate-500 rounded hover:bg-slate-500 hover:text-white transition-all" onclick="toggleConnect()">CONNECT PLC</button>
                             </div>
                         </div>
                     </div>
@@ -112,14 +112,14 @@
                         <div class="p-6 flex flex-col justify-center h-full">
                             <div class="flex items-center justify-center mb-6">
                                 <div id="led-x200" class="w-4 h-4 rounded-full bg-slate-400 mr-3 shadow-sm transition-all duration-300"></div>
-                                <h5 id="x200-status-text" class="mb-0 text-slate-700 font-bold dark:text-white">HỆ THỐNG ĐANG TẮT</h5>
+                                <h5 id="x200-status-text" class="mb-0 text-slate-700 font-bold dark:text-white">SYSTEM IS OFF</h5>
                             </div>
                             <div class="flex flex-col gap-8">
                                 <button id="btn-x200-power" onclick="onPowerSystem()" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
-                                    <i class="fa fa-power-off mr-2"></i> BẬT HỆ THỐNG
+                                    <i class="fa fa-power-off mr-2"></i> SYSTEM POWER ON
                                 </button>
                                 <button id="btn-m5001-reset" onmousedown="controlMomentary('M5001', 1, event)" onmouseup="controlMomentary('M5001', 0, event)" ontouchstart="controlMomentary('M5001', 1, event)" ontouchend="controlMomentary('M5001', 0, event)" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
-                                    <i class="fa fa-exclamation-triangle mr-2"></i> RESET M5001
+                                    <i class="fa fa-exclamation-triangle mr-2"></i> RESET
                                 </button>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                                             onmouseup="controlMomentary('X110', 0, event)" 
                                             ontouchstart="controlMomentary('X110', 1, event)" 
                                             ontouchend="controlMomentary('X110', 0, event)">
-                                            <i class="fas fa-power-off mr-2 text-lg"></i>SERVO ON
+                                            <i class="fas fa-power-off mr-2 text-lg"></i>SERVO OFF
                                         </button>
                                     </div>
                                     <span id="val_X110_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X110 OFF</span>
@@ -246,7 +246,7 @@
                                             onmouseup="controlMomentary('X117', 0, event)" 
                                             ontouchstart="controlMomentary('X117', 1, event)" 
                                             ontouchend="controlMomentary('X117', 0, event)">
-                                            <i class="fas fa-times-circle mr-2 text-lg"></i>SERVO OFF
+                                            <i class="fas fa-times-circle mr-2 text-lg"></i>SERVO ON
                                         </button>
                                     </div>
                                     <span id="val_X117_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X117 OFF</span>
@@ -342,7 +342,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 flex justify-end">
-                                <button onclick="saveParameters()" class="px-6 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-semibold"><i class="fas fa-save mr-2"></i> Lưu Tham Số</button>
+                                <button onclick="saveParameters()" class="px-6 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-semibold"><i class="fas fa-save mr-2"></i> Save Parameters</button>
                             </div>
                         </div>
                     </div>

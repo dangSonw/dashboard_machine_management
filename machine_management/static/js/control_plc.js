@@ -32,10 +32,10 @@ function toggleConnect() {
                 clearInterval(pollInterval);
             }
         } else {
-            alert("Lỗi kết nối: " + data.message);
+            alert("Connection error: " + data.message);
         }
     })
-    .catch(err => alert("Lỗi hệ thống: " + err));
+    .catch(err => alert("System error: " + err));
 }
 
 function updateConnectUI() {
@@ -44,19 +44,19 @@ function updateConnectUI() {
     const connectBtn = document.querySelector('[onclick="toggleConnect()"]');
     if (isConnected) {
         dot.className = "badge badge-success";
-        dot.innerText = "Đã kết nối PLC";
-        note.innerText = "Sẵn sàng hoạt động...";
+        dot.innerText = "PLC Connected";
+        note.innerText = "System ready...";
         if (connectBtn) {
             connectBtn.className = "btn btn-outline-danger btn-sm";
-            connectBtn.innerText = "NGẮT KẾT NỐI";
+            connectBtn.innerText = "DISCONNECT";
         }
     } else {
         dot.className = "badge badge-danger";
-        dot.innerText = "Chưa kết nối PLC";
-        note.innerText = "Hệ thống đang chờ kết nối...";
+        dot.innerText = "PLC Disconnected";
+        note.innerText = "System waiting for connection...";
         if (connectBtn) {
             connectBtn.className = "btn btn-outline-info btn-sm";
-            connectBtn.innerText = "KẾT NỐI PLC";
+            connectBtn.innerText = "CONNECT PLC";
         }
     }
 }
@@ -194,17 +194,17 @@ function pollPlcStatus() {
         }
     })
     .catch(err => {
-        console.warn('[PLC Poll] Lỗi kết nối:', err);
+        console.warn('[PLC Poll] Connection error:', err);
     });
 }
 
 function sendPlcCommand(address) {
     if(!isConnected) {
-        alert("Vui lòng kết nối PLC trước khi gửi lệnh!");
+        alert("Please connect to PLC before sending command!");
         return;
     }
     const note = document.getElementById('status_note');
-    note.innerText = "Đang gửi lệnh tới: " + address + " ...";
+    note.innerText = "Sending command to: " + address + " ...";
     
     fetch('/api/plc/command/', {
         method: 'POST',
@@ -214,20 +214,20 @@ function sendPlcCommand(address) {
     .then(res => res.json())
     .then(data => {
         if (data.status === 'ok') {
-            note.innerText = "Lệnh " + address + " đã thực thi thành công.";
+            note.innerText = "Lệnh " + address + " executed successfully.";
         } else {
-            note.innerText = "Lệnh " + address + " thất bại (" + (data.message || 'không rõ lý do') + ")";
+            note.innerText = "Lệnh " + address + " failed (" + (data.message || 'unknown reason') + ")";
         }
     })
     .catch(err => {
-        console.warn('[PLC Command] Lỗi:', err);
-        note.innerText = "⚠ Lỗi gửi lệnh " + address + ": " + err;
+        console.warn('[PLC Command] Error:', err);
+        note.innerText = "⚠ Error sending command " + address + ": " + err;
     });
 }
 
 function saveParameters() {
     if(!isConnected) {
-        alert("Vui lòng kết nối PLC trước khi cập nhật tham số!");
+        alert("Please connect to PLC before updating parameters!");
         return;
     }
     const data = {
@@ -239,7 +239,7 @@ function saveParameters() {
         D306: document.getElementById('input_D306').value,
     };
     
-    document.getElementById('status_note').innerText = "Đang cập nhật tham số...";
+    document.getElementById('status_note').innerText = "Updating parameters...";
     
     fetch('/api/plc/write_params/', {
         method: 'POST',
@@ -249,15 +249,15 @@ function saveParameters() {
     .then(res => res.json())
     .then(resData => {
         if (resData.status === 'ok') {
-            document.getElementById('status_note').innerText = "Đã cập nhật tham số cài đặt thành công.";
+            document.getElementById('status_note').innerText = "Parameters updated successfully.";
             isEditingParams = false; // allow pulling fresh data
         } else {
-            document.getElementById('status_note').innerText = "⚠ Lỗi cập nhật: " + (resData.message || 'Thất bại');
+            document.getElementById('status_note').innerText = "⚠ Update error: " + (resData.message || 'Failed');
         }
     })
     .catch(err => {
-        console.warn('[PLC Params] Lỗi:', err);
-        document.getElementById('status_note').innerText = "⚠ Lỗi kết nối khi lưu tham số: " + err;
+        console.warn('[PLC Params] Error:', err);
+        document.getElementById('status_note').innerText = "⚠ Connection error while saving parameters: " + err;
     });
 }
 
@@ -268,7 +268,7 @@ const x200State = { isPowering: false };
 function onPowerSystem() {
     console.log("onPowerSystem() was called");
     if (!isConnected) {
-        alert("Vui lòng kết nối PLC trước khi bật hệ thống!");
+        alert("Please connect to PLC before turning on the system!");
         return;
     }
     if (x200State.isPowering) return;
@@ -283,16 +283,16 @@ function onPowerSystem() {
 
     if (btn) {
         btn.disabled = true;
-        btn.innerHTML = '<i class="zmdi zmdi-rotate-right zmdi-hc-spin"></i>&nbsp; ĐANG BẬT HỆ THỐNG...';
+        btn.innerHTML = '<i class="zmdi zmdi-rotate-right zmdi-hc-spin"></i>&nbsp; TURNING ON SYSTEM...';
     }
     if (led) led.className = 'w-4 h-4 rounded-full bg-yellow-500 mr-3 shadow-sm';
     if (statusTxt) {
-        statusTxt.innerText = 'Đang gửi X200...';
+        statusTxt.innerText = 'Sending X200...';
         statusTxt.className = 'mb-0 font-bold text-yellow-500 dark:text-yellow-400';
     }
-    if (note) note.innerText = 'Đang gửi lệnh ON POWER (X200) tới PLC...';
+    if (note) note.innerText = 'Sending ON POWER (X200) command to PLC...';
 
-    debugLog('INFO', 'Bắt đầu lệnh ON POWER → gửi X200 (pulse)');
+    debugLog('INFO', 'Starting ON POWER command → send X200 (pulse)');
 
     fetch('/api/plc/command/', {
         method: 'POST',
@@ -304,58 +304,58 @@ function onPowerSystem() {
         x200State.isPowering = false;
 
         if (data.status === 'ok') {
-            debugLog('OK', '✅ Lệnh X200 (ON POWER) đã được PLC nhận thành công', data);
+            debugLog('OK', '✅ X200 (ON POWER) command successfully received by PLC', data);
             if (led) led.className = 'w-4 h-4 rounded-full bg-green-500 mr-3 shadow-sm';
             if (statusTxt) {
-                statusTxt.innerText = '✅ HỆ THỐNG ON';
+                statusTxt.innerText = '✅ SYSTEM ON';
                 statusTxt.className = 'mb-0 font-bold text-green-500';
             }
-            if (note) note.innerText = '✅ X200 ON — Toàn bộ hệ thống đã được bật!';
+            if (note) note.innerText = '✅ X200 ON — Entire system is turned on!';
             if (btn) {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i>&nbsp; HỆ THỐNG ĐÃ BẬT (X200)';
+                btn.innerHTML = '<i class="fas fa-check"></i>&nbsp; SYSTEM TURNED ON (X200)';
             }
             setTimeout(() => {
                 if (led) led.className = 'w-4 h-4 rounded-full bg-blue-500 mr-3 shadow-sm';
                 if (statusTxt) {
-                    statusTxt.innerText = 'HỆ THỐNG SẴN SÀNG';
+                    statusTxt.innerText = 'SYSTEM READY';
                     statusTxt.className = 'mb-0 font-bold text-blue-500';
                 }
                 if (btn) {
-                    btn.innerHTML = '<i class="fa fa-power-off mr-2"></i> BẬT HỆ THỐNG';
+                    btn.innerHTML = '<i class="fa fa-power-off mr-2"></i> SYSTEM POWER ON';
                 }
             }, 6000);
 
         } else {
-            // Thất bại
-            const errMsg = `❌ X200 thất bại: ${data.message || 'Không rõ lý do'}`;
+            // Failed
+            const errMsg = `❌ X200 failed: ${data.message || 'Không rõ lý do'}`;
             debugLog('ERR', errMsg, data);
             if (led) led.className = 'w-4 h-4 rounded-full bg-red-500 mr-3 shadow-sm';
             if (statusTxt) {
-                statusTxt.innerText = '❌ LỖI GỬI X200';
+                statusTxt.innerText = '❌ ERROR SENDING X200';
                 statusTxt.className = 'mb-0 font-bold text-red-500';
             }
             if (note) note.innerText = errMsg;
             if (btn) {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="zmdi zmdi-power"></i>&nbsp; BẬT HỆ THỐNG (X200)';
+                btn.innerHTML = '<i class="zmdi zmdi-power"></i>&nbsp; SYSTEM POWER ON (X200)';
                 btn.className = 'btn btn-success btn-lg btn-block waves-effect mt-2 shadow';
             }
         }
     })
     .catch(err => {
         x200State.isPowering = false;
-        const errMsg = `❌ Lỗi mạng khi gửi X200: ${err}`;
+        const errMsg = `❌ Network error sending X200: ${err}`;
         debugLog('ERR', errMsg, { error: String(err) });
         if (led) led.className = 'rounded-circle bg-danger mr-2 shadow-sm';
         if (statusTxt) {
-            statusTxt.innerText = '❌ LỖI MẠNG';
+            statusTxt.innerText = '❌ NETWORK ERROR';
             statusTxt.className = 'font-weight-bold text-danger';
         }
         if (note) note.innerText = errMsg;
         if (btn) {
             btn.disabled = false;
-            btn.innerHTML = '<i class="zmdi zmdi-power"></i>&nbsp; BẬT HỆ THỐNG (X200)';
+            btn.innerHTML = '<i class="zmdi zmdi-power"></i>&nbsp; SYSTEM POWER ON (X200)';
             btn.className = 'btn btn-success btn-lg btn-block waves-effect mt-2 shadow';
         }
     });
@@ -363,7 +363,7 @@ function onPowerSystem() {
 
 function controlY1(action) {
     if(!isConnected) {
-        alert("Vui lòng kết nối PLC trước khi gửi lệnh!");
+        alert("Please connect to PLC before sending command!");
         return;
     }
     const note = document.getElementById('status_note');
@@ -371,8 +371,8 @@ function controlY1(action) {
     
     if (action === 'start') {
         payload = { command: 'M5001', value: 1 };
-        note.innerText = "Đang gửi lệnh BẬT RESET ALARM (M5001=1)...";
-        debugLog('INFO', 'Gửi lệnh BẬT RESET ALARM -> M5001=1');
+        note.innerText = "Sending TURN ON ALARM RESET command (M5001=1)...";
+        debugLog('INFO', 'Send TURN ON ALARM RESET command -> M5001=1');
     }
     
     fetch('/api/plc/command/', {
@@ -383,49 +383,49 @@ function controlY1(action) {
     .then(res => res.json())
     .then(data => {
         if (data.status === 'ok') {
-            note.innerText = "Lệnh Y1 (" + action + ") xử lý xong.";
-            debugLog('OK', `Lệnh ${action} thành công`, data);
+            note.innerText = "Y1 command (" + action + ") processed.";
+            debugLog('OK', `${action} command successful`, data);
         } else {
-            note.innerText = "❌ Lệnh Y1 thất bại: " + (data.message || '');
-            debugLog('ERR', `Lệnh ${action} thất bại`, data);
+            note.innerText = "❌ Lệnh Y1 failed: " + (data.message || '');
+            debugLog('ERR', `Lệnh ${action} failed`, data);
         }
         setTimeout(readY1State, 300);
     })
     .catch(err => {
-        note.innerText = "⚠ Lỗi gửi lệnh " + action + ": " + err;
-        debugLog('ERR', `Lỗi network khi gửi ${action}`, err);
+        note.innerText = "⚠ Error sending command " + action + ": " + err;
+        debugLog('ERR', `Network error sending ${action}`, err);
     });
 }
 
 function pulseCommand(address, ms=500) {
     if(!isConnected) { 
-        alert("Vui lòng kết nối PLC trước khi gửi lệnh!"); 
+        alert("Please connect to PLC before sending command!"); 
         return; 
     }
     const note = document.getElementById('status_note');
-    note.innerText = `Đang gửi lệnh Pulse ${ms}ms -> ${address}...`;
-    debugLog('INFO', `Lệnh Pulse ${ms}ms -> ${address}`);
+    note.innerText = `Sending Pulse command ${ms}ms -> ${address}...`;
+    debugLog('INFO', `Pulse command ${ms}ms -> ${address}`);
     
     fetch('/api/plc/command/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({command: address, pulse: true, pulse_ms: ms})
     }).then(res => res.json()).then(data => {
-        if (data.status === 'ok') note.innerText = `Lệnh Pulse ${address} thành công.`;
+        if (data.status === 'ok') note.innerText = `Pulse command ${address} successful.`;
     }).catch(err => {
-        note.innerText = `⚠ Lỗi gửi lệnh Pulse ${address}: ` + err;
-        debugLog('ERR', `Lỗi network khi gửi Pulse ${address}`, err);
+        note.innerText = `⚠ Error sending command Pulse ${address}: ` + err;
+        debugLog('ERR', `Network error sending Pulse ${address}`, err);
     });
 }
 
 function pulseLightOff(ms=500) {
     if(!isConnected) { 
-        alert("Vui lòng kết nối PLC trước khi gửi lệnh!"); 
+        alert("Please connect to PLC before sending command!"); 
         return; 
     }
     const note = document.getElementById('status_note');
-    note.innerText = "Đang Pulse nút Light OFF (X152)...";
-    debugLog('INFO', 'Pulse nút Light OFF -> Ghi X151=0, Pulse X152');
+    note.innerText = "Pulsing Light OFF button (X152)...";
+    debugLog('INFO', 'Pulse Light OFF button -> Write X151=0, Pulse X152');
     
     // First turn off X151
     fetch('/api/plc/command/', {
@@ -440,10 +440,10 @@ function pulseLightOff(ms=500) {
             body: JSON.stringify({command: 'X152', pulse: true, pulse_ms: ms})
         });
     }).then(res => res.json()).then(data => {
-        if (data.status === 'ok') note.innerText = "Pulse Light OFF thành công.";
+        if (data.status === 'ok') note.innerText = "Pulse Light OFF successful.";
     }).catch(err => {
-        note.innerText = "⚠ Lỗi gửi lệnh Pulse Light OFF: " + err;
-        debugLog('ERR', 'Lỗi network khi gửi Pulse Light OFF', err);
+        note.innerText = "⚠ Error sending command Pulse Light OFF: " + err;
+        debugLog('ERR', 'Network error sending Pulse Light OFF', err);
     });
 }
 
@@ -455,7 +455,7 @@ function controlMomentary(address, state, event) {
     }
 
     if(!isConnected) {
-        if(state === 1) alert("Vui lòng kết nối PLC trước khi gửi lệnh!");
+        if(state === 1) alert("Please connect to PLC before sending command!");
         return;
     }
     
@@ -465,24 +465,24 @@ function controlMomentary(address, state, event) {
     const note = document.getElementById('status_note');
     
     if (state === 1) {
-        note.innerText = `Đang gửi lệnh NHẤN nút ( ${address} = 1 )...`;
-        debugLog('INFO', `Nhấn nút ${address} -> 1`);
+        note.innerText = `Sending PRESS button command ( ${address} = 1 )...`;
+        debugLog('INFO', `Press button ${address} -> 1`);
         fetch('/api/plc/command/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({command: address, value: 1})
         }).then(res => res.json()).then(data => {
-            if (data.status === 'ok') note.innerText = `Nhấn nút ${address} thành công.`;
+            if (data.status === 'ok') note.innerText = `Press button ${address} successful.`;
         });
     } else {
-        note.innerText = `Đang gửi lệnh NHẢ nút ( ${address} = 0 )...`;
-        debugLog('INFO', `Nhả nút ${address} -> 0`);
+        note.innerText = `Sending RELEASE button command ( ${address} = 0 )...`;
+        debugLog('INFO', `Release button ${address} -> 0`);
         fetch('/api/plc/command/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({command: address, value: 0})
         }).then(res => res.json()).then(data => {
-            if (data.status === 'ok') note.innerText = `Nhả nút ${address} thành công.`;
+            if (data.status === 'ok') note.innerText = `Release button ${address} successful.`;
         });
     }
 }
@@ -493,7 +493,7 @@ function controlLightOffMomentary(state, event) {
     }
 
     if(!isConnected) {
-        if(state === 1) alert("Vui lòng kết nối PLC trước khi gửi lệnh!");
+        if(state === 1) alert("Please connect to PLC before sending command!");
         return;
     }
     
@@ -503,8 +503,8 @@ function controlLightOffMomentary(state, event) {
     const note = document.getElementById('status_note');
 
     if (state === 1) {
-        note.innerText = "Đang gửi lệnh NHẤN nút Light OFF (X151=0, X152=1)...";
-        debugLog('INFO', 'Nhấn nút Light OFF -> X151=0, X152=1');
+        note.innerText = "Sending PRESS button command Light OFF (X151=0, X152=1)...";
+        debugLog('INFO', 'Press button Light OFF -> X151=0, X152=1');
         fetch('/api/plc/command/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -516,17 +516,17 @@ function controlLightOffMomentary(state, event) {
                 body: JSON.stringify({command: 'X152', value: 1})
             });
         }).then(res => res.json()).then(data => {
-            if (data.status === 'ok') note.innerText = "Nhấn nút Light OFF thành công.";
+            if (data.status === 'ok') note.innerText = "Press button Light OFF successful.";
         });
     } else {
-        note.innerText = "Đang gửi lệnh NHẢ nút Light OFF (X152=0)...";
-        debugLog('INFO', 'Nhả nút Light OFF -> X152=0');
+        note.innerText = "Sending RELEASE button command Light OFF (X152=0)...";
+        debugLog('INFO', 'Release button Light OFF -> X152=0');
         fetch('/api/plc/command/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({command: 'X152', value: 0})
         }).then(res => res.json()).then(data => {
-            if (data.status === 'ok') note.innerText = "Nhả nút Light OFF thành công.";
+            if (data.status === 'ok') note.innerText = "Release button Light OFF successful.";
         });
     }
 }
@@ -556,13 +556,13 @@ window.addEventListener('unhandledrejection', function(event) {
 
 function toggleEmptyMode() {
     if(!isConnected) {
-        alert("Vui lòng kết nối PLC trước khi gửi lệnh!");
+        alert("Please connect to PLC before sending command!");
         return;
     }
     const note = document.getElementById('status_note');
     const newState = emptyModeState === 1 ? 0 : 1;
     
-    note.innerText = `Đang gửi lệnh ${newState === 1 ? 'ON' : 'OFF'} Empty Mode (X304)...`;
+    note.innerText = `Sending ${newState === 1 ? 'ON' : 'OFF'} Empty Mode command (X304)...`;
     debugLog('INFO', `Toggle Empty Mode (X304) -> ${newState}`);
     
     fetch('/api/plc/command/', {
@@ -573,15 +573,15 @@ function toggleEmptyMode() {
     .then(res => res.json())
     .then(data => {
         if (data.status === 'ok') {
-            note.innerText = `Lệnh Empty Mode (X304=${newState}) thành công.`;
+            note.innerText = `Empty Mode command (X304=${newState}) successful.`;
             emptyModeState = newState; // update state instantly
         } else {
-            note.innerText = `❌ Lệnh Empty Mode thất bại: ${data.message || ''}`;
+            note.innerText = `❌ Empty Mode command failed: ${data.message || ''}`;
         }
     })
     .catch(err => {
-        note.innerText = `⚠ Lỗi gửi lệnh Empty Mode: ` + err;
-        debugLog('ERR', `Lỗi network khi gửi X304`, err);
+        note.innerText = `⚠ Error sending command Empty Mode: ` + err;
+        debugLog('ERR', `Network error sending X304`, err);
     });
 }
 

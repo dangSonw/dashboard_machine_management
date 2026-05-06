@@ -13,15 +13,15 @@ class ModeButtons(tk.Frame):
         super().__init__(parent)
 
         self.buttons = {}
-        self._origin_active = False   # trạng thái origin đang giữ
-        self._run1step_active = False # trạng thái run 1 step đang giữ
-        self._auto_active = False     # trạng thái auto đang giữ
-        self._discharge_active = False # trạng thái discharge đang giữ
-        self._empty_active = False    # trạng thái empty đang giữ
+        self._origin_active = False   # origin hold state
+        self._run1step_active = False # run 1 step hold state
+        self._auto_active = False     # auto hold state
+        self._discharge_active = False # discharge hold state
+        self._empty_active = False    # empty hold state
 
         # ===== TẠO BUTTON =====
-        self.create_button("START", "#22c55e", self.start_action) # Xanh lá
-        self.create_button("STOP", "#ef4444", self.stop_action)   # Đỏ
+        self.create_button("START", "#22c55e", self.start_action) # Green
+        self.create_button("STOP", "#ef4444", self.stop_action)   # Red
         self.create_button("POWER", "#2e7d32", self.power_toggle)
         self.create_origin_button()   # 🔥 ORIGIN (X111)
         self.create_run1step_button() # 🔥 RUN 1 STEP (X112)
@@ -61,7 +61,7 @@ class ModeButtons(tk.Frame):
         # 🔥 Giống web: onmousedown=1, onmouseup/leave=0
         btn.bind("<ButtonPress-1>", self._origin_press)
         btn.bind("<ButtonRelease-1>", self._origin_release)
-        btn.bind("<Leave>", self._origin_release)   # an toàn: rời khỏi button cũng nhả
+        btn.bind("<Leave>", self._origin_release)   # an toàn: rời khỏi button cũng release
 
         self.buttons["ORIGIN"] = btn
 
@@ -161,15 +161,15 @@ class ModeButtons(tk.Frame):
 
             # 🔥 ORIGIN dùng _origin_active state
             if self._origin_active:
-                self.buttons["ORIGIN"].config(bg="#1565c0")  # xanh dương đậm khi đang giữ
+                self.buttons["ORIGIN"].config(bg="#1565c0")  # dark blue when held
             else:
-                self.buttons["ORIGIN"].config(bg="#888888")  # xám khi nhả
+                self.buttons["ORIGIN"].config(bg="#888888")  # gray when released
 
             # 🔥 RUN 1 STEP dùng _run1step_active state
             if self._run1step_active:
-                self.buttons["RUN 1 STEP"].config(bg="#8e24aa")  # tím khi đang giữ
+                self.buttons["RUN 1 STEP"].config(bg="#8e24aa")  # purple when held
             else:
-                self.buttons["RUN 1 STEP"].config(bg="#888888")  # xám khi nhả
+                self.buttons["RUN 1 STEP"].config(bg="#888888")  # gray when released
 
             # 🔥 AUTO dùng _auto_active state
             if self._auto_active:
@@ -203,7 +203,7 @@ class ModeButtons(tk.Frame):
         threading.Thread(target=self._short_pulse, args=("X124",), daemon=True).start()
 
     def _short_pulse(self, device):
-        """Gửi xung 0.5s giống web pulseCommand"""
+        """Send 0.5s pulse like web pulseCommand"""
         try:
             write_bit(device, 1)
             print(f"[{device}] = 1 (PULSE START)")
@@ -213,21 +213,21 @@ class ModeButtons(tk.Frame):
         except Exception as e:
             print("PULSE ERROR:", e)
 
-    # 🔥 POWER → giữ ON/OFF
+    # 🔥 POWER → toggle ON/OFF
     def power_toggle(self):
         state = self.get_bit("M0")
         write_bit("M0", 0 if state else 1)
 
-    # 🔥 ORIGIN (MOMENTARY giống web) → giữ X111=1, nhả X111=0
+    # 🔥 ORIGIN (MOMENTARY giống web) → hold X111=1, release X111=0
     def _origin_press(self, event=None):
         if not self._origin_active:
             self._origin_active = True
             threading.Thread(target=self._origin_press_task, daemon=True).start()
 
     def _origin_press_task(self):
-        """Ghi X111=1 khi người dùng nhấn giữ button"""
+        """Ghi X111=1 khi người dùng nhấn hold button"""
         write_bit("X111", 1)
-        print("[ORIGIN] X111 = 1 (GIỬ)")
+        print("[ORIGIN] X111 = 1 (HOLD)")
 
     def _origin_release(self, event=None):
         if self._origin_active:
@@ -235,20 +235,20 @@ class ModeButtons(tk.Frame):
             threading.Thread(target=self._origin_release_task, daemon=True).start()
 
     def _origin_release_task(self):
-        """Ghi X111=0 khi người dùng nhả button"""
+        """Ghi X111=0 khi người dùng release button"""
         write_bit("X111", 0)
-        print("[ORIGIN] X111 = 0 (NHẢ)")
+        print("[ORIGIN] X111 = 0 (RELEASE)")
 
-    # 🔥 RUN 1 STEP (MOMENTARY giống web) → giữ X112=1, nhả X112=0
+    # 🔥 RUN 1 STEP (MOMENTARY giống web) → hold X112=1, release X112=0
     def _run1step_press(self, event=None):
         if not self._run1step_active:
             self._run1step_active = True
             threading.Thread(target=self._run1step_press_task, daemon=True).start()
 
     def _run1step_press_task(self):
-        """Ghi X112=1 khi người dùng nhấn giữ button"""
+        """Ghi X112=1 khi người dùng nhấn hold button"""
         write_bit("X112", 1)
-        print("[RUN 1 STEP] X112 = 1 (GIỮ)")
+        print("[RUN 1 STEP] X112 = 1 (HOLD)")
 
     def _run1step_release(self, event=None):
         if self._run1step_active:
@@ -256,11 +256,11 @@ class ModeButtons(tk.Frame):
             threading.Thread(target=self._run1step_release_task, daemon=True).start()
 
     def _run1step_release_task(self):
-        """Ghi X112=0 khi người dùng nhả button"""
+        """Ghi X112=0 khi người dùng release button"""
         write_bit("X112", 0)
-        print("[RUN 1 STEP] X112 = 0 (NHẢ)")
+        print("[RUN 1 STEP] X112 = 0 (RELEASE)")
 
-    # 🔥 AUTO (MOMENTARY giống web) → giữ X300=1, nhả X300=0
+    # 🔥 AUTO (MOMENTARY giống web) → hold X300=1, release X300=0
     def _auto_press(self, event=None):
         if not self._auto_active:
             self._auto_active = True
@@ -268,7 +268,7 @@ class ModeButtons(tk.Frame):
 
     def _auto_press_task(self):
         write_bit("X300", 1)
-        print("[AUTO] X300 = 1 (GIỮ)")
+        print("[AUTO] X300 = 1 (HOLD)")
 
     def _auto_release(self, event=None):
         if self._auto_active:
@@ -277,9 +277,9 @@ class ModeButtons(tk.Frame):
 
     def _auto_release_task(self):
         write_bit("X300", 0)
-        print("[AUTO] X300 = 0 (NHẢ)")
+        print("[AUTO] X300 = 0 (RELEASE)")
 
-    # 🔥 DISCHARGE (MOMENTARY giống web) → giữ X306=1, nhả X306=0
+    # 🔥 DISCHARGE (MOMENTARY giống web) → hold X306=1, release X306=0
     def _discharge_press(self, event=None):
         if not self._discharge_active:
             self._discharge_active = True
@@ -287,7 +287,7 @@ class ModeButtons(tk.Frame):
 
     def _discharge_press_task(self):
         write_bit("X306", 1)
-        print("[DISCHARGE] X306 = 1 (GIỮ)")
+        print("[DISCHARGE] X306 = 1 (HOLD)")
 
     def _discharge_release(self, event=None):
         if self._discharge_active:
@@ -296,9 +296,9 @@ class ModeButtons(tk.Frame):
 
     def _discharge_release_task(self):
         write_bit("X306", 0)
-        print("[DISCHARGE] X306 = 0 (NHẢ)")
+        print("[DISCHARGE] X306 = 0 (RELEASE)")
 
-    # 🔥 EMPTY (gửi lệnh X304=1 giống hệt web)
+    # 🔥 EMPTY (send command X304=1 exactly like web)
     def empty_mode(self):
         self._empty_active = not self._empty_active
         if self._empty_active:

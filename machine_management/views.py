@@ -108,7 +108,7 @@ def api_connect_plc(request):
                 if success:
                     return JsonResponse({'status': 'ok', 'connected': True})
                 else:
-                    return JsonResponse({'status': 'failed', 'connected': False, 'message': 'Không thể kết nối (Timeout hoặc sai IP/Port)'})
+                    return JsonResponse({'status': 'failed', 'connected': False, 'message': 'Cannot connect (Timeout or invalid IP/Port)'})
             elif action == 'disconnect':
                 plc_comm.connected = False
                 return JsonResponse({'status': 'ok', 'connected': False})
@@ -229,8 +229,8 @@ def api_plc_command(request):
                     result['readback_match'] = (actual_value == value)
                     if actual_value != value:
                         result['readback_warning'] = (
-                            f'Ghi {value} nhưng đọc lại được {actual_value} — '
-                            f'PLC có thể không nhận lệnh hoặc X address không force được'
+                            f'Wrote {value} but read back {actual_value} — '
+                            f'PLC might not have received the command or X address cannot be forced'
                         )
                 except Exception as rb_err:
                     result['readback_error'] = str(rb_err)
@@ -276,9 +276,9 @@ def api_plc_write_params(request):
                         failed_keys.append(f"{key}: {msg}")
             
             if failed_keys:
-                return JsonResponse({'status': 'error', 'message': "Lỗi ghi tham số: " + ", ".join(failed_keys)})
+                return JsonResponse({'status': 'error', 'message': "Error writing parameters: " + ", ".join(failed_keys)})
                 
-            return JsonResponse({'status': 'ok', 'message': 'Đã cập nhật tham số thành công'})
+            return JsonResponse({'status': 'ok', 'message': 'Parameters updated successfully'})
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)})
             
