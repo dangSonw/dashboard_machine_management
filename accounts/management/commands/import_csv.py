@@ -88,22 +88,24 @@ class CSVHandler(FileSystemEventHandler):
                     
                     # Numeric fields (Int/Float)
                     field_mappings = {
-                        'processing_time': parse_float,
-                        'misaligned_component': parse_int,
-                        'misaligned_component_Conf': parse_float,
-                        'missing_component': parse_int,
-                        'missing_component_Conf': parse_float,
-                        'missing_label': parse_int,
-                        'missing_label_Conf': parse_float,
-                        'missing_pin': parse_int,
-                        'missing_pin_Conf': parse_float,
-                        'wrong_polarity': parse_int,
-                        'wrong_polarity_Conf': parse_float,
+                        'ProcessingTime': ('processing_time', parse_float),
+                        'empty': ('empty', parse_int),
+                        'empty_Conf': ('empty_Conf', parse_float),
+                        'excess_solder': ('excess_solder', parse_int),
+                        'excess_solder_Conf': ('excess_solder_Conf', parse_float),
+                        'exposed_copper': ('exposed_copper', parse_int),
+                        'exposed_copper_Conf': ('exposed_copper_Conf', parse_float),
+                        'misaligned_header': ('misaligned_header', parse_int),
+                        'misaligned_header_Conf': ('misaligned_header_Conf', parse_float),
+                        'missing_component': ('missing_component', parse_int),
+                        'missing_component_Conf': ('missing_component_Conf', parse_float),
+                        'scratched': ('scratched', parse_int),
+                        'scratched_Conf': ('scratched_Conf', parse_float),
+                        'solder_bridge': ('solder_bridge', parse_int),
+                        'solder_bridge_Conf': ('solder_bridge_Conf', parse_float),
                     }
 
-                    for model_col, parser in field_mappings.items():
-                        # Assume CSV might have lowercased names
-                        csv_col = model_col.lower()
+                    for csv_col, (model_col, parser) in field_mappings.items():
                         val = row.get(csv_col)
                         if val is not None and val.strip() != '':
                             parsed_val = parser(val)
@@ -111,8 +113,8 @@ class CSVHandler(FileSystemEventHandler):
                                 log_data[model_col] = parsed_val
                     
                     # String fields
-                    if row.get('status'):
-                        log_data['Status'] = row.get('status').strip()
+                    if row.get('Status'):
+                        log_data['Status'] = row.get('Status').strip()
 
                     # Save only if we have some data beyond just the machine
                     if len(log_data) > 1:

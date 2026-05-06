@@ -53,3 +53,15 @@ def get_client():
     if ensure_connection():
         return _plc
     return None
+
+# ================= DISCONNECT =================
+def disconnect():
+    global connected, _plc
+    with lock:
+        connected = False
+        if _plc is not None:
+            try:
+                _plc.close()
+            except:
+                pass
+            _plc = None

@@ -18,11 +18,13 @@ def user_list(request):
     return render(request, 'user_list.html', context)
 
 ERROR_FIELDS = {
-    'misaligned_component': 'Misaligned Component',
+    'empty': 'Empty',
+    'excess_solder': 'Excess Solder',
+    'exposed_copper': 'Exposed Copper',
+    'misaligned_header': 'Misaligned Header',
     'missing_component': 'Missing Component',
-    'missing_label': 'Missing Label',
-    'missing_pin': 'Missing Pin',
-    'wrong_polarity': 'Wrong Polarity'
+    'scratched': 'Scratched',
+    'solder_bridge': 'Solder Bridge'
 }
 
 def list_pcb(request):

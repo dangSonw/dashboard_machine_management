@@ -154,7 +154,7 @@ class Command(BaseCommand):
                 is_pass = random.random() < 0.7
                 
                 status = 'OK'
-                error_cols = ['misaligned_component', 'missing_component', 'missing_label', 'missing_pin', 'wrong_polarity']
+                error_cols = ['empty', 'excess_solder', 'exposed_copper', 'misaligned_header', 'missing_component', 'scratched', 'solder_bridge']
                 row_data = {col: 0 for col in error_cols}
                 row_data.update({f"{col}_Conf": round(random.uniform(0.8, 1.0), 2) for col in error_cols})
                 

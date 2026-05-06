@@ -13,6 +13,8 @@ class ModeButtons(tk.Frame):
         super().__init__(parent)
 
         self.buttons = {}
+        self._start_active = False    # start hold state
+        self._stop_active = False     # stop hold state
         self._origin_active = False   # origin hold state
         self._run1step_active = False # run 1 step hold state
         self._auto_active = False     # auto hold state
@@ -20,8 +22,8 @@ class ModeButtons(tk.Frame):
         self._empty_active = False    # empty hold state
 
         # ===== TẠO BUTTON =====
-        self.create_button("START", "#22c55e", self.start_action) # Green
-        self.create_button("STOP", "#ef4444", self.stop_action)   # Red
+        self.create_start_button()    # 🔥 START (X125)
+        self.create_stop_button()     # 🔥 STOP (X124)
         self.create_button("POWER", "#2e7d32", self.power_toggle)
         self.create_origin_button()   # 🔥 ORIGIN (X111)
         self.create_run1step_button() # 🔥 RUN 1 STEP (X112)
@@ -46,6 +48,40 @@ class ModeButtons(tk.Frame):
         btn.pack(side="left", expand=True, fill="x", padx=3)
 
         self.buttons[text] = btn
+
+    # ===== START: Tạo button momentary giống web =====
+    def create_start_button(self):
+        btn = tk.Button(
+            self,
+            text="START",
+            bg="#22c55e",
+            fg="white",
+            font=("Arial", 12, "bold")
+        )
+        btn.pack(side="left", expand=True, fill="x", padx=3)
+
+        btn.bind("<ButtonPress-1>", self._start_press)
+        btn.bind("<ButtonRelease-1>", self._start_release)
+        btn.bind("<Leave>", self._start_release)
+
+        self.buttons["START"] = btn
+
+    # ===== STOP: Tạo button momentary giống web =====
+    def create_stop_button(self):
+        btn = tk.Button(
+            self,
+            text="STOP",
+            bg="#ef4444",
+            fg="white",
+            font=("Arial", 12, "bold")
+        )
+        btn.pack(side="left", expand=True, fill="x", padx=3)
+
+        btn.bind("<ButtonPress-1>", self._stop_press)
+        btn.bind("<ButtonRelease-1>", self._stop_release)
+        btn.bind("<Leave>", self._stop_release)
+
+        self.buttons["STOP"] = btn
 
     # ===== ORIGIN: Tạo button momentary giống web =====
     def create_origin_button(self):
@@ -159,6 +195,18 @@ class ModeButtons(tk.Frame):
                 else:
                     self.buttons[name].config(bg="#888888")  # xám
 
+            # 🔥 START dùng _start_active state
+            if self._start_active:
+                self.buttons["START"].config(bg="#16a34a")  # darker green
+            else:
+                self.buttons["START"].config(bg="#22c55e")  # normal green
+
+            # 🔥 STOP dùng _stop_active state
+            if self._stop_active:
+                self.buttons["STOP"].config(bg="#dc2626")  # darker red
+            else:
+                self.buttons["STOP"].config(bg="#ef4444")  # normal red
+
             # 🔥 ORIGIN dùng _origin_active state
             if self._origin_active:
                 self.buttons["ORIGIN"].config(bg="#1565c0")  # dark blue when held
@@ -196,22 +244,43 @@ class ModeButtons(tk.Frame):
 
     # ================= LOGIC =================
 
-    def start_action(self):
-        threading.Thread(target=self._short_pulse, args=("X125",), daemon=True).start()
+    # 🔥 START (MOMENTARY) → hold X125=1, release X125=0
+    def _start_press(self, event=None):
+        if not self._start_active:
+            self._start_active = True
+            threading.Thread(target=self._start_press_task, daemon=True).start()
 
-    def stop_action(self):
-        threading.Thread(target=self._short_pulse, args=("X124",), daemon=True).start()
+    def _start_press_task(self):
+        write_bit("X125", 1)
+        print("[START] X125 = 1 (HOLD)")
 
-    def _short_pulse(self, device):
-        """Send 0.5s pulse like web pulseCommand"""
-        try:
-            write_bit(device, 1)
-            print(f"[{device}] = 1 (PULSE START)")
-            time.sleep(0.5)
-            write_bit(device, 0)
-            print(f"[{device}] = 0 (PULSE END)")
-        except Exception as e:
-            print("PULSE ERROR:", e)
+    def _start_release(self, event=None):
+        if self._start_active:
+            self._start_active = False
+            threading.Thread(target=self._start_release_task, daemon=True).start()
+
+    def _start_release_task(self):
+        write_bit("X125", 0)
+        print("[START] X125 = 0 (RELEASE)")
+
+    # 🔥 STOP (MOMENTARY) → hold X124=1, release X124=0
+    def _stop_press(self, event=None):
+        if not self._stop_active:
+            self._stop_active = True
+            threading.Thread(target=self._stop_press_task, daemon=True).start()
+
+    def _stop_press_task(self):
+        write_bit("X124", 1)
+        print("[STOP] X124 = 1 (HOLD)")
+
+    def _stop_release(self, event=None):
+        if self._stop_active:
+            self._stop_active = False
+            threading.Thread(target=self._stop_release_task, daemon=True).start()
+
+    def _stop_release_task(self):
+        write_bit("X124", 0)
+        print("[STOP] X124 = 0 (RELEASE)")
 
     # 🔥 POWER → toggle ON/OFF
     def power_toggle(self):

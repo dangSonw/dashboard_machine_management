@@ -32,20 +32,26 @@ class Machine_Logs(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE, null=True, blank=True)
     processing_time = models.FloatField(null=True, blank=True, help_text="Thời gian xử lý")
     
-    misaligned_component = models.IntegerField(null=True, blank=True, help_text="Số lượng linh kiện bị lệch vị trí")
-    misaligned_component_Conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy của việc phát hiện linh kiện bị lệch (0 -> 1)")
+    empty = models.IntegerField(null=True, blank=True, help_text="Lỗi trống (empty)")
+    empty_Conf = models.FloatField(null=True, blank=True)
+    
+    excess_solder = models.IntegerField(null=True, blank=True, help_text="Lỗi hàn dư")
+    excess_solder_Conf = models.FloatField(null=True, blank=True)
+    
+    exposed_copper = models.IntegerField(null=True, blank=True, help_text="Lỗi hở đồng")
+    exposed_copper_Conf = models.FloatField(null=True, blank=True)
+    
+    misaligned_header = models.IntegerField(null=True, blank=True, help_text="Lỗi lệch header")
+    misaligned_header_Conf = models.FloatField(null=True, blank=True)
     
     missing_component = models.IntegerField(null=True, blank=True, help_text="Số lượng linh kiện bị thiếu")
     missing_component_Conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy khi phát hiện linh kiện bị thiếu")
     
-    missing_label = models.IntegerField(null=True, blank=True, help_text="Số lượng nhãn (label) bị thiếu")
-    missing_label_Conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy của việc phát hiện thiếu nhãn")
+    scratched = models.IntegerField(null=True, blank=True, help_text="Lỗi trầy xước")
+    scratched_Conf = models.FloatField(null=True, blank=True)
     
-    missing_pin = models.IntegerField(null=True, blank=True, help_text="Số lượng chân (pin) bị thiếu")
-    missing_pin_Conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy khi phát hiện thiếu chân pin")
-    
-    wrong_polarity = models.IntegerField(null=True, blank=True, help_text="Số lượng linh kiện bị sai cực")
-    wrong_polarity_Conf = models.FloatField(null=True, blank=True, help_text="Độ tin cậy của việc phát hiện sai cực")
+    solder_bridge = models.IntegerField(null=True, blank=True, help_text="Lỗi cầu hàn")
+    solder_bridge_Conf = models.FloatField(null=True, blank=True)
     
     Status = models.CharField(max_length=100, null=True, blank=True)
     

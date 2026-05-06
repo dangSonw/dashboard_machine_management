@@ -36,6 +36,7 @@ def write_bit(device, value):
             return True
 
         except Exception as e:
+            conn.disconnect()
             print("WRITE BIT ERROR:", e)
             return False
 
@@ -55,6 +56,7 @@ def write_pulse(device):
             return True
 
         except Exception as e:
+            conn.disconnect()
             print("WRITE PULSE ERROR:", e)
             return False
 
@@ -69,5 +71,6 @@ def write_word(device, value):
             print(f'[SCADA] write_word {device} = {value} OK')
             return True
         except Exception as e:
+            conn.disconnect()
             print(f'WRITE WORD ERROR ({device}):', e)
             return False

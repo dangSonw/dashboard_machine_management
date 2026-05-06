@@ -3,6 +3,7 @@ let pollInterval = null;
 let isEditingParams = false;
 let editTimeout;
 let emptyModeState = 0;
+let autoModeState = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     $(document).on('focus', 'input[id^="input_D"]', function() {
@@ -115,6 +116,7 @@ function pollPlcStatus() {
 
             
             if (data.m10 !== undefined) {
+                autoModeState = data.m10 ? 1 : 0;
                 $('#val_M10').text(data.m10 ? 'M10 ON' : 'M10 OFF');
                 $('#val_M10').removeClass().addClass(data.m10 ? 'badge badge-success' : 'badge badge-secondary').css('font-size', '0.7em');
             }
@@ -553,6 +555,37 @@ window.addEventListener('unhandledrejection', function(event) {
     console.warn('[PLC] Unhandled Promise Rejection:', event.reason);
     event.preventDefault();
 });
+
+function toggleAutoMode() {
+    if(!isConnected) {
+        alert("Please connect to PLC before sending command!");
+        return;
+    }
+    const note = document.getElementById('status_note');
+    const newState = autoModeState === 1 ? 0 : 1;
+    
+    note.innerText = `Sending ${newState === 1 ? 'ON' : 'OFF'} Auto Mode command (M10)...`;
+    debugLog('INFO', `Toggle Auto Mode (M10) -> ${newState}`);
+    
+    fetch('/api/plc/command/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({command: 'M10', value: newState})
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            note.innerText = `Auto Mode command (M10=${newState}) successful.`;
+            autoModeState = newState;
+        } else {
+            note.innerText = `❌ Auto Mode command failed: ${data.message || ''}`;
+        }
+    })
+    .catch(err => {
+        note.innerText = `⚠ Error sending command Auto Mode: ` + err;
+        debugLog('ERR', `Network error sending M10`, err);
+    });
+}
 
 function toggleEmptyMode() {
     if(!isConnected) {

@@ -44,8 +44,8 @@ def list_pcb(request):
     total_logs = logs_query.count()
     
     error_fields = [
-        'misaligned_component', 'missing_component', 'missing_label', 
-        'missing_pin', 'wrong_polarity'
+        'empty', 'excess_solder', 'exposed_copper', 'misaligned_header',
+        'missing_component', 'scratched', 'solder_bridge'
     ]
     
     error_stats = []

@@ -20,6 +20,7 @@ def read_words():
             }
 
         except Exception as e:
+            conn.disconnect()
             print("READ ERROR:", e)
             return None
 
@@ -37,6 +38,7 @@ def read_all_bits():
             return bits if bits else None
 
         except Exception as e:
+            conn.disconnect()
             print("READ BIT ERROR:", e)
             return None
 
@@ -68,6 +70,7 @@ def read_words_device(device, size):
             return client.batchread_wordunits(device, size)
 
         except Exception as e:
+            conn.disconnect()
             print("READ DEVICE ERROR:", e)
             return None
 
@@ -85,7 +88,9 @@ def read_dword(device):
     return (high << 16) | low
 # thêm code hiển thị đèn
 def read_machine_bits(device=None, size=None):
-    return read_all_bits()
+    if device is None or size is None:
+        return read_all_bits()
+    return read_bits_device(device, size)
 
 
 # ================= READ BIT DEVICE =================
@@ -100,5 +105,6 @@ def read_bits_device(device, size):
             return client.batchread_bitunits(device, size)
 
         except Exception as e:
+            conn.disconnect()
             print("READ BITS DEVICE ERROR:", e)
             return None

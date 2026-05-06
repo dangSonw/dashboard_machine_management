@@ -32,13 +32,15 @@ class CarouselCore:
 
             # ===== CHECK VỀ GỐC =====
             m = getattr(plc_comm, "latest_m", [0, 0])
+            if m is None:
+                m = []
+            m_modes = getattr(plc_comm, "latest_m_modes", {})
 
-            if len(m) >= 2:
-                M111 = m[0]
-                M500 = m[1]
+            M111 = m[0] if len(m) > 0 else 0
+            M500 = m_modes.get("M500", 0)
 
-                if M111 == 1 or M500 == 1:
-                    return 0
+            if M111 == 1 or M500 == 1:
+                return 0
 
         except Exception as e:
             print("ROTATION ERROR:", e)
