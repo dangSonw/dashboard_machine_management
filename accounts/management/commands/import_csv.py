@@ -88,17 +88,17 @@ class CSVHandler(FileSystemEventHandler):
                     
                     # Numeric fields (Int/Float)
                     field_mappings = {
-                        'ProcessingTime': parse_float,
+                        'processing_time': parse_float,
                         'misaligned_component': parse_int,
-                        'misaligned_component_Conf': parse_float,
+                        'misaligned_component_conf': parse_float,
                         'missing_component': parse_int,
-                        'missing_component_Conf': parse_float,
+                        'missing_component_conf': parse_float,
                         'missing_label': parse_int,
-                        'missing_label_Conf': parse_float,
+                        'missing_label_conf': parse_float,
                         'missing_pin': parse_int,
-                        'missing_pin_Conf': parse_float,
-                        'wrong_polarrity': parse_int,
-                        'wrong_polarrity_Conf': parse_float,
+                        'missing_pin_conf': parse_float,
+                        'wrong_polarity': parse_int,
+                        'wrong_polarity_conf': parse_float,
                     }
 
                     for csv_col, parser in field_mappings.items():
@@ -109,8 +109,8 @@ class CSVHandler(FileSystemEventHandler):
                                 log_data[csv_col] = parsed_val
                     
                     # String fields
-                    if row.get('Status'):
-                        log_data['Status'] = row.get('Status').strip()
+                    if row.get('status'):
+                        log_data['status'] = row.get('status').strip()
 
                     # Save only if we have some data beyond just the machine
                     if len(log_data) > 1:

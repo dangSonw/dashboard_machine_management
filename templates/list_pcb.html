@@ -126,19 +126,19 @@
                                 </thead>
                                 <tbody>
                                     {% for log in logs %}
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 {% if log.Status == 'NG' %}bg-red-50 dark:bg-red-900/10{% endif %}">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 {% if log.status == 'NG' %}bg-red-50 dark:bg-red-900/10{% endif %}">
                                         <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ log.id }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.misaligned_component > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.misaligned_component|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.missing_component > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.missing_component|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.missing_label > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.missing_label|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.missing_pin > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.missing_pin|default:"0" }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.wrong_polarrity > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.wrong_polarrity|default:"0" }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 text-slate-700 dark:text-white">{{ log.ProcessingTime|default:"0" }}</td>
+                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 {% if log.wrong_polarity > 0 %}text-red-600 font-semibold{% else %}text-green-600{% endif %}">{{ log.wrong_polarity|default:"0" }}</td>
+                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 text-slate-700 dark:text-white">{{ log.processing_time|default:"0" }}</td>
                                         <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
-                                            {% if log.Status == 'OK' %}
+                                            {% if log.status == 'OK' %}
                                             <span class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">OK</span>
                                             {% else %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">{{ log.Status|default:"NG" }}</span>
+                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">{{ log.status|default:"NG" }}</span>
                                             {% endif %}
                                         </td>
                                         <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ log.created|date:"Y-m-d H:i:s" }}</td>
