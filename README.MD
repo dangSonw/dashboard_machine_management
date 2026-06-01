@@ -15,22 +15,8 @@
     ```
     *(Note: If `requirements.txt` is missing, install manually: `pip install django psycopg2 pillow validate_email`)*
 
-3.  **Edit Database**
-    example:
-    ```python
-    *   DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'machine_management',
-                'USER': 'root',
-                'PASSWORD': 'root',
-                'HOST': 'localhost',
-                'PORT': '3306',
-                }
-            }
-    ```
-    *   Create the database:
-    ```sql
+3.  **Edit .env**
+    cp env.example .env
 
 4.  **Run Migrations**
     ```bash
