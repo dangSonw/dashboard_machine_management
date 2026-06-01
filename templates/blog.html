@@ -1,0 +1,318 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AUTO-TECH INSIGHTS | Industrial Automation Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="{% static 'js/tailwind-config.js' %}"></script>
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline-variant fixed top-0 w-full z-50">
+<div class="flex justify-between items-center h-16 px-margin max-w-[1280px] mx-auto w-full">
+<div class="font-display-lg text-headline-md tracking-tighter font-bold text-primary">
+                AUTO-TECH INSIGHTS
+            </div>
+<div class="hidden md:flex space-x-lg items-center">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary duration-200 ease-in-out" href="#">Systems</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Specs</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Blueprints</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Industry 4.0</a>
+<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Archive</a>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary-container transition-colors duration-200">
+                Contact Engineering
+            </button>
+</div>
+</nav>
+<!-- SideNavBar (Suppressed for Home, but visible on Desktop if required by hierarchy - hidden by default for landing) -->
+<aside class="hidden lg:flex flex-col py-md bg-surface-container-low border-r border-outline-variant h-full w-64 fixed left-0 top-16 pt-10">
+<div class="px-md mb-xl">
+<h3 class="font-headline-md text-headline-md text-on-surface">System Alpha-9</h3>
+<p class="font-label-sm text-label-sm text-secondary">Automated Assembly Unit</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<div class="bg-primary-container text-on-primary-container rounded-lg mx-2 flex items-center px-md py-sm">
+<span class="material-symbols-outlined mr-sm">precision_manufacturing</span>
+<span class="font-label-md text-label-md">Overview</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-sm">view_in_ar</span>
+<span class="font-label-md text-label-md">CAD Viewer</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-sm">settings_input_component</span>
+<span class="font-label-md text-label-md">Components</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-sm">bolt</span>
+<span class="font-label-md text-label-md">Electrical</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-sm">analytics</span>
+<span class="font-label-md text-label-md">Diagnostics</span>
+</div>
+</nav>
+<div class="px-md pt-xl">
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-label-md text-label-md uppercase">Download PDF Spec</button>
+</div>
+</aside>
+<main class="lg:ml-64 pt-16">
+<!-- Hero Section -->
+<section class="technical-grid min-h-[80vh] flex items-center px-margin">
+<div class="max-w-[1280px] mx-auto w-full grid md:grid-cols-2 gap-xl items-center py-xl">
+<div class="order-2 md:order-1">
+<div class="inline-flex items-center space-x-2 bg-secondary-container text-on-secondary-container px-sm py-1 rounded mb-md">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm">VERSION 2.4 READY</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary mb-lg leading-tight">Advanced Industrial Automation Unit</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-lg">
+                        Engineered for the future of manufacturing. Experience unparalleled precision and real-time efficiency monitoring with our modular assembly station designed for Tier 1 production environments.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-md">
+<button class="bg-primary text-on-primary px-xl py-md rounded font-label-md text-label-md uppercase font-bold shadow-sm">Explore Systems</button>
+<button class="border border-primary text-primary px-xl py-md rounded font-label-md text-label-md uppercase font-bold hover:bg-surface-container-low transition-colors">Download Specifications</button>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<div class="bg-surface-container-lowest p-md blueprint-border rounded-xl shadow-md transform hover:scale-[1.02] transition-transform duration-500">
+<img alt="Industrial Automation Unit 3D Render" class="w-full h-auto rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrrFafOuFSQqPqlExHYaMMdZulm9-B7zCdWLnK8_TDx7scVHDQTgoP_iznkXmyTLLexMS_afHjTlzYyicEQQ1Z_sd_koYrY0ebHIFeJoPiShtvRLr3T4wbk9w4SqqVZdHFEmPgS7vvjztNpomjJ-635FomMJ_-JZ2UMyehq6lylsunlNOACUe-WWuq9NN8pOE5zuanrEAD93noypSxcyf_Qre-lVK3XtuyJm9xCzZzIBm8bAoWU7XNdWIu1-wQptY8ZCHWrAm1F_Y"/>
+<div class="mt-md caption-accent pl-md">
+<p class="font-label-sm text-label-sm text-secondary">FIG. 01: SYSTEM ALPHA-9 MULTI-AXIS ASSEMBLY MODULE (CAD RENDER)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specifications Section -->
+<section class="py-xl px-margin bg-surface">
+<div class="max-w-[1280px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-xl border-b border-outline-variant pb-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Technical Specifications</h2>
+<p class="font-body-md text-body-md text-secondary">Dimensioning and mechanical structural properties</p>
+</div>
+<div class="font-label-md text-label-md text-primary font-bold hidden md:block">ISO-9001 CERTIFIED</div>
+</div>
+<div class="grid md:grid-cols-2 gap-lg">
+<div class="bg-surface-container-lowest blueprint-border p-lg">
+<div class="flex items-center justify-between mb-lg">
+<span class="font-label-md text-label-md text-primary uppercase">Front Elevation</span>
+<span class="font-label-sm text-label-sm text-outline">REF: DWG-002</span>
+</div>
+<img alt="Front Elevation Technical Drawing" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiC0TUAlwn6n22h6i_ToefQYuPKXB9aFgmoVpWCS-_NTr2sfpNbmkqSsznLaVLDAy4HeRtCjZBri6jCVD8OPmGHO6N8-g8KBfrcYzP4KdFBlGuACgvbNfuzvHliOqXlaTEX8STSRJHlC2kIkwa6OifomHlLGyEfjLXQ4aNZEWGCUC3CHBbT3QfENlLNnEsq4lhMeyBL_mG2DjCpRP54Je1kgOb2YjvdsOAw_kxj5E8SChgZQPOUrZbJgr64fD4lvM8dZa25QJPsRY"/>
+<div class="mt-lg grid grid-cols-2 gap-md border-t border-outline-variant pt-md">
+<div>
+<span class="font-label-sm text-label-sm block text-outline">WIDTH</span>
+<span class="font-label-md text-label-md text-on-surface">606.00 mm</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm block text-outline">HEIGHT</span>
+<span class="font-label-md text-label-md text-on-surface">1342.00 mm</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest blueprint-border p-lg">
+<div class="flex items-center justify-between mb-lg">
+<span class="font-label-md text-label-md text-primary uppercase">Profile View</span>
+<span class="font-label-sm text-label-sm text-outline">REF: DWG-003</span>
+</div>
+<img alt="Side Profile Technical Drawing" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_eBydAyBnw1sUU_lpHFAKQeCGhPC_NMz2jcnLNImF7lCva2bQEBE-ubtj1fQQDHskmek-F79A_rSa4RnqTWWhEK7jU9p8rM_FAtuabHu-_nqSXf_1pq9UxLWMHKMgIl755NNwZfjqKt_r0UBHMh2CmLssRV8PVr0w2EnnDoQxrJtS3-N2vTPdgPWu-Q-E_TxgtAceszPjajJdMGgCe9THnIFT0uDZYiJ9dYa4WB6ETPmdV0_91aAJwaXVoCcLIDgVsMTX6gqWAc4"/>
+<div class="mt-lg grid grid-cols-2 gap-md border-t border-outline-variant pt-md">
+<div>
+<span class="font-label-sm text-label-sm block text-outline">DEPTH</span>
+<span class="font-label-md text-label-md text-on-surface">508.00 mm</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm block text-outline">CLEARANCE</span>
+<span class="font-label-md text-label-md text-on-surface">154.00 mm</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- System Architecture Section -->
+<section class="py-xl px-margin technical-grid">
+<div class="max-w-[1280px] mx-auto">
+<div class="mb-xl text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">System Architecture</h2>
+<p class="font-body-md text-body-md text-secondary">Full integration stack from HMI to Physical Components</p>
+</div>
+<div class="bg-white p-xl blueprint-border shadow-lg rounded-xl overflow-hidden relative">
+<img alt="Annotated System Architecture Diagram" class="w-full h-auto max-w-4xl mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRvTpzGgXmvU_jpm59UNORXKn8Rvt3Rei-TExjB6GauM6RDSvRGM_fsN673wphNhsY6uVcogAgqxyzugCOs_jFjw0iTSn9ZDn8T2w9rF9xXh0P0BpWTc5lK3-Lo56eIE4UK-0yXfq5jgHsV_IbPM7-q2d1fXQ72n283q4LPXCI30vNYkKgWj33E8v8fgcCNaMmvcq8W_kDNBISFJpL_wZP0eit0x2VGiwxGvD1tAWbFfHcyzJ9wC3E0luNSm0eBrG2BwtR4YFOK4c"/>
+<div class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="p-md bg-surface-container-low border-l-4 border-primary">
+<h4 class="font-label-md text-label-md text-primary mb-sm">CONTROL INTERFACE</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Dual-monitor setup featuring a high-res LCD for diagnostics and a ruggedized HMI for operator input.</p>
+</div>
+<div class="p-md bg-surface-container-low border-l-4 border-primary">
+<h4 class="font-label-md text-label-md text-primary mb-sm">CHASSIS CORE</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">4040 Extruded aluminum profile frame providing industrial rigidity and modular mounting options.</p>
+</div>
+<div class="p-md bg-surface-container-low border-l-4 border-primary">
+<h4 class="font-label-md text-label-md text-primary mb-sm">MOBILITY SYSTEM</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Integrated heavy-duty casters with adjustable precision leveling feet for dynamic floor placement.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Feed Section -->
+<section class="py-xl px-margin bg-surface">
+<div class="max-w-[1280px] mx-auto">
+<div class="flex justify-between items-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Engineering Journal</h2>
+<a class="text-primary font-label-md text-label-md flex items-center hover:underline" href="#">
+                        VIEW ALL ARTICLES <span class="material-symbols-outlined ml-xs">arrow_forward</span>
+</a>
+</div>
+<div class="grid md:grid-cols-3 gap-lg">
+<!-- Article 1 -->
+<div class="flex flex-col group cursor-pointer">
+<div class="overflow-hidden mb-md aspect-video">
+<img alt="Robotics Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-tech industrial robot arm performing intricate tasks in a sterile modern manufacturing plant. The scene is illuminated with cool blue led lights reflecting off metallic surfaces, creating a professional and futuristic atmosphere. The background shows a blurry assembly line suggesting a larger scale of automated precision manufacturing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW3nfU7kaxBXBgM0as8jThQ11K1oqHk7qpgvgGiAD1JVFYfEbtAibRy6SZN6-DtwW24hbYnif3uWryN2gTQWufqB8hvEqfjsE46C6-dxwQ1LJkLV7EInCEqtMMudj9KL5mx1l8DXVygNGlAW51bk4mGA9ZsKjZrOx52In8Yn2fvNaI34cKndx-1bHSvtjgm33fTUdxMJ4Gz3Ahif1qgf-T8cdczbluN8fIKV4zDOnQG9Dphzi0S9_B7ZofTnPZtS8dZxCUlcssy-M"/>
+</div>
+<div class="bg-secondary-container/30 px-sm py-1 rounded self-start mb-sm">
+<span class="font-label-sm text-label-sm text-on-secondary-container">PLC PROGRAMMING</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Optimizing Logic for 5-Axis Systems</h3>
+<p class="font-body-md text-body-md text-secondary mt-sm line-clamp-3">Deep dive into the latest ladder logic enhancements for reducing cycle times in multi-axis assembly environments...</p>
+<div class="mt-md flex items-center text-outline font-label-sm text-label-sm uppercase">
+<span>March 14, 2024</span>
+<span class="mx-sm">•</span>
+<span>8 min read</span>
+</div>
+</div>
+<!-- Article 2 -->
+<div class="flex flex-col group cursor-pointer">
+<div class="overflow-hidden mb-md aspect-video">
+<img alt="Electronics Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro close-up of a complex electronic circuit board with glowing components and traces. The lighting is sophisticated, using deep indigo and vibrant cyan hues to highlight the technical intricacy. The image evokes a sense of high-performance computing and precision engineering within the industrial automation sector." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwqSfhR4xJHxIdV83KzCCOgruGBYxBL2a21d0CzP0MY2m-xjoiqIt9qFTsDD_qYfO9uaGHxiIXBjy8f-gC_e3X-DWDrbl4WPM5E8uUgLshPKxm3PRJhjNE3tbshMEpaIH1qki8nYPmpk4iJpyavP66Oz_uCUqSzcIXFw90GJ1KjY5fnARvGZbCHlDT8XZPT19RSPGpKxUECqWc2ZaL38eAbAGgatI5sEM3k5WtKmKt21mmqs7lva6QoKgTRSQue7ZY-PWFPFFqr1s"/>
+</div>
+<div class="bg-secondary-container/30 px-sm py-1 rounded self-start mb-sm">
+<span class="font-label-sm text-label-sm text-on-secondary-container">HARDWARE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Thermal Management in Enclosures</h3>
+<p class="font-body-md text-body-md text-secondary mt-sm line-clamp-3">Exploring the critical balance between IP-rated sealing and effective heat dissipation for internal control panels.</p>
+<div class="mt-md flex items-center text-outline font-label-sm text-label-sm uppercase">
+<span>March 12, 2024</span>
+<span class="mx-sm">•</span>
+<span>12 min read</span>
+</div>
+</div>
+<!-- Article 3 -->
+<div class="flex flex-col group cursor-pointer">
+<div class="overflow-hidden mb-md aspect-video">
+<img alt="Industry 4.0 Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist workplace featuring a professional engineering tablet displaying a detailed 3D CAD model of a mechanical assembly. The lighting is soft and bright, highlighting the organized and data-driven environment of a modern industrial design office. Neutral tones of gray and white dominate the palette with subtle tech-blue highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXlvdXZ8s37N8FjKSt80-40bYeUj2vLU_sDJM3mfqTbSUuwlamvz3sIBhNM_BFRhyR6dJQoZ8IPVVx7lFsjE9SglKSMSGPLNTi3gnR1iAtTNA2AlA0tM8yvyVF0t2Il5yt0he__gAQgxw3SIHDTR8YTq-r26RayrtDVf6vOhV177UjobQiHo1gKq-noUV0NV23MdTqPcTcDHF8h8ICxxD70EAQzMUlYHQMfrBmjvYC4gjzfeguHx2l2cFGvOOtsBk0bdCxCiOChq4"/>
+</div>
+<div class="bg-secondary-container/30 px-sm py-1 rounded self-start mb-sm">
+<span class="font-label-sm text-label-sm text-on-secondary-container">INDUSTRY 4.0</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Digital Twins in Small-Scale Plants</h3>
+<p class="font-body-md text-body-md text-secondary mt-sm line-clamp-3">How small manufacturing units are leveraging digital simulation to predict maintenance and optimize production flow.</p>
+<div class="mt-md flex items-center text-outline font-label-sm text-label-sm uppercase">
+<span>March 08, 2024</span>
+<span class="mx-sm">•</span>
+<span>5 min read</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<section class="py-xl px-margin bg-surface-container-low border-t border-outline-variant">
+<div class="max-w-[1280px] mx-auto">
+<div class="grid md:grid-cols-2 gap-xl">
+<!-- Left Column: Contact Info -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">Contact Engineering</h2>
+<p class="font-body-md text-body-md text-secondary mb-xl">Our engineering team is available for technical consultations and project discussions. Please provide detailed information for a faster response.</p>
+<div class="space-y-lg">
+<div class="flex items-start">
+<span class="material-symbols-outlined text-primary mr-md">mail</span>
+<div>
+<p class="font-label-md text-label-md text-primary uppercase">Email</p>
+<p class="font-body-md text-on-surface">engineering@auto-tech-insights.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<span class="material-symbols-outlined text-primary mr-md">phone</span>
+<div>
+<p class="font-label-md text-label-md text-primary uppercase">Phone</p>
+<p class="font-body-md text-on-surface">+1 (555) 012-3456</p>
+</div>
+</div>
+<div class="flex items-start">
+<span class="material-symbols-outlined text-primary mr-md">location_on</span>
+<div>
+<p class="font-label-md text-label-md text-primary uppercase">HQ Location</p>
+<p class="font-body-md text-on-surface">1274 Innovation Way, Suite 400<br/>Detroit, MI 48226</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Form -->
+<div class="bg-surface-container-lowest p-lg blueprint-border rounded-lg shadow-sm">
+<form class="space-y-md">
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="full-name">Full Name</label>
+<input class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="full-name" placeholder="Jane Doe" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="email">Company Email</label>
+<input class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="email" placeholder="jane@company.com" type="email"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="subject">Subject</label>
+<select class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="subject">
+<option value="technical">Technical Support</option>
+<option value="sales">Sales Inquiry</option>
+<option value="partnership">Partnership</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="message">Message</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all h-32" id="message" placeholder="How can we help you?"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-md rounded font-label-md text-label-md uppercase font-bold hover:bg-primary-container transition-colors shadow-sm" type="submit">
+            Submit Request
+          </button>
+</form>
+</div>
+</div>
+</div>
+</section><footer class="bg-surface-container-highest w-full py-xl px-margin border-t border-outline">
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="flex flex-col items-center md:items-start">
+<div class="font-headline-md text-headline-md text-primary mb-sm">AUTO-TECH INSIGHTS</div>
+<p class="font-label-sm text-label-sm text-on-surface max-w-sm text-center md:text-left opacity-70">
+                    © 2024 Industrial Automation Excellence. All technical drawings are proprietary. Unauthorized reproduction is prohibited under international copyright law.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Compliance</a>
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">API Docs</a>
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Contact Sales</a>
+</div>
+<div class="flex space-x-md">
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-full hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-full hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</button>
+</div>
+</div>
+</footer>
+<script src="{% static 'js/blog.js' %}"></script>
+</body></html>

@@ -364,3 +364,7 @@ def api_monthly_stats(request):
         'data_pass': data_pass,
         'data_fail': data_fail
     })
+
+
+def blog(request):
+    return render(request, "blog.html")

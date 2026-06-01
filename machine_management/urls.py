@@ -22,6 +22,9 @@ urlpatterns = [
     path('api/plc/write_params/', views.api_plc_write_params, name='api_plc_write_params'),
     path('api/plc/read_device/', views.api_plc_read_device, name='api_plc_read_device'),
 
+    # Blog
+    path('blog/', views.blog, name='blog'),
+
     # Stats API endpoints
     path('api/stats/weekly/', views.api_weekly_stats, name='api_weekly_stats'),
     path('api/stats/monthly/', views.api_monthly_stats, name='api_monthly_stats'),

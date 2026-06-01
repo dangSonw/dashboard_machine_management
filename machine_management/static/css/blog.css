@@ -1,0 +1,19 @@
+/* Blog Page Custom Styles */
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.technical-grid {
+    background-image: radial-gradient(circle, #c3c6d1 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: #f7f9fb;
+}
+
+.blueprint-border {
+    border: 1px solid rgba(80, 95, 118, 0.2);
+}
+
+.caption-accent {
+    border-left: 2px solid #003465;
+}
