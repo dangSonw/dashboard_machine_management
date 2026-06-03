@@ -1,318 +1,347 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AUTO-TECH INSIGHTS | Industrial Automation Excellence</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="{% static 'js/tailwind-config.js' %}"></script>
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet"/>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapture - Photography Studio</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
-<body class="bg-background text-on-background font-body-md">
-<!-- TopNavBar -->
-<nav class="bg-surface border-b border-outline-variant fixed top-0 w-full z-50">
-<div class="flex justify-between items-center h-16 px-margin max-w-[1280px] mx-auto w-full">
-<div class="font-display-lg text-headline-md tracking-tighter font-bold text-primary">
-                AUTO-TECH INSIGHTS
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">SNAPTURE.</div>
+        <ul class="nav-links">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#photography">PHOTOGRAPHY</a></li>
+            <li><a href="#event">EVENT</a></li>
+            <li><a href="#exhibition">EXHIBITION</a></li>
+            <li><a href="#newsletter">NEWSLETTER</a></li>
+            <li><a href="#contact" class="contact-btn">Contact <i class="fas fa-paper-plane"></i></a></li>
+            <li><a href="#" class="explore-btn">Explore our blog</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <span class="sidebar-text">// SNAPTURE</span>
+            <div class="sidebar-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
-<div class="hidden md:flex space-x-lg items-center">
-<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary duration-200 ease-in-out" href="#">Systems</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Specs</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Blueprints</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Industry 4.0</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200 ease-in-out" href="#">Archive</a>
-</div>
-<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary-container transition-colors duration-200">
-                Contact Engineering
-            </button>
-</div>
-</nav>
-<!-- SideNavBar (Suppressed for Home, but visible on Desktop if required by hierarchy - hidden by default for landing) -->
-<aside class="hidden lg:flex flex-col py-md bg-surface-container-low border-r border-outline-variant h-full w-64 fixed left-0 top-16 pt-10">
-<div class="px-md mb-xl">
-<h3 class="font-headline-md text-headline-md text-on-surface">System Alpha-9</h3>
-<p class="font-label-sm text-label-sm text-secondary">Automated Assembly Unit</p>
-</div>
-<nav class="flex-1 space-y-sm">
-<div class="bg-primary-container text-on-primary-container rounded-lg mx-2 flex items-center px-md py-sm">
-<span class="material-symbols-outlined mr-sm">precision_manufacturing</span>
-<span class="font-label-md text-label-md">Overview</span>
-</div>
-<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
-<span class="material-symbols-outlined mr-sm">view_in_ar</span>
-<span class="font-label-md text-label-md">CAD Viewer</span>
-</div>
-<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
-<span class="material-symbols-outlined mr-sm">settings_input_component</span>
-<span class="font-label-md text-label-md">Components</span>
-</div>
-<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
-<span class="material-symbols-outlined mr-sm">bolt</span>
-<span class="font-label-md text-label-md">Electrical</span>
-</div>
-<div class="text-on-surface-variant hover:bg-surface-variant rounded-lg mx-2 flex items-center px-md py-sm cursor-pointer transition-all">
-<span class="material-symbols-outlined mr-sm">analytics</span>
-<span class="font-label-md text-label-md">Diagnostics</span>
-</div>
-</nav>
-<div class="px-md pt-xl">
-<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-label-md text-label-md uppercase">Download PDF Spec</button>
-</div>
-</aside>
-<main class="lg:ml-64 pt-16">
-<!-- Hero Section -->
-<section class="technical-grid min-h-[80vh] flex items-center px-margin">
-<div class="max-w-[1280px] mx-auto w-full grid md:grid-cols-2 gap-xl items-center py-xl">
-<div class="order-2 md:order-1">
-<div class="inline-flex items-center space-x-2 bg-secondary-container text-on-secondary-container px-sm py-1 rounded mb-md">
-<span class="material-symbols-outlined text-[18px]">verified</span>
-<span class="font-label-sm text-label-sm">VERSION 2.4 READY</span>
-</div>
-<h1 class="font-display-lg text-display-lg text-primary mb-lg leading-tight">Advanced Industrial Automation Unit</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-lg">
-                        Engineered for the future of manufacturing. Experience unparalleled precision and real-time efficiency monitoring with our modular assembly station designed for Tier 1 production environments.
-                    </p>
-<div class="flex flex-col sm:flex-row gap-md">
-<button class="bg-primary text-on-primary px-xl py-md rounded font-label-md text-label-md uppercase font-bold shadow-sm">Explore Systems</button>
-<button class="border border-primary text-primary px-xl py-md rounded font-label-md text-label-md uppercase font-bold hover:bg-surface-container-low transition-colors">Download Specifications</button>
-</div>
-</div>
-<div class="order-1 md:order-2">
-<div class="bg-surface-container-lowest p-md blueprint-border rounded-xl shadow-md transform hover:scale-[1.02] transition-transform duration-500">
-<img alt="Industrial Automation Unit 3D Render" class="w-full h-auto rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrrFafOuFSQqPqlExHYaMMdZulm9-B7zCdWLnK8_TDx7scVHDQTgoP_iznkXmyTLLexMS_afHjTlzYyicEQQ1Z_sd_koYrY0ebHIFeJoPiShtvRLr3T4wbk9w4SqqVZdHFEmPgS7vvjztNpomjJ-635FomMJ_-JZ2UMyehq6lylsunlNOACUe-WWuq9NN8pOE5zuanrEAD93noypSxcyf_Qre-lVK3XtuyJm9xCzZzIBm8bAoWU7XNdWIu1-wQptY8ZCHWrAm1F_Y"/>
-<div class="mt-md caption-accent pl-md">
-<p class="font-label-sm text-label-sm text-secondary">FIG. 01: SYSTEM ALPHA-9 MULTI-AXIS ASSEMBLY MODULE (CAD RENDER)</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Technical Specifications Section -->
-<section class="py-xl px-margin bg-surface">
-<div class="max-w-[1280px] mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-xl border-b border-outline-variant pb-md">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Technical Specifications</h2>
-<p class="font-body-md text-body-md text-secondary">Dimensioning and mechanical structural properties</p>
-</div>
-<div class="font-label-md text-label-md text-primary font-bold hidden md:block">ISO-9001 CERTIFIED</div>
-</div>
-<div class="grid md:grid-cols-2 gap-lg">
-<div class="bg-surface-container-lowest blueprint-border p-lg">
-<div class="flex items-center justify-between mb-lg">
-<span class="font-label-md text-label-md text-primary uppercase">Front Elevation</span>
-<span class="font-label-sm text-label-sm text-outline">REF: DWG-002</span>
-</div>
-<img alt="Front Elevation Technical Drawing" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiC0TUAlwn6n22h6i_ToefQYuPKXB9aFgmoVpWCS-_NTr2sfpNbmkqSsznLaVLDAy4HeRtCjZBri6jCVD8OPmGHO6N8-g8KBfrcYzP4KdFBlGuACgvbNfuzvHliOqXlaTEX8STSRJHlC2kIkwa6OifomHlLGyEfjLXQ4aNZEWGCUC3CHBbT3QfENlLNnEsq4lhMeyBL_mG2DjCpRP54Je1kgOb2YjvdsOAw_kxj5E8SChgZQPOUrZbJgr64fD4lvM8dZa25QJPsRY"/>
-<div class="mt-lg grid grid-cols-2 gap-md border-t border-outline-variant pt-md">
-<div>
-<span class="font-label-sm text-label-sm block text-outline">WIDTH</span>
-<span class="font-label-md text-label-md text-on-surface">606.00 mm</span>
-</div>
-<div>
-<span class="font-label-sm text-label-sm block text-outline">HEIGHT</span>
-<span class="font-label-md text-label-md text-on-surface">1342.00 mm</span>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-lowest blueprint-border p-lg">
-<div class="flex items-center justify-between mb-lg">
-<span class="font-label-md text-label-md text-primary uppercase">Profile View</span>
-<span class="font-label-sm text-label-sm text-outline">REF: DWG-003</span>
-</div>
-<img alt="Side Profile Technical Drawing" class="w-full h-auto grayscale hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_eBydAyBnw1sUU_lpHFAKQeCGhPC_NMz2jcnLNImF7lCva2bQEBE-ubtj1fQQDHskmek-F79A_rSa4RnqTWWhEK7jU9p8rM_FAtuabHu-_nqSXf_1pq9UxLWMHKMgIl755NNwZfjqKt_r0UBHMh2CmLssRV8PVr0w2EnnDoQxrJtS3-N2vTPdgPWu-Q-E_TxgtAceszPjajJdMGgCe9THnIFT0uDZYiJ9dYa4WB6ETPmdV0_91aAJwaXVoCcLIDgVsMTX6gqWAc4"/>
-<div class="mt-lg grid grid-cols-2 gap-md border-t border-outline-variant pt-md">
-<div>
-<span class="font-label-sm text-label-sm block text-outline">DEPTH</span>
-<span class="font-label-md text-label-md text-on-surface">508.00 mm</span>
-</div>
-<div>
-<span class="font-label-sm text-label-sm block text-outline">CLEARANCE</span>
-<span class="font-label-md text-label-md text-on-surface">154.00 mm</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- System Architecture Section -->
-<section class="py-xl px-margin technical-grid">
-<div class="max-w-[1280px] mx-auto">
-<div class="mb-xl text-center">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">System Architecture</h2>
-<p class="font-body-md text-body-md text-secondary">Full integration stack from HMI to Physical Components</p>
-</div>
-<div class="bg-white p-xl blueprint-border shadow-lg rounded-xl overflow-hidden relative">
-<img alt="Annotated System Architecture Diagram" class="w-full h-auto max-w-4xl mx-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRvTpzGgXmvU_jpm59UNORXKn8Rvt3Rei-TExjB6GauM6RDSvRGM_fsN673wphNhsY6uVcogAgqxyzugCOs_jFjw0iTSn9ZDn8T2w9rF9xXh0P0BpWTc5lK3-Lo56eIE4UK-0yXfq5jgHsV_IbPM7-q2d1fXQ72n283q4LPXCI30vNYkKgWj33E8v8fgcCNaMmvcq8W_kDNBISFJpL_wZP0eit0x2VGiwxGvD1tAWbFfHcyzJ9wC3E0luNSm0eBrG2BwtR4YFOK4c"/>
-<div class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-md">
-<div class="p-md bg-surface-container-low border-l-4 border-primary">
-<h4 class="font-label-md text-label-md text-primary mb-sm">CONTROL INTERFACE</h4>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Dual-monitor setup featuring a high-res LCD for diagnostics and a ruggedized HMI for operator input.</p>
-</div>
-<div class="p-md bg-surface-container-low border-l-4 border-primary">
-<h4 class="font-label-md text-label-md text-primary mb-sm">CHASSIS CORE</h4>
-<p class="font-label-sm text-label-sm text-on-surface-variant">4040 Extruded aluminum profile frame providing industrial rigidity and modular mounting options.</p>
-</div>
-<div class="p-md bg-surface-container-low border-l-4 border-primary">
-<h4 class="font-label-md text-label-md text-primary mb-sm">MOBILITY SYSTEM</h4>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Integrated heavy-duty casters with adjustable precision leveling feet for dynamic floor placement.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Blog Feed Section -->
-<section class="py-xl px-margin bg-surface">
-<div class="max-w-[1280px] mx-auto">
-<div class="flex justify-between items-center mb-xl">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Engineering Journal</h2>
-<a class="text-primary font-label-md text-label-md flex items-center hover:underline" href="#">
-                        VIEW ALL ARTICLES <span class="material-symbols-outlined ml-xs">arrow_forward</span>
-</a>
-</div>
-<div class="grid md:grid-cols-3 gap-lg">
-<!-- Article 1 -->
-<div class="flex flex-col group cursor-pointer">
-<div class="overflow-hidden mb-md aspect-video">
-<img alt="Robotics Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-tech industrial robot arm performing intricate tasks in a sterile modern manufacturing plant. The scene is illuminated with cool blue led lights reflecting off metallic surfaces, creating a professional and futuristic atmosphere. The background shows a blurry assembly line suggesting a larger scale of automated precision manufacturing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW3nfU7kaxBXBgM0as8jThQ11K1oqHk7qpgvgGiAD1JVFYfEbtAibRy6SZN6-DtwW24hbYnif3uWryN2gTQWufqB8hvEqfjsE46C6-dxwQ1LJkLV7EInCEqtMMudj9KL5mx1l8DXVygNGlAW51bk4mGA9ZsKjZrOx52In8Yn2fvNaI34cKndx-1bHSvtjgm33fTUdxMJ4Gz3Ahif1qgf-T8cdczbluN8fIKV4zDOnQG9Dphzi0S9_B7ZofTnPZtS8dZxCUlcssy-M"/>
-</div>
-<div class="bg-secondary-container/30 px-sm py-1 rounded self-start mb-sm">
-<span class="font-label-sm text-label-sm text-on-secondary-container">PLC PROGRAMMING</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Optimizing Logic for 5-Axis Systems</h3>
-<p class="font-body-md text-body-md text-secondary mt-sm line-clamp-3">Deep dive into the latest ladder logic enhancements for reducing cycle times in multi-axis assembly environments...</p>
-<div class="mt-md flex items-center text-outline font-label-sm text-label-sm uppercase">
-<span>March 14, 2024</span>
-<span class="mx-sm">•</span>
-<span>8 min read</span>
-</div>
-</div>
-<!-- Article 2 -->
-<div class="flex flex-col group cursor-pointer">
-<div class="overflow-hidden mb-md aspect-video">
-<img alt="Electronics Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro close-up of a complex electronic circuit board with glowing components and traces. The lighting is sophisticated, using deep indigo and vibrant cyan hues to highlight the technical intricacy. The image evokes a sense of high-performance computing and precision engineering within the industrial automation sector." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwqSfhR4xJHxIdV83KzCCOgruGBYxBL2a21d0CzP0MY2m-xjoiqIt9qFTsDD_qYfO9uaGHxiIXBjy8f-gC_e3X-DWDrbl4WPM5E8uUgLshPKxm3PRJhjNE3tbshMEpaIH1qki8nYPmpk4iJpyavP66Oz_uCUqSzcIXFw90GJ1KjY5fnARvGZbCHlDT8XZPT19RSPGpKxUECqWc2ZaL38eAbAGgatI5sEM3k5WtKmKt21mmqs7lva6QoKgTRSQue7ZY-PWFPFFqr1s"/>
-</div>
-<div class="bg-secondary-container/30 px-sm py-1 rounded self-start mb-sm">
-<span class="font-label-sm text-label-sm text-on-secondary-container">HARDWARE</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Thermal Management in Enclosures</h3>
-<p class="font-body-md text-body-md text-secondary mt-sm line-clamp-3">Exploring the critical balance between IP-rated sealing and effective heat dissipation for internal control panels.</p>
-<div class="mt-md flex items-center text-outline font-label-sm text-label-sm uppercase">
-<span>March 12, 2024</span>
-<span class="mx-sm">•</span>
-<span>12 min read</span>
-</div>
-</div>
-<!-- Article 3 -->
-<div class="flex flex-col group cursor-pointer">
-<div class="overflow-hidden mb-md aspect-video">
-<img alt="Industry 4.0 Article" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist workplace featuring a professional engineering tablet displaying a detailed 3D CAD model of a mechanical assembly. The lighting is soft and bright, highlighting the organized and data-driven environment of a modern industrial design office. Neutral tones of gray and white dominate the palette with subtle tech-blue highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXlvdXZ8s37N8FjKSt80-40bYeUj2vLU_sDJM3mfqTbSUuwlamvz3sIBhNM_BFRhyR6dJQoZ8IPVVx7lFsjE9SglKSMSGPLNTi3gnR1iAtTNA2AlA0tM8yvyVF0t2Il5yt0he__gAQgxw3SIHDTR8YTq-r26RayrtDVf6vOhV177UjobQiHo1gKq-noUV0NV23MdTqPcTcDHF8h8ICxxD70EAQzMUlYHQMfrBmjvYC4gjzfeguHx2l2cFGvOOtsBk0bdCxCiOChq4"/>
-</div>
-<div class="bg-secondary-container/30 px-sm py-1 rounded self-start mb-sm">
-<span class="font-label-sm text-label-sm text-on-secondary-container">INDUSTRY 4.0</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Digital Twins in Small-Scale Plants</h3>
-<p class="font-body-md text-body-md text-secondary mt-sm line-clamp-3">How small manufacturing units are leveraging digital simulation to predict maintenance and optimize production flow.</p>
-<div class="mt-md flex items-center text-outline font-label-sm text-label-sm uppercase">
-<span>March 08, 2024</span>
-<span class="mx-sm">•</span>
-<span>5 min read</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<section class="py-xl px-margin bg-surface-container-low border-t border-outline-variant">
-<div class="max-w-[1280px] mx-auto">
-<div class="grid md:grid-cols-2 gap-xl">
-<!-- Left Column: Contact Info -->
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">Contact Engineering</h2>
-<p class="font-body-md text-body-md text-secondary mb-xl">Our engineering team is available for technical consultations and project discussions. Please provide detailed information for a faster response.</p>
-<div class="space-y-lg">
-<div class="flex items-start">
-<span class="material-symbols-outlined text-primary mr-md">mail</span>
-<div>
-<p class="font-label-md text-label-md text-primary uppercase">Email</p>
-<p class="font-body-md text-on-surface">engineering@auto-tech-insights.com</p>
-</div>
-</div>
-<div class="flex items-start">
-<span class="material-symbols-outlined text-primary mr-md">phone</span>
-<div>
-<p class="font-label-md text-label-md text-primary uppercase">Phone</p>
-<p class="font-body-md text-on-surface">+1 (555) 012-3456</p>
-</div>
-</div>
-<div class="flex items-start">
-<span class="material-symbols-outlined text-primary mr-md">location_on</span>
-<div>
-<p class="font-label-md text-label-md text-primary uppercase">HQ Location</p>
-<p class="font-body-md text-on-surface">1274 Innovation Way, Suite 400<br/>Detroit, MI 48226</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Form -->
-<div class="bg-surface-container-lowest p-lg blueprint-border rounded-lg shadow-sm">
-<form class="space-y-md">
-<div>
-<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="full-name">Full Name</label>
-<input class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="full-name" placeholder="Jane Doe" type="text"/>
-</div>
-<div>
-<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="email">Company Email</label>
-<input class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="email" placeholder="jane@company.com" type="email"/>
-</div>
-<div>
-<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="subject">Subject</label>
-<select class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="subject">
-<option value="technical">Technical Support</option>
-<option value="sales">Sales Inquiry</option>
-<option value="partnership">Partnership</option>
-<option value="other">Other</option>
-</select>
-</div>
-<div>
-<label class="block font-label-sm text-label-sm text-secondary uppercase mb-1" for="message">Message</label>
-<textarea class="w-full bg-surface border border-outline-variant rounded px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all h-32" id="message" placeholder="How can we help you?"></textarea>
-</div>
-<button class="w-full bg-primary text-on-primary py-md rounded font-label-md text-label-md uppercase font-bold hover:bg-primary-container transition-colors shadow-sm" type="submit">
-            Submit Request
-          </button>
-</form>
-</div>
-</div>
-</div>
-</section><footer class="bg-surface-container-highest w-full py-xl px-margin border-t border-outline">
-<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
-<div class="flex flex-col items-center md:items-start">
-<div class="font-headline-md text-headline-md text-primary mb-sm">AUTO-TECH INSIGHTS</div>
-<p class="font-label-sm text-label-sm text-on-surface max-w-sm text-center md:text-left opacity-70">
-                    © 2024 Industrial Automation Excellence. All technical drawings are proprietary. Unauthorized reproduction is prohibited under international copyright law.
-                </p>
-</div>
-<div class="flex flex-wrap justify-center gap-lg">
-<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Privacy Policy</a>
-<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Terms of Service</a>
-<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Compliance</a>
-<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">API Docs</a>
-<a class="font-label-sm text-label-sm text-secondary hover:underline transition-colors" href="#">Contact Sales</a>
-</div>
-<div class="flex space-x-md">
-<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-full hover:bg-primary-container transition-all">
-<span class="material-symbols-outlined text-[20px]">share</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-full hover:bg-primary-container transition-all">
-<span class="material-symbols-outlined text-[20px]">mail</span>
-</button>
-</div>
-</div>
-</footer>
-<script src="{% static 'js/blog.js' %}"></script>
-</body></html>
+            <i class="fas fa-pencil-alt sidebar-icon"></i>
+        </div>
+
+        <!-- Center Content -->
+        <div class="center-content">
+            <!-- Hero Section -->
+            <div class="hero-section" id="about">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80" alt="Photographer in mountains">
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">EXPRESSING EMOTIONS CAPTURING SOULS</h1>
+                    <p class="hero-subtitle">Every frame tells a story, feeling,<br>moments that live forever.</p>
+                    <button class="get-touch-btn">Get In Touch</button>
+                    
+                    <div class="about-mini">
+                        <h3>ABOUT US</h3>
+                        <p>Here passion meets precision, &<br>creativity; captures the timeless<br>memories in every frame.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-image-section">
+                <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=400&q=80" alt="Photographer">
+            </div>
+
+            <!-- Photography Section -->
+            <div class="photo-section" id="photography">
+                <div class="section-label">// SNAPTURE</div>
+                <div class="section-header">
+                    <div class="frame-icon">
+                        <i class="fas fa-image"></i>
+                        <span>PANAMA STORY</span>
+                    </div>
+                    <a href="#" class="exhibitions-link">EXHIBITIONS</a>
+                </div>
+                
+                <div class="photo-content">
+                    <div>
+                        <h2 class="photo-title">ONE CLICK AT A TIME, WE FRAME YOUR WORLD. HERE OUR IMAGINATION MEETS YOUR REALITY — YOUR VISION IS OUR FOCUS.</h2>
+                    </div>
+                    <div class="photo-icons">
+                        <div class="icon-item">
+                            <img src="https://images.unsplash.com/photo-1495121605193-b116b5b9c5fe?w=150&q=80" alt="Camera">
+                        </div>
+                        <div class="icon-item">
+                            <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=150&q=80" alt="Bird">
+                            <p>BREATHING LIFE IN<br>EVERY FRAME</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legacy Section -->
+            <div class="legacy-section">
+                <div>
+                    <h2 class="legacy-title">HARNESSING LIGHT, CAPTURE LEGACY</h2>
+                </div>
+                <div class="legacy-image">
+                    <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=300&q=80" alt="Studio light">
+                </div>
+                <div class="legacy-text">
+                    <p>We believe photography<br>is more than just taking<br>pictures.</p>
+                    <a href="#">See Our Projects</a>
+                </div>
+            </div>
+
+            <!-- Moments Section -->
+            <div class="moments-section">
+                <div class="moments-grid">
+                    <div>
+                        <h2 class="moments-title">CAPTURING YOUR MOMENTS</h2>
+                    </div>
+                    <div class="moments-image">
+                        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&q=80" alt="Portrait">
+                    </div>
+                </div>
+
+                <div class="moments-bottom">
+                    <div class="moment-card">
+                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&q=80" alt="Camera gear">
+                        <h4>ELEVATING MOMENTS TO MASTERPIECES</h4>
+                    </div>
+                    <div class="moment-card">
+                        <p style="margin-bottom: 20px;">Your memories that<br>will last a lifetime</p>
+                        <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=400&q=80" alt="Camera tripod">
+                    </div>
+                    <div class="trust-badge">
+                        <div class="trust-header">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" alt="Person">
+                            <div class="trust-count">4K+</div>
+                        </div>
+                        <h4>TRUSTED BY OUR PHOTO GEEKS</h4>
+                        <p>At Snapture, photography isn't just our passion it's our purpose.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=500&q=80" alt="Desert">
+                    <div class="gallery-card-content">
+                        <h3>VISUAL STORIES FROM THE NATURE</h3>
+                        <a href="#" class="explore-link">Explore Now</a>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500&q=80" alt="House">
+                    <div class="gallery-card-content">
+                        <h3>OUTDOOR AND REAL ESTATE SHOTS</h3>
+                        <a href="#" class="explore-link">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="Mountains">
+                    <div class="gallery-card-content">
+                        <h3>WILD SPACES FROM A NEW ANGLE</h3>
+                        <a href="#" class="explore-link">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Banner -->
+            <div class="event-banner" id="event">
+                <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=200&q=80" alt="Camera">
+                <div>
+                    <h3>A CASUAL PORTRAIT SHOOT OR AN ALL-DAY EVENT SNAPTURE IS HERE TO CAPTURE IT PERFECTLY.</h3>
+                </div>
+                <div>
+                    <p>Your moments are too special to slip away. We capture the magic—honest, beautiful, and uniquely yours.</p>
+                    <a href="#" class="explore-link" style="margin-top: 15px;">Explore Now</a>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="newsletter-section" id="newsletter">
+                <h2>STAY UPDATED</h2>
+                <p>Subscribe to our newsletter for the latest in photography tips, events, and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">SUBSCRIBE</button>
+                </form>
+            </div>
+
+            <!-- Categories -->
+            <div class="categories-grid" id="exhibition">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80" alt="Portrait">
+                    <div class="category-label">#PORTRAIT PHOTOGRAPHY</div>
+                </div>
+
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" alt="Product">
+                    <div class="category-label">#PRODUCT PHOTOGRAPHY</div>
+                </div>
+
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&q=80" alt="Wildlife">
+                    <div class="category-label">#WILDLIFE PHOTOGRAPHY</div>
+                </div>
+
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=80" alt="Cinema">
+                    <div class="category-label">#CINEMATOGRAPHY</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <h2 class="sidebar-title">ELEVATING MOMENTS INTO MASTERPIECE</h2>
+            
+            <div class="sidebar-card">
+                <h4>CAPTURE YOUR MOMENT</h4>
+                <img src="https://images.unsplash.com/photo-1502982899975-c079c12b5f8c?w=400&q=80" alt="Photographer">
+                <div class="stats-badge">2.6K<br><small>Events Managed</small></div>
+            </div>
+
+            <div class="sidebar-card">
+                <h4>THE ART OF CAPTURING NATURAL BEAUTY</h4>
+                <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&q=80" alt="Flowers">
+                <p style="font-size: 11px; color: #666; font-family: Arial; margin-bottom: 12px;">Portrait shoot at one of day event Bangkok</p>
+                <a href="#" class="explore-link">Explore Now</a>
+            </div>
+
+            <div class="sidebar-card wedding-card">
+                <h4>CREATING // MEMORIES</h4>
+                <p style="font-size: 11px; color: #666; margin-bottom: 10px;">26/07/2025</p>
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&q=80" alt="Wedding">
+                <strong>CASUAL PORTRAIT SHOOT OR ALL DAY EVENT SNAPTURE WILL CAPTURE IT PERFECTLY.</strong>
+                <a href="#" class="book-link"><i class="fas fa-calendar"></i> Book for An Event</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>GET IN TOUCH</h2>
+                <p>Have a project in mind or want to collaborate? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>ADDRESS</h4>
+                            <p>7226 W. Newport, USA</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>PHONE</h4>
+                            <p>800 4560 7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>EMAIL</h4>
+                            <p>hello@snapture.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">YOUR NAME</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">YOUR EMAIL</label>
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">SUBJECT</label>
+                        <input type="text" id="subject" placeholder="How can we help you?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">MESSAGE</label>
+                        <textarea id="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND MESSAGE <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">SNAPTURE.</div>
+                <p class="footer-email">hello@snapture.com</p>
+                <a href="#" class="footer-book-btn"><i class="fas fa-calendar"></i> Book for An Event</a>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Portfolio</h4>
+                <ul>
+                    <li><a href="#">Cinematography</a></li>
+                    <li><a href="#">Photography</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="#">Tips & Tricks</a></li>
+                </ul>
+                <h4 style="margin-top: 40px;">Awards</h4>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>7226 W. Newport, USA<br><br>800 4560 7890</p>
+                <h4 style="margin-top: 40px;">Head Office</h4>
+                <p>7226 W. Newport, USA</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                <a href="#">Terms</a> | <a href="#">Privacy Policy</a>
+            </div>
+            <div>
+                Designed by Rajib Studio
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/blog.js' %}"></script>
+</body>
+</html>
