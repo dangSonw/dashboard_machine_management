@@ -134,8 +134,8 @@
                     <div class="flex flex-wrap -mx-3">
                       <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
-                          <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total PLC Logs</p>
-                          <h5 class="mb-0 font-bold dark:text-white">
+                      <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total PLC Logs</p>
+                          <h5 id="stat-total-plc" class="mb-0 font-bold dark:text-white">
                             {{ total_plc }}
                           </h5>
                         </div>
@@ -153,8 +153,8 @@
                     <div class="flex flex-wrap -mx-3">
                       <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
-                          <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total OK</p>
-                          <h5 class="mb-0 font-bold dark:text-white">
+                      <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total OK</p>
+                          <h5 id="stat-total-ok" class="mb-0 font-bold dark:text-white">
                             {{ total_ok }}
                           </h5>
                         </div>
@@ -175,8 +175,8 @@
                     <div class="flex flex-wrap -mx-3">
                       <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
-                          <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total NG</p>
-                          <h5 class="mb-0 font-bold dark:text-white">
+                      <p class="mb-0 font-sans font-semibold leading-normal text-sm dark:opacity-60">Total NG</p>
+                          <h5 id="stat-total-ng" class="mb-0 font-bold dark:text-white">
                             {{ total_ng }}
                           </h5>
                         </div>
@@ -383,6 +383,23 @@
       document.addEventListener('DOMContentLoaded', () => {
         fetchWeeklyCardStats();
       });
+
+      // ===== Real-time data refresh =====
+      function refreshHomeStats() {
+        fetch('/api/home_stats/')
+          .then(res => res.json())
+          .then(data => {
+            const totalPlcEl = document.getElementById('stat-total-plc');
+            const totalOkEl = document.getElementById('stat-total-ok');
+            const totalNgEl = document.getElementById('stat-total-ng');
+            if (totalPlcEl) totalPlcEl.textContent = data.total_plc;
+            if (totalOkEl) totalOkEl.textContent = data.total_ok;
+            if (totalNgEl) totalNgEl.textContent = data.total_ng;
+          })
+          .catch(err => console.error('Real-time stats error:', err));
+      }
+
+      setInterval(refreshHomeStats, 3000);
     </script>
   </body>
 </html>

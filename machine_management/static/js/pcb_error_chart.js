@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     gradient.addColorStop(0, 'rgba(59, 130, 246, 1)');   // blue-500
     gradient.addColorStop(1, 'rgba(37, 99, 235, 0.2)'); // blue-600 with opacity
 
-    new Chart(ctx, {
+    window.pcbErrorChartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,

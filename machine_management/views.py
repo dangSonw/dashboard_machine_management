@@ -70,7 +70,9 @@ def list_pcb(request):
     logs = paginator.get_page(page_number)
     
     # Calculate machine_name for breadcrumbs
-    machine_name = logs[0].machine.name if logs and logs[0].machine else "Machine Logs"
+    machine_name = "Machine Logs"
+    if logs and logs[0].machine:
+        machine_name = logs[0].machine.name
     
     context = {
         "logs": logs,
@@ -368,3 +370,86 @@ def api_monthly_stats(request):
 
 def blog(request):
     return render(request, "blog.html")
+
+
+# ========== Real-time API endpoints ==========
+
+@login_required(login_url="/authentication/login")
+def api_home_stats(request):
+    """API trả về tổng số liệu thống kê cho trang home (realtime)"""
+    total_plc = Machine_Logs.objects.count()
+    total_ng = Machine_Logs.objects.filter(Status='1').count()
+    total_ok = Machine_Logs.objects.filter(Status='0').count()
+    
+    return JsonResponse({
+        'total_plc': total_plc,
+        'total_ok': total_ok,
+        'total_ng': total_ng,
+    })
+
+
+@login_required(login_url="/authentication/login")
+def api_pcb_data(request):
+    """API trả về dữ liệu PCB cho trang list_pcb (realtime)"""
+    page_number = request.GET.get('page', 1)
+    logs_query = Machine_Logs.objects.all().order_by('-id')
+    total_logs = logs_query.count()
+    
+    # Error stats
+    error_fields = [
+        'empty', 'excess_solder', 'exposed_copper', 'misaligned_header',
+        'missing_component', 'scratched', 'solder_bridge'
+    ]
+    
+    error_stats = []
+    if total_logs > 0:
+        for field in error_fields:
+            error_count = logs_query.filter(**{field + '__gt': 0}).count()
+            percentage = round((error_count / total_logs) * 100, 2)
+            error_stats.append({
+                'label': field.replace('_', ' ').title(),
+                'count': error_count,
+                'percentage': percentage
+            })
+    else:
+        for field in error_fields:
+            error_stats.append({
+                'label': field.replace('_', ' ').title(),
+                'count': 0,
+                'percentage': 0
+            })
+    
+    # Paginated logs
+    paginator = Paginator(logs_query, 20)
+    try:
+        page_obj = paginator.page(page_number)
+    except:
+        page_obj = paginator.page(1)
+    
+    logs_data = []
+    for log in page_obj.object_list:
+        logs_data.append({
+            'id': log.id,
+            'empty': log.empty or 0,
+            'excess_solder': log.excess_solder or 0,
+            'exposed_copper': log.exposed_copper or 0,
+            'misaligned_header': log.misaligned_header or 0,
+            'missing_component': log.missing_component or 0,
+            'scratched': log.scratched or 0,
+            'solder_bridge': log.solder_bridge or 0,
+            'processing_time': log.processing_time or 0,
+            'Status': log.Status or '0',
+            'created': log.created.strftime('%Y-%m-%d %H:%M:%S') if log.created else '',
+        })
+    
+    return JsonResponse({
+        'error_stats': error_stats,
+        'logs': logs_data,
+        'total_logs': total_logs,
+        'page': page_obj.number,
+        'num_pages': paginator.num_pages,
+        'has_previous': page_obj.has_previous(),
+        'has_next': page_obj.has_next(),
+        'start_index': page_obj.start_index(),
+        'end_index': page_obj.end_index(),
+    })

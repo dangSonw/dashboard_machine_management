@@ -29,6 +29,10 @@ urlpatterns = [
     path('api/stats/weekly/', views.api_weekly_stats, name='api_weekly_stats'),
     path('api/stats/monthly/', views.api_monthly_stats, name='api_monthly_stats'),
     
+    # Real-time data API endpoints
+    path('api/home_stats/', views.api_home_stats, name='api_home_stats'),
+    path('api/pcb_data/', views.api_pcb_data, name='api_pcb_data'),
+    
     re_path(r'^.*$', page_not_found, name='page_not_found'),
 ]
 

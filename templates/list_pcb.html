@@ -126,7 +126,7 @@
                                         <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Created</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="pcb-logs-tbody">
                                     {% for log in logs %}
                                     <tr data-status="{{ log.Status|default:'0' }}" class="hover:bg-gray-50 dark:hover:bg-gray-800 {% if log.Status == '1' %}bg-red-50 dark:bg-red-900/10{% endif %}">
                                         <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ log.id }}</td>
@@ -160,11 +160,11 @@
                         {% if logs.has_other_pages %}
                         <div class="mt-6 px-4 pb-4 flex items-center justify-between">
                             <div class="text-sm text-slate-500 dark:text-slate-400">
-                                Showing <span class="font-semibold text-slate-700 dark:text-white">{{ logs.start_index }}</span> to <span class="font-semibold text-slate-700 dark:text-white">{{ logs.end_index }}</span> of <span class="font-semibold text-slate-700 dark:text-white">{{ logs.paginator.count }}</span> entries
+                                Showing <span id="logs-start-index" class="font-semibold text-slate-700 dark:text-white">{{ logs.start_index }}</span> to <span id="logs-end-index" class="font-semibold text-slate-700 dark:text-white">{{ logs.end_index }}</span> of <span id="logs-total-count" class="font-semibold text-slate-700 dark:text-white">{{ logs.paginator.count }}</span> entries
                             </div>
                             <nav class="flex items-center space-x-2">
                                 {% if logs.has_previous %}
-                                <a href="?page={{ logs.previous_page_number }}" class="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold text-slate-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                                <a id="prev-page-btn" href="?page={{ logs.previous_page_number }}" class="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold text-slate-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                                 {% else %}
@@ -175,18 +175,18 @@
 
                                 {% for i in logs.paginator.page_range %}
                                     {% if logs.number == i %}
-                                    <span class="inline-flex items-center justify-center w-8 h-8 text-sm font-bold text-white bg-gradient-to-tl from-blue-600 to-cyan-400 rounded-lg shadow-soft-md">
+                                    <span id="page-num-{{ i }}" class="page-num inline-flex items-center justify-center w-8 h-8 text-sm font-bold text-white bg-gradient-to-tl from-blue-600 to-cyan-400 rounded-lg shadow-soft-md">
                                         {{ i }}
                                     </span>
                                     {% elif i > logs.number|add:'-3' and i < logs.number|add:'3' %}
-                                    <a href="?page={{ i }}" class="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold text-slate-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                                    <a id="page-num-{{ i }}" class="page-num inline-flex items-center justify-center w-8 h-8 text-sm font-semibold text-slate-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm" href="?page={{ i }}">
                                         {{ i }}
                                     </a>
                                     {% endif %}
                                 {% endfor %}
 
                                 {% if logs.has_next %}
-                                <a href="?page={{ logs.next_page_number }}" class="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold text-slate-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+                                <a id="next-page-btn" href="?page={{ logs.next_page_number }}" class="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold text-slate-500 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                                 {% else %}
@@ -276,5 +276,107 @@
     <script src="{% static 'js/pcb_error_chart.js' %}"></script>
     <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
     <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+    <script>
+    // ===== Real-time data refresh for list_pcb =====
+    var urlParams = new URLSearchParams(window.location.search);
+    var currentPage = parseInt(urlParams.get('page')) || 1;
+
+    function renderLogs(data) {
+        var tbody = document.getElementById('pcb-logs-tbody');
+        if (!tbody) return;
+        var html = '';
+        if (data.logs.length === 0) {
+            html = '<tr><td colspan="11" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">No logs found.</td></tr>';
+        } else {
+            data.logs.forEach(function(log) {
+                var statusClass = log.Status === '1' ? 'bg-red-50 dark:bg-red-900/10' : '';
+                var emptyClass = log.empty > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+                var excessClass = log.excess_solder > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+                var copperClass = log.exposed_copper > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+                var misalignClass = log.misaligned_header > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+                var missingClass = log.missing_component > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+                var scratchClass = log.scratched > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+                var bridgeClass = log.solder_bridge > 0 ? 'text-red-600 font-semibold' : 'text-green-600';
+
+                var statusHtml = log.Status === '1'
+                    ? '<span class="text-sm font-semibold text-red-600 dark:text-red-400">NG (1)</span>'
+                    : '<span class="text-sm font-semibold text-green-600 dark:text-green-400">OK (0)</span>';
+
+                html += '<tr data-status="' + log.Status + '" class="hover:bg-gray-50 dark:hover:bg-gray-800 ' + statusClass + '">';
+                html += '<td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">' + log.id + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + emptyClass + '">' + log.empty + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + excessClass + '">' + log.excess_solder + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + copperClass + '">' + log.exposed_copper + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + misalignClass + '">' + log.misaligned_header + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + missingClass + '">' + log.missing_component + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + scratchClass + '">' + log.scratched + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 ' + bridgeClass + '">' + log.solder_bridge + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800 text-slate-700 dark:text-white">' + log.processing_time + '</td>';
+                html += '<td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">' + statusHtml + '</td>';
+                html += '<td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">' + log.created + '</td>';
+                html += '</tr>';
+            });
+        }
+        tbody.innerHTML = html;
+
+        // Update pagination info
+        var startIdx = document.getElementById('logs-start-index');
+        var endIdx = document.getElementById('logs-end-index');
+        var totalCount = document.getElementById('logs-total-count');
+        if (startIdx) startIdx.textContent = data.start_index;
+        if (endIdx) endIdx.textContent = data.end_index;
+        if (totalCount) totalCount.textContent = data.total_logs;
+
+        // Update page number highlights
+        var pageNums = document.querySelectorAll('.page-num');
+        pageNums.forEach(function(el) {
+            el.classList.remove('bg-gradient-to-tl', 'from-blue-600', 'to-cyan-400', 'text-white', 'shadow-soft-md');
+            el.classList.add('text-slate-500', 'bg-white', 'dark:bg-gray-800', 'border', 'border-gray-200', 'dark:border-gray-700');
+        });
+        var currentPageEl = document.getElementById('page-num-' + data.page);
+        if (currentPageEl) {
+            currentPageEl.classList.add('bg-gradient-to-tl', 'from-blue-600', 'to-cyan-400', 'text-white', 'shadow-soft-md');
+            currentPageEl.classList.remove('text-slate-500', 'bg-white', 'dark:bg-gray-800', 'border', 'border-gray-200', 'dark:border-gray-700');
+        }
+    }
+
+    function refreshPcbData() {
+        fetch('/api/pcb_data/?page=' + currentPage)
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                renderLogs(data);
+            })
+            .catch(function(err) {
+                console.error('Real-time PCB data error:', err);
+            });
+    }
+
+    // Update error stats chart
+    function refreshErrorChart() {
+        fetch('/api/pcb_data/')
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                var stats = data.error_stats;
+                if (window.pcbErrorChartInstance) {
+                    window.pcbErrorChartInstance.data.datasets[0].data = stats.map(function(s) { return s.percentage; });
+                    window.pcbErrorChartInstance.update();
+                }
+            })
+            .catch(function(err) {
+                console.error('Error chart refresh error:', err);
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var pcbDataEl = document.getElementById('pcb-error-data');
+        if (pcbDataEl) {
+            var pcbData = JSON.parse(pcbDataEl.textContent);
+            pcbErrorStats = pcbData; // for chart
+        }
+    });
+
+    setInterval(refreshPcbData, 3000);
+    setInterval(refreshErrorChart, 5000);
+    </script>
 </body>
 </html>
