@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import os
-import sys
 
 from accounts.models import Machine_Logs
 from django.utils import timezone
@@ -13,9 +12,7 @@ from datetime import timedelta
 from django.db.models.functions import TruncMinute, TruncHour, TruncDay, TruncMonth
 from django.db.models import Count, Q
 
-# Add scada_fx5u_li to sys.path
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'scada_fx5u_li'))
-import plc_comm_api as plc_comm
+from . import plc_comm_api as plc_comm
 
 @login_required(login_url="/authentication/login")
 def home(request):

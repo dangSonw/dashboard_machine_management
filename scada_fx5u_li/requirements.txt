@@ -1,3 +1,0 @@
-pillow==12.2.0
-pymcprotocol==0.3.0
-opencv-python==4.13.0.92

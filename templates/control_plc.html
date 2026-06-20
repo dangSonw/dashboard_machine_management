@@ -18,7 +18,6 @@
 
     {% include 'partials/_sidebar.html' %}
 
-
     <main class="relative h-full max-h-screen transition-all duration-200 ease-soft-in-out xl:ml-68 rounded-xl">
         <nav navbar-main class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 mt-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start" navbar-scroll="true">
             <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
@@ -86,268 +85,6 @@
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Control and monitor PLC operations</p>
                 </div>
             </div>
-            
-            <div class="flex flex-wrap -mx-3 mt-4">
-                <!-- Connection Status -->
-                <div class="w-full px-3 mb-6">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
-                            <h6 class="dark:text-white">Connection Status</h6>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-                                <div class="mb-4 sm:mb-0">
-                                    <span id="plc_connection_dot" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800">PLC Disconnected</span>
-                                    <p id="status_note" class="text-sm mt-2 mb-0 text-slate-500 dark:text-white/80">System waiting for connection...</p>
-                                </div>
-                                <button class="px-4 py-2 text-sm font-semibold rounded-lg border border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white transition-colors shadow-soft-xs" onclick="toggleConnect()">CONNECT PLC</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Power System -->
-                <div class="w-full px-3 mb-6 lg:w-1/2">
-                    <div id="power-control-card" class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
-                        <div class="p-6 flex flex-col justify-center h-full">
-                            <div class="flex items-center justify-center mb-6">
-                                <div id="led-x200" class="w-4 h-4 rounded-full bg-slate-400 mr-3 shadow-sm transition-all duration-300"></div>
-                                <h5 id="x200-status-text" class="mb-0 text-slate-700 font-bold dark:text-white">SYSTEM IS OFF</h5>
-                            </div>
-                            <div class="flex flex-col gap-8">
-                                <button id="btn-x200-power" onclick="onPowerSystem()" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
-                                    <i class="fa fa-power-off mr-2"></i> SYSTEM POWER ON
-                                </button>
-                                <button id="btn-m5001-reset" onmousedown="controlMomentary('M5001', 1, event)" onmouseup="controlMomentary('M5001', 0, event)" ontouchstart="controlMomentary('M5001', 1, event)" ontouchend="controlMomentary('M5001', 0, event)" class="w-full px-6 py-4 text-white font-bold bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-[1.02] transition-transform shadow-soft-md">
-                                    <i class="fa fa-exclamation-triangle mr-2"></i> RESET
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Monitor Status -->
-                <div class="w-full px-3 mb-6 lg:w-1/2">
-                    <div class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-slate-200 border-b-0 rounded-t-2xl dark:bg-slate-600">
-                            <h6 class="dark:text-white">Monitor</h6>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                    <div class="text-xs text-slate-500 mb-1">Cycle Time</div>
-                                    <div id="val_cycle_time" class="font-bold text-lg dark:text-white">0</div>
-                                </div>
-                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                    <div class="text-xs text-slate-500 mb-1">D10 (In)</div>
-                                    <div id="val_D10" class="font-bold text-lg dark:text-white">0</div>
-                                </div>
-                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                    <div class="text-xs text-slate-500 mb-1">D14 (OK)</div>
-                                    <div id="val_D14" class="font-bold text-lg dark:text-white">0</div>
-                                </div>
-                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                    <div class="text-xs text-slate-500 mb-1">D16 (NG)</div>
-                                    <div id="val_D16" class="font-bold text-lg dark:text-white">0</div>
-                                </div>
-                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                    <div class="text-xs text-slate-500 mb-1">D12 (Out)</div>
-                                    <div id="val_D12" class="font-bold text-lg dark:text-white">0</div>
-                                </div>
-                                <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                    <div class="text-xs text-slate-500 mb-1">D20 (Rate)</div>
-                                    <div id="val_D20" class="font-bold text-lg dark:text-white">0</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Manual Control -->
-                <div class="w-full px-3 mb-6">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border dark:bg-slate-850 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl dark:bg-slate-850">
-                            <h6 class="dark:text-white">Menu Mode</h6>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap justify-between gap-32 px-10">
-                                <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="sendPlcCommand('M10')">
-                                        <i class="fas fa-play mr-1"></i> Auto Mode
-                                    </button>
-                                    <span id="val_M10" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">M10 OFF</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="sendPlcCommand('M20')">
-                                        <i class="fas fa-hand-paper mr-1"></i> Manual Mode
-                                    </button>
-                                    <span id="val_M20" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">M20 OFF</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" onclick="toggleEmptyMode()">
-                                        <i class="fas fa-box-open mr-1"></i> Empty Mode
-                                    </button>
-                                    <span id="val_X304" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">X304 OFF</span>
-                                </div>
-
-                                <!-- Start & Stop Buttons -->
-                                <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" 
-                                        onmousedown="controlMomentary('X125', 1, event)" 
-                                        onmouseup="controlMomentary('X125', 0, event)" 
-                                        ontouchstart="controlMomentary('X125', 1, event)" 
-                                        ontouchend="controlMomentary('X125', 0, event)">
-                                        <i class="fas fa-play mr-1"></i> Start (X125)
-                                    </button>
-                                    <span id="val_X125_menu" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">X125 OFF</span>
-                                </div>
-                                <div class="flex flex-col items-center gap-2">
-                                    <button class="px-4 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-bold min-w-[140px]" 
-                                        onmousedown="controlMomentary('X124', 1, event)" 
-                                        onmouseup="controlMomentary('X124', 0, event)" 
-                                        ontouchstart="controlMomentary('X124', 1, event)" 
-                                        ontouchend="controlMomentary('X124', 0, event)">
-                                        <i class="fas fa-stop mr-1"></i> Stop (X124)
-                                    </button>
-                                    <span id="val_X124_menu" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white">X124 OFF</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                </div>
-
-                <!-- Servo Control -->
-                <div class="w-full px-3 mb-6">
-                    <div class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-slate-200 border-b-0 rounded-t-2xl dark:bg-slate-600">
-                            <h6 class="dark:text-white">Servo & Camera</h6>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-nowrap justify-between gap-6 px-4 overflow-x-auto">
-                                <div class="flex flex-col items-center gap-2">
-                                    <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
-                                            onmousedown="controlMomentary('X110', 1, event)" 
-                                            onmouseup="controlMomentary('X110', 0, event)" 
-                                            ontouchstart="controlMomentary('X110', 1, event)" 
-                                            ontouchend="controlMomentary('X110', 0, event)">
-                                            <i class="fas fa-power-off mr-2 text-lg"></i>SERVO OFF
-                                        </button>
-                                    </div>
-                                    <span id="val_X110_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X110 OFF</span>
-                                </div>
-
-                                <div class="flex flex-col items-center gap-2">
-                                    <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
-                                            onmousedown="controlMomentary('X117', 1, event)" 
-                                            onmouseup="controlMomentary('X117', 0, event)" 
-                                            ontouchstart="controlMomentary('X117', 1, event)" 
-                                            ontouchend="controlMomentary('X117', 0, event)">
-                                            <i class="fas fa-times-circle mr-2 text-lg"></i>SERVO ON
-                                        </button>
-                                    </div>
-                                    <span id="val_X117_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X117 OFF</span>
-                                </div>
-
-                                <div class="flex flex-col items-center gap-2">
-                                    <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
-                                            onmousedown="controlMomentary('X100', 1, event)" 
-                                            onmouseup="controlMomentary('X100', 0, event)" 
-                                            ontouchstart="controlMomentary('X100', 1, event)" 
-                                            ontouchend="controlMomentary('X100', 0, event)">
-                                            <i class="fas fa-home mr-2 text-lg"></i>ORIGIN
-                                        </button>
-                                    </div>
-                                    <span id="val_X100_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X100 OFF</span>
-                                </div>
-                                
-                                <div class="flex flex-col items-center gap-2">
-                                    <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
-                                            onmousedown="controlMomentary('X112', 1, event)" 
-                                            onmouseup="controlMomentary('X112', 0, event)" 
-                                            ontouchstart="controlMomentary('X112', 1, event)" 
-                                            ontouchend="controlMomentary('X112', 0, event)">
-                                            <i class="fas fa-step-forward mr-2 text-lg"></i>RUN 1 STEP
-                                        </button>
-                                    </div>
-                                    <span id="val_X112_servo" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X112 OFF</span>
-                                </div>
-
-                                <div class="flex flex-col items-center gap-2">
-                                    <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
-                                            onmousedown="controlMomentary('X151', 1, event)" 
-                                            onmouseup="controlMomentary('X151', 0, event)" 
-                                            ontouchstart="controlMomentary('X151', 1, event)" 
-                                            ontouchend="controlMomentary('X151', 0, event)">
-                                            <i class="fas fa-lightbulb mr-2 text-lg"></i>LIGHT ON
-                                        </button>
-                                    </div>
-                                    <span id="val_X151_light" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X151 OFF</span>
-                                </div>
-
-                                <div class="flex flex-col items-center gap-2">
-                                    <div class="flex items-center gap-3">
-                                        <button class="px-6 py-3 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-xl hover:scale-105 transition-all shadow-soft-md text-sm font-bold flex items-center justify-center min-w-[150px]" 
-                                            onmousedown="controlMomentary('X152', 1, event)" 
-                                            onmouseup="controlMomentary('X152', 0, event)" 
-                                            ontouchstart="controlMomentary('X152', 1, event)" 
-                                            ontouchend="controlMomentary('X152', 0, event)">
-                                            <i class="fas fa-lightbulb-slash mr-2 text-lg"></i>LIGHT OFF
-                                        </button>
-                                    </div>
-                                    <span id="val_X152_light" class="badge badge-secondary px-2 py-1 rounded text-[10px] bg-slate-400 text-white text-center">X152 OFF</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Parameters -->
-                <div class="w-full px-3 mb-6 lg:w-1/2">
-                    <div class="relative flex flex-col min-w-0 break-words bg-slate-200 border-0 shadow-soft-xl rounded-2xl bg-clip-border h-full dark:bg-slate-600 dark:shadow-dark-xl">
-                        <div class="p-4 pb-0 mb-0 bg-slate-200 border-b-0 rounded-t-2xl dark:bg-slate-600">
-                            <h6 class="dark:text-white">Parameters Servo</h6>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                                <div>
-                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">Camera trigger delay time</label>
-                                    <input id="input_D500" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">Detect product confirm time</label>
-                                    <input id="input_D502" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">Manual Speed</label>
-                                    <input id="input_D300" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">Auto Speed</label>
-                                    <input id="input_D302" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">Compensation</label>
-                                    <input id="input_D304" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-semibold text-slate-500 uppercase dark:text-white/80">Length Step</label>
-                                    <input id="input_D306" type="number" class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:border-blue-500 dark:bg-slate-900 dark:text-white dark:border-slate-700" value="0">
-                                </div>
-                            </div>
-                            <div class="mt-4 flex justify-end">
-                                <button onclick="saveParameters()" class="px-6 py-2 text-white bg-gradient-to-tl from-slate-600 to-slate-400 rounded-lg hover:scale-105 transition-transform shadow-soft-md text-sm font-semibold"><i class="fas fa-save mr-2"></i> Save Parameters</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -355,7 +92,6 @@
         <a fixed-plugin-button class="fixed px-4 py-2 bg-white cursor-pointer bottom-7 right-7 text-xl z-990 shadow-soft-lg rounded-circle text-slate-700" aria-expanded="false">
             <i class="py-2 pointer-events-none fa fa-cog"> </i>
         </a>
-        <!-- -right-90 in loc de 0-->
         <div fixed-plugin-card class="dark:bg-gray-950/80 z-sticky shadow-soft-3xl w-90 ease-soft -right-90 fixed top-0 left-auto flex h-full min-w-0 flex-col break-words rounded-none border-0 bg-white/80 bg-clip-border px-2.5 backdrop-blur-2xl backdrop-saturate-200 duration-200">
             <div class="px-6 pt-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
                 <div class="float-left">
@@ -367,11 +103,9 @@
                         <i class="fa fa-close"></i>
                     </button>
                 </div>
-                <!-- End Toggle Button -->
             </div>
             <hr class="h-px mx-0 my-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
             <div class="flex-auto p-6 pt-0 sm:pt-4">
-                <!-- Sidebar Backgrounds -->
                 <div>
                     <h6 class="mb-0 dark:text-white">Sidebar Colors</h6>
                 </div>
@@ -385,7 +119,6 @@
                         <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-red-600 to-rose-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="red-600" data-color-to="rose-400" onclick="sidebarColor(this)"></span>
                     </div>
                 </a>
-                <!-- Sidenav Type -->
                 <div class="mt-4">
                     <h6 class="mb-0 dark:text-white">Sidenav Type</h6>
                     <p class="leading-normal text-sm dark:opacity-60">Choose between 2 different sidenav types.</p>
@@ -395,7 +128,6 @@
                     <button white-style-btn class="inline-block w-full px-4 py-3 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-600 xl-max:to-cyan-400 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-blue-500 bg-none text-blue-500 hover:border-blue-500 dark:pointer-events-none dark:cursor-not-allowed" data-class="bg-white">White</button>
                 </div>
                 <p class="block mt-2 leading-normal text-sm xl:hidden">You can change the sidenav type just on desktop view.</p>
-                <!-- Navbar Fixed -->
                 <div class="mt-4">
                     <h6 class="mb-0 dark:text-white">Navbar Fixed</h6>
                 </div>
@@ -423,6 +155,5 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
     <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
-    <script src="{% static 'js/control_plc.js' %}"></script>
 </body>
 </html>
