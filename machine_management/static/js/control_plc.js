@@ -1,6 +1,25 @@
+// ===== Toggle Address Mapping =====
+const TOGGLE_ADDRESSES = {
+    'sys-power': 'X200',
+    'auto-mode': 'X201',
+    'manual-mode': 'X202',
+    'reset-sys': 'X203',
+    'empty-mode': 'X204',
+    'servo-on': 'X210'
+};
+
 // ===== Global State =====
 let plcConnected = false;
 let pollingInterval = null;
+
+// ===== PLC Config (read from data attributes) =====
+const configEl = document.getElementById('plc-config');
+const PLC_CONFIG = {
+    csrfToken: configEl ? configEl.dataset.csrfToken : '',
+    apiUrlConnect: configEl ? configEl.dataset.urlConnect : '',
+    apiUrlCommand: configEl ? configEl.dataset.urlCommand : '',
+    apiUrlReadDevice: configEl ? configEl.dataset.urlReadDevice : ''
+};
 
 // ===== PLC Connection =====
 function updateConnectionUI(connected, message) {

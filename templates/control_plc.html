@@ -442,23 +442,13 @@
     <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
     <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
 
-    <!-- Config for external JS -->
-    <script>
-        const TOGGLE_ADDRESSES = {
-            'sys-power': 'X200',
-            'auto-mode': 'X201',
-            'manual-mode': 'X202',
-            'reset-sys': 'X203',
-            'empty-mode': 'X204',
-            'servo-on': 'X210'
-        };
-        const PLC_CONFIG = {
-            csrfToken: '{{ csrf_token }}',
-            apiUrlConnect: "{% url 'api_connect_plc' %}",
-            apiUrlCommand: "{% url 'api_plc_command' %}",
-            apiUrlReadDevice: "{% url 'api_plc_read_device' %}"
-        };
-    </script>
+    <!-- Config for external JS (Django template values via data attributes) -->
+    <div id="plc-config" hidden
+         data-csrf-token="{{ csrf_token }}"
+         data-url-connect="{% url 'api_connect_plc' %}"
+         data-url-command="{% url 'api_plc_command' %}"
+         data-url-read-device="{% url 'api_plc_read_device' %}">
+    </div>
     <script src="{% static 'js/control_plc.js' %}"></script>
 </body>
 </html>
