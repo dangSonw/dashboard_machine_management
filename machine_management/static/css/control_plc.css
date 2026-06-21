@@ -1,0 +1,66 @@
+/* Toggle Switch */
+.toggle-checkbox {
+    right: 0;
+    border-color: #94a3b8;
+}
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #2563eb;
+}
+.toggle-checkbox:checked + .toggle-label {
+    background-image: linear-gradient(to top left, #2563eb, #22d3ee);
+}
+.toggle-label {
+    background-color: #cbd5e1;
+}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+/* Force top stats grid - 3 columns */
+.top-stats-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+.top-stats-grid > * {
+    min-width: 0;
+    height: 100%;
+}
+/* Quick status inner grid */
+.quick-status-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem;
+    align-items: stretch;
+}
+/* Force grid layout */
+.servo-control-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 1rem;
+}
+.menu-mode-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 1rem;
+}
+.menu-mode-grid > * {
+    grid-column: span 1;
+    min-width: 0;
+    max-width: 100%;
+}
+.servo-control-grid > * {
+    grid-column: span 1;
+    min-width: 0;
+    max-width: 100%;
+}
+/* Force params grid 4 columns */
+.params-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1.5rem;
+    align-items: end;
+}
