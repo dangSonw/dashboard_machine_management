@@ -26,12 +26,13 @@
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 
-/* Force top stats grid - 3 columns */
+/* Force top stats grid - 1 column */
 .top-stats-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
     gap: 1.5rem;
     align-items: stretch;
+    max-width: 500px;
 }
 .top-stats-grid > * {
     min-width: 0;
