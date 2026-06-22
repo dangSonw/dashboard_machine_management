@@ -22,26 +22,22 @@ const PLC_CONFIG = {
 };
 
 // ===== PLC Connection =====
+let isDragging = false;
+let dragStartX = 0;
+let dragged = false;
+const DRAG_THRESHOLD = 30;
+
 function updateConnectionUI(connected, message) {
-    const badge = document.getElementById('plc-status-badge');
     const detail = document.getElementById('connection-detail');
     const switchEl = document.getElementById('plc-connect-switch');
     const label = document.getElementById('plc-connect-label');
 
     if (connected) {
-        badge.textContent = '● Connected';
-        badge.className = 'px-3 py-1 rounded-full text-[10px] font-bold';
-        badge.style.background = 'rgba(16,185,129,0.9)';
-        badge.style.color = '#fff';
         detail.textContent = message || 'PLC connection active';
         detail.className = 'text-[10px] text-emerald-500 font-medium';
         switchEl.checked = true;
         label.textContent = 'ON';
     } else {
-        badge.textContent = '● Disconnected';
-        badge.className = 'px-3 py-1 rounded-full text-[10px] font-bold';
-        badge.style.background = 'rgba(239,68,68,0.9)';
-        badge.style.color = '#fff';
         detail.textContent = message || 'Click to connect';
         detail.className = 'text-[10px] text-slate-400';
         switchEl.checked = false;
@@ -68,11 +64,13 @@ function connectPLC() {
         } else {
             plcConnected = false;
             updateConnectionUI(false, 'Failed: ' + (data.message || 'Unable to connect'));
+            alert('PLC connection failed: ' + (data.message || 'Unable to connect'));
         }
     })
     .catch(err => {
         plcConnected = false;
         updateConnectionUI(false, 'Connection error');
+        alert('PLC connection failed: Connection error');
     })
     .finally(() => { switchEl.disabled = false; });
 }
@@ -97,13 +95,57 @@ function disconnectPLC() {
 }
 
 document.getElementById('plc-connect-switch').addEventListener('change', function() {
+    if (dragged) { dragged = false; return; }
     if (this.checked) { connectPLC(); }
     else { disconnectPLC(); }
 });
 
+// ===== Drag Support for PLC Toggle =====
+const plcToggle = document.getElementById('plc-connect-switch');
+const plcToggleWrapper = document.querySelector('.plc-toggle-wrapper');
+
+if (plcToggle && plcToggleWrapper) {
+    plcToggleWrapper.addEventListener('mousedown', function(e) {
+        if (e.target.tagName === 'INPUT') return;
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragged = false;
+        plcToggleWrapper.style.cursor = 'grabbing';
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        const deltaX = e.clientX - dragStartX;
+        if (Math.abs(deltaX) > DRAG_THRESHOLD) {
+            dragged = true;
+            const shouldBeChecked = deltaX > 0;
+            if (plcToggle.checked !== shouldBeChecked) {
+                plcToggle.checked = shouldBeChecked;
+                plcToggle.dispatchEvent(new Event('change'));
+            }
+            isDragging = false;
+            plcToggleWrapper.style.cursor = 'pointer';
+        }
+    });
+
+    document.addEventListener('mouseup', function() {
+        if (isDragging) {
+            isDragging = false;
+            plcToggleWrapper.style.cursor = 'pointer';
+            if (!dragged) {
+                plcToggle.checked = !plcToggle.checked;
+                plcToggle.dispatchEvent(new Event('change'));
+            }
+        }
+    });
+
+    plcToggleWrapper.style.cursor = 'pointer';
+}
+
 // ===== Toggle Switch PLC Control =====
 function handleToggleSwitch(el) {
-    if (!plcConnected) { el.checked = !el.checked; return; }
+    if (!plcConnected) { el.checked = !el.checked; alert('Please connect to PLC first'); return; }
     const address = el.dataset.address;
     const value = el.checked ? 1 : 0;
     const statusEl = document.getElementById(el.id + '-status');
@@ -148,7 +190,7 @@ Object.keys(TOGGLE_ADDRESSES).forEach(id => {
 
 // ===== Momentary Button =====
 function plcMomentary(btn) {
-    if (!plcConnected) return;
+    if (!plcConnected) { alert('Please connect to PLC first'); return; }
     const address = btn.dataset.address;
 
     fetch(PLC_CONFIG.apiUrlCommand, {

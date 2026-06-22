@@ -110,7 +110,7 @@
                                         <div>
                                             <div class="flex items-center gap-2">
                                                 <h6 class="font-bold text-slate-700 dark:text-white m-0">OK</h6>
-                                                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">{{ ok_total|default:ok_images|length }}</span>
+                                                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">{% if ok_total is not None %}{{ ok_total }}{% else %}{{ ok_images|length }}{% endif %}</span>
                                             </div>
                                             <p class="text-xs text-slate-400 dark:text-slate-500 m-0">Latest images in `LogImage/OK`</p>
                                         </div>
@@ -150,7 +150,7 @@
                                         <div>
                                             <div class="flex items-center gap-2">
                                                 <h6 class="font-bold text-slate-700 dark:text-white m-0">NG</h6>
-                                                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300">{{ ng_total|default:ng_images|length }}</span>
+                                                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300">{% if ng_total is not None %}{{ ng_total }}{% else %}{{ ng_images|length }}{% endif %}</span>
                                             </div>
                                             <p class="text-xs text-slate-400 dark:text-slate-500 m-0">Latest images in `LogImage/NG`</p>
                                         </div>

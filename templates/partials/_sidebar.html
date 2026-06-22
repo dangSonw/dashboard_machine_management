@@ -15,7 +15,7 @@
     <ul class="flex flex-col pl-0 mb-0 list-none">
       <!-- Home -->
       <li class="mt-0.5 w-full">
-        <a {% if request.resolver_match.url_name == 'home' %}active_primary{% endif %} href="{% url 'home' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'home' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
+        <a href="{% url 'home' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'home' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
           <div class="stroke-none shadow-soft-sm {% if request.resolver_match.url_name == 'home' %}bg-gradient-to-tl from-blue-600 to-cyan-400{% else %}bg-white{% endif %} mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>shop</title>
@@ -41,7 +41,7 @@
 
       <!-- List PCB -->
       <li class="mt-0.5 w-full">
-        <a {% if request.resolver_match.url_name == 'list-pcb' %}active_primary{% endif %} href="{% url 'list-pcb' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'list-pcb' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
+        <a href="{% url 'list-pcb' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'list-pcb' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
           <div class="stroke-none shadow-soft-2xl {% if request.resolver_match.url_name == 'list-pcb' %}bg-gradient-to-tl from-blue-600 to-cyan-400{% else %}bg-white{% endif %} mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>office</title>
@@ -63,7 +63,7 @@
 
       <!-- PLC Control -->
       <li class="mt-0.5 w-full">
-        <a {% if request.resolver_match.url_name == 'plc-control' %}active_primary{% endif %} href="{% url 'plc-control' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'plc-control' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
+        <a href="{% url 'plc-control' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'plc-control' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
           <div class="stroke-none shadow-soft-2xl {% if request.resolver_match.url_name == 'plc-control' %}bg-gradient-to-tl from-blue-600 to-cyan-400{% else %}bg-white{% endif %} mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
             <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>settings</title>
@@ -86,7 +86,7 @@
 
       <!-- User List -->
       <li class="mt-0.5 w-full">
-        <a {% if request.resolver_match.url_name == 'user_list' %}active_primary{% endif %} href="{% url 'user_list' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'user_list' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
+        <a href="{% url 'user_list' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'user_list' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
           <div class="stroke-none shadow-soft-2xl {% if request.resolver_match.url_name == 'user_list' %}bg-gradient-to-tl from-blue-600 to-cyan-400{% else %}bg-white{% endif %} mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
             <svg width="12px" height="12px" viewBox="0 0 42 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>basket</title>
@@ -113,7 +113,7 @@
 
       <!-- Logs Images -->
       <li class="mt-0.5 w-full">
-        <a {% if request.resolver_match.url_name == 'logs_images' %}active_primary{% endif %} href="{% url 'logs_images' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'logs_images' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
+        <a href="{% url 'logs_images' %}" class="ease-soft-in-out text-sm py-2.7 {% if request.resolver_match.url_name == 'logs_images' %}active xl:shadow-soft-xl bg-white font-semibold text-slate-700{% else %}my-0 mx-4 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors dark:text-white dark:opacity-80{% endif %} flex items-center whitespace-nowrap rounded-lg px-4 transition-all dark:text-white dark:opacity-80">
           <div class="stroke-none shadow-soft-2xl {% if request.resolver_match.url_name == 'logs_images' %}bg-gradient-to-tl from-blue-600 to-cyan-400{% else %}bg-white{% endif %} mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current p-2.5 text-center text-black">
             <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>spaceship</title>

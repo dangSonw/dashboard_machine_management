@@ -1,10 +1,13 @@
 /* Toggle Switch */
 .toggle-checkbox {
-    right: 0;
+    left: 0;
+    right: auto;
     border-color: #94a3b8;
+    transition: right 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .toggle-checkbox:checked {
     right: 0;
+    left: auto;
     border-color: #2563eb;
 }
 .toggle-checkbox:checked + .toggle-label {
@@ -12,6 +15,11 @@
 }
 .toggle-label {
     background-color: #cbd5e1;
+    transition: background-image 0.3s ease-in-out;
+}
+.plc-toggle-wrapper {
+    user-select: none;
+    -webkit-user-select: none;
 }
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
