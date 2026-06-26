@@ -1,3 +1,4 @@
+import os
 from pymcprotocol import Type3E
 import threading
 import time as _time
@@ -27,7 +28,7 @@ def _convert_address(dev_name):
             return dev_name
     return dev_name
 
-def connect_plc(ip="192.168.1.10", port=5011):
+def connect_plc(ip=os.getenv('HOST_PLC'), port=os.getenv('PORT_TCP')):
     global connected
     try:
         plc.setaccessopt(commtype="binary")
@@ -56,46 +57,6 @@ def read_words():
         except Exception as e:
             print(f"[PLC] read_words error: {e}")
             return None
-
-def read_fault():
-    if not connected:
-        return False, False
-
-    with lock:
-        try:
-            plc_fault   = plc.batchread_bitunits("Y010", 1)[0]
-            servo_fault = plc.batchread_bitunits("Y011", 1)[0]
-            return plc_fault, servo_fault
-        except Exception as e:
-            print(f"[PLC] read_fault error: {e}")
-            return False, False
-
-def set_auto():
-    if not connected:
-        return
-    with lock:
-        try:
-            plc.batchwrite_bitunits(_convert_address("X300"), [1])
-        except Exception as e:
-            print(f"[PLC] set_auto error: {e}")
-
-def set_manual():
-    if not connected:
-        return
-    with lock:
-        try:
-            plc.batchwrite_bitunits(_convert_address("X301"), [1])
-        except Exception as e:
-            print(f"[PLC] set_manual error: {e}")
-
-def rotate_table():
-    if not connected:
-        return
-    with lock:
-        try:
-            plc.batchwrite_bitunits("M5001", [1])
-        except Exception as e:
-            print(f"[PLC] rotate_table error: {e}")
 
 def read_device(dev_name, size=1):
     """Read a PLC device. X/Y addresses are auto-converted from octal."""
