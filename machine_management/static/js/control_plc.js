@@ -1,9 +1,8 @@
 // ===== Toggle Address Mapping =====
 const TOGGLE_ADDRESSES = {
     'sys-power': 'X200',
-    'auto-mode': 'X201',
-    'manual-mode': 'X202',
-    'reset-sys': 'X203',
+    'auto-mode': 'X300',
+    'manual-mode': 'X301',
     'empty-mode': 'X204',
     'servo-on': 'X210'
 };
@@ -45,6 +44,41 @@ function updateConnectionUI(connected, message) {
     }
 }
 
+// ===== Activate Manual Mode as default when PLC connected =====
+function activateManualMode() {
+    const address = TOGGLE_ADDRESSES['manual-mode'];
+    const el = document.getElementById('manual-mode');
+    if (!address || !el) return;
+
+    fetch(PLC_CONFIG.apiUrlCommand, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': PLC_CONFIG.csrfToken },
+        body: JSON.stringify({ command: address, value: 1, readback: true })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            el.checked = true;
+            updateToggleCardVisual('manual-mode', true);
+            // Ensure auto-mode is OFF
+            const autoEl = document.getElementById('auto-mode');
+            const autoAddr = TOGGLE_ADDRESSES['auto-mode'];
+            if (autoEl) {
+                autoEl.checked = false;
+                fetch(PLC_CONFIG.apiUrlCommand, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': PLC_CONFIG.csrfToken },
+                    body: JSON.stringify({ command: autoAddr, value: 0, readback: true })
+                })
+                .then(r => r.json())
+                .then(d => { if (d.status === 'ok') updateToggleCardVisual('auto-mode', false); })
+                .catch(() => {});
+            }
+        }
+    })
+    .catch(() => {});
+}
+
 function connectPLC() {
     const switchEl = document.getElementById('plc-connect-switch');
     switchEl.disabled = true;
@@ -61,6 +95,7 @@ function connectPLC() {
             plcConnected = true;
             updateConnectionUI(true);
             startPolling();
+            activateManualMode();
         } else {
             plcConnected = false;
             updateConnectionUI(false, 'Failed: ' + (data.message || 'Unable to connect'));
@@ -143,12 +178,72 @@ if (plcToggle && plcToggleWrapper) {
     plcToggleWrapper.style.cursor = 'pointer';
 }
 
+// ===== Update Toggle Card Visual Style =====
+function updateToggleCardVisual(id, isOn) {
+    const card = document.getElementById(id + '-card');
+    const icon = document.getElementById(id + '-icon');
+    const statusEl = document.getElementById(id + '-status');
+    const label = document.getElementById(id + '-label');
+    if (!card) return;
+
+    if (id === 'sys-power') {
+        if (isOn) {
+            card.className = 'bg-gradient-to-tl from-emerald-600 to-teal-400 p-4 rounded-2xl shadow-md border border-emerald-500/30 flex flex-col justify-between h-32 hover:shadow-lg transition-all';
+            if (icon) { icon.classList.remove('text-slate-500', 'dark:text-slate-400'); icon.classList.add('text-white'); }
+            if (label) { label.classList.remove('text-slate-800', 'dark:text-white'); label.classList.add('text-white'); }
+            if (statusEl) { statusEl.textContent = 'Running'; statusEl.classList.remove('text-slate-500', 'dark:text-slate-400'); statusEl.classList.add('text-white/80'); }
+        } else {
+            card.className = 'bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors';
+            if (icon) { icon.classList.remove('text-white'); icon.classList.add('text-slate-500', 'dark:text-slate-400'); }
+            if (label) { label.classList.remove('text-white'); label.classList.add('text-slate-800', 'dark:text-white'); }
+            if (statusEl) { statusEl.textContent = 'Inactive'; statusEl.classList.remove('text-white/80'); statusEl.classList.add('text-slate-500', 'dark:text-slate-400'); }
+        }
+    } else if (id === 'manual-mode') {
+        if (isOn) {
+            card.className = 'bg-gradient-to-tl from-orange-600 to-amber-400 p-4 rounded-2xl shadow-md border border-orange-500/30 flex flex-col justify-between h-32 hover:shadow-lg transition-all';
+            if (icon) { icon.classList.remove('text-slate-500', 'dark:text-slate-400'); icon.classList.add('text-white'); }
+            if (label) { label.classList.remove('text-slate-800', 'dark:text-white'); label.classList.add('text-white'); }
+            if (statusEl) { statusEl.textContent = 'Active'; statusEl.classList.remove('text-slate-500', 'dark:text-slate-400'); statusEl.classList.add('text-white/80'); }
+        } else {
+            card.className = 'bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors';
+            if (icon) { icon.classList.remove('text-white'); icon.classList.add('text-slate-500', 'dark:text-slate-400'); }
+            if (label) { label.classList.remove('text-white'); label.classList.add('text-slate-800', 'dark:text-white'); }
+            if (statusEl) { statusEl.textContent = 'Off'; statusEl.classList.remove('text-white/80'); statusEl.classList.add('text-slate-500', 'dark:text-slate-400'); }
+        }
+    } else if (id === 'auto-mode') {
+        if (isOn) {
+            card.className = 'bg-gradient-to-tl from-blue-600 to-cyan-400 p-4 rounded-2xl shadow-md border border-blue-500/30 flex flex-col justify-between h-32 text-white';
+            if (icon) { icon.classList.remove('text-slate-500', 'dark:text-slate-400'); icon.classList.add('text-white'); }
+            if (label) { label.classList.remove('text-slate-800', 'dark:text-white'); label.classList.add('text-white'); }
+            if (statusEl) { statusEl.textContent = 'Running'; statusEl.classList.remove('text-slate-500', 'dark:text-slate-400'); statusEl.classList.add('text-white/80'); }
+        } else {
+            card.className = 'bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors';
+            if (icon) { icon.classList.remove('text-white'); icon.classList.add('text-slate-500', 'dark:text-slate-400'); }
+            if (label) { label.classList.remove('text-white'); label.classList.add('text-slate-800', 'dark:text-white'); }
+            if (statusEl) { statusEl.textContent = 'Off'; statusEl.classList.remove('text-white/80'); statusEl.classList.add('text-slate-500', 'dark:text-slate-400'); }
+        }
+    } else {
+        // Generic toggle (manual-mode, empty-mode, servo-on)
+        if (statusEl) statusEl.textContent = isOn ? 'Active' : 'Inactive';
+    }
+}
+
 // ===== Toggle Switch PLC Control =====
+// ===== Mutual Exclusion Map (when key is ON -> force all values to OFF) =====
+const TOGGLE_EXCLUSIONS = {
+    'auto-mode':  ['manual-mode'],
+    'manual-mode': ['auto-mode']
+};
+
+// ===== Extra OFF commands: when key is ON -> write 0 to these addresses =====
+const TOGGLE_OFF_COMMANDS = {
+    'auto-mode': ['M20']
+};
+
 function handleToggleSwitch(el) {
     if (!plcConnected) { el.checked = !el.checked; alert('Please connect to PLC first'); return; }
     const address = el.dataset.address;
     const value = el.checked ? 1 : 0;
-    const statusEl = document.getElementById(el.id + '-status');
 
     fetch(PLC_CONFIG.apiUrlCommand, {
         method: 'POST',
@@ -158,22 +253,36 @@ function handleToggleSwitch(el) {
     .then(res => res.json())
     .then(data => {
         if (data.status === 'ok') {
-            if (statusEl) statusEl.textContent = el.checked ? 'Active' : 'Inactive';
-            // Update auto-mode card style
-            if (el.id === 'auto-mode') {
-                const card = document.getElementById('auto-mode-card');
-                if (el.checked) {
-                    card.className = 'bg-gradient-to-tl from-blue-600 to-cyan-400 p-4 rounded-2xl shadow-md border border-blue-500/30 flex flex-col justify-between h-32 text-white';
-                    statusEl.parentElement.parentElement.querySelectorAll('svg').forEach(s => s.classList.remove('text-slate-500'));
-                    statusEl.parentElement.parentElement.querySelectorAll('svg').forEach(s => s.classList.add('text-white'));
-                    statusEl.parentElement.parentElement.querySelectorAll('p').forEach(p => { p.classList.remove('text-slate-800'); p.classList.remove('text-slate-500'); p.classList.add('text-white'); });
-                    statusEl.textContent = 'Running';
-                } else {
-                    card.className = 'bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col justify-between h-32 hover:bg-slate-100 transition-colors';
-                    statusEl.parentElement.parentElement.querySelectorAll('svg').forEach(s => s.classList.add('text-slate-500'));
-                    statusEl.parentElement.parentElement.querySelectorAll('p').forEach(p => { p.classList.add('text-slate-800'); p.classList.add('text-slate-500'); p.classList.remove('text-white'); });
-                    statusEl.textContent = 'Off';
-                }
+            updateToggleCardVisual(el.id, el.checked);
+
+            // Mutual exclusion: force linked toggles OFF
+            if (value === 1 && TOGGLE_EXCLUSIONS[el.id]) {
+                TOGGLE_EXCLUSIONS[el.id].forEach(otherId => {
+                    const otherEl = document.getElementById(otherId);
+                    const otherAddress = TOGGLE_ADDRESSES[otherId];
+                    // Always send OFF regardless of UI state
+                    if (otherEl) {
+                        otherEl.checked = false;
+                        fetch(PLC_CONFIG.apiUrlCommand, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': PLC_CONFIG.csrfToken },
+                            body: JSON.stringify({ command: otherAddress, value: 0, readback: true })
+                        })
+                        .then(r => r.json())
+                        .then(d => { if (d.status === 'ok') updateToggleCardVisual(otherId, false); })
+                        .catch(() => {});
+                    }
+                });
+            }
+            // Extra OFF commands (e.g. write 0 to M20 when auto-mode ON)
+            if (value === 1 && TOGGLE_OFF_COMMANDS[el.id]) {
+                TOGGLE_OFF_COMMANDS[el.id].forEach(addr => {
+                    fetch(PLC_CONFIG.apiUrlCommand, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': PLC_CONFIG.csrfToken },
+                        body: JSON.stringify({ command: addr, value: 0, readback: false })
+                    }).catch(() => {});
+                });
             }
         } else {
             el.checked = !el.checked;
@@ -192,6 +301,12 @@ Object.keys(TOGGLE_ADDRESSES).forEach(id => {
 function plcMomentary(btn) {
     if (!plcConnected) { alert('Please connect to PLC first'); return; }
     const address = btn.dataset.address;
+    const statusEl = btn.closest('div').querySelector('[id$="-status"]');
+
+    // Disable button & show pressing state
+    btn.disabled = true;
+    btn.classList.add('opacity-60', 'cursor-not-allowed');
+    if (statusEl) statusEl.textContent = 'Resetting...';
 
     fetch(PLC_CONFIG.apiUrlCommand, {
         method: 'POST',
@@ -206,11 +321,30 @@ function plcMomentary(btn) {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-CSRFToken': PLC_CONFIG.csrfToken },
                     body: JSON.stringify({ command: address, value: 0, readback: false })
+                })
+                .then(() => {
+                    if (statusEl) statusEl.textContent = 'Done';
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        btn.classList.remove('opacity-60', 'cursor-not-allowed');
+                        if (statusEl) statusEl.textContent = 'Ready';
+                    }, 1000);
                 });
             }, 200);
+        } else {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60', 'cursor-not-allowed');
+            if (statusEl) statusEl.textContent = 'Failed';
+            setTimeout(() => { if (statusEl) statusEl.textContent = 'Ready'; }, 1500);
         }
     })
-    .catch(err => console.error('Momentary error:', err));
+    .catch(err => {
+        console.error('Momentary error:', err);
+        btn.disabled = false;
+        btn.classList.remove('opacity-60', 'cursor-not-allowed');
+        if (statusEl) statusEl.textContent = 'Error';
+        setTimeout(() => { if (statusEl) statusEl.textContent = 'Ready'; }, 1500);
+    });
 }
 
 // ===== Polling & Monitor =====
@@ -223,7 +357,11 @@ function readAllToggles() {
             if (data.status === 'ok') {
                 const el = document.getElementById(id);
                 const val = data.value === 1;
-                if (el && el.checked !== val) el.checked = val;
+                if (el && el.checked !== val) {
+                    el.checked = val;
+                    // Sync card visual when PLC value changes externally
+                    updateToggleCardVisual(id, val);
+                }
                 // Update monitor
                 const monVal = document.getElementById('mon-' + address.toLowerCase());
                 const monStatus = document.getElementById('mon-' + address.toLowerCase() + '-status');
@@ -282,6 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
             plcConnected = true;
             updateConnectionUI(true);
             startPolling();
+            activateManualMode();
         }
     })
     .catch(() => {});

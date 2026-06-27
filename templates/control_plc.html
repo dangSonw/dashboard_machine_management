@@ -109,16 +109,16 @@
                 </div>
                 <div class="menu-mode-grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     <!-- System Power -->
-                    <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <div id="sys-power-card" class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-between">
-                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            <svg id="sys-power-icon" class="w-6 h-6 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             <div class="relative inline-block w-10 align-middle select-none">
                                 <input type="checkbox" id="sys-power" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X200" />
                                 <label for="sys-power" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
                             </div>
                         </div>
                         <div>
-                            <p class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white">System Power</p>
+                            <p id="sys-power-label" class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white">System Power</p>
                             <p class="text-[10px] text-slate-500 dark:text-slate-400" id="sys-power-status">Inactive</p>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         <div class="flex justify-between">
                             <svg class="w-6 h-6 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             <div class="relative inline-block w-10 align-middle select-none">
-                                <input type="checkbox" id="auto-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X201" />
+                                <input type="checkbox" id="auto-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X300" />
                                 <label for="auto-mode" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
                             </div>
                         </div>
@@ -139,31 +139,29 @@
                     </div>
 
                     <!-- Manual Mode -->
-                    <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <div id="manual-mode-card" class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-between">
-                            <svg class="w-6 h-6 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            <svg id="manual-mode-icon" class="w-6 h-6 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             <div class="relative inline-block w-10 align-middle select-none">
-                                <input type="checkbox" id="manual-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X202" />
+                                <input type="checkbox" id="manual-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X301" />
                                 <label for="manual-mode" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
                             </div>
                         </div>
                         <div>
-                            <p class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white">Manual Mode</p>
+                            <p id="manual-mode-label" class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white">Manual Mode</p>
                             <p class="text-[10px] text-slate-500 dark:text-slate-400" id="manual-mode-status">Off</p>
                         </div>
                     </div>
 
                     <!-- System Reset -->
                     <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-                        <div class="flex justify-between">
-                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                            <div class="relative inline-block w-10 align-middle select-none">
-                                <input type="checkbox" id="reset-sys" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X203" />
-                                <label for="reset-sys" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white">System Reset</p>
+                        <div class="flex flex-col items-center justify-between h-full">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            <button onclick="plcMomentary(this)" data-address="X203"
+                                class="reset-btn mt-2 px-5 py-2 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white text-[10px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg hover:from-blue-700 hover:to-cyan-500 active:scale-95 transition-all duration-150">
+                                Press Reset
+                            </button>
+                            <p class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white mt-1">System Reset</p>
                             <p class="text-[10px] text-slate-500 dark:text-slate-400" id="reset-sys-status">Ready</p>
                         </div>
                     </div>
@@ -330,15 +328,15 @@
                             </tr>
                             <tr class="hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                                 <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white">Auto Mode</td>
-                                <td class="px-6 py-3 text-xs font-mono text-slate-500 dark:text-slate-400">X201</td>
-                                <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white" id="mon-x201">0</td>
-                                <td class="px-6 py-3"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold" id="mon-x201-status">OFF</span></td>
+                                <td class="px-6 py-3 text-xs font-mono text-slate-500 dark:text-slate-400">X300</td>
+                                <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white" id="mon-x300">0</td>
+                                <td class="px-6 py-3"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold" id="mon-x300-status">OFF</span></td>
                             </tr>
                             <tr class="hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                                 <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white">Manual Mode</td>
-                                <td class="px-6 py-3 text-xs font-mono text-slate-500 dark:text-slate-400">X202</td>
-                                <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white" id="mon-x202">0</td>
-                                <td class="px-6 py-3"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold" id="mon-x202-status">OFF</span></td>
+                                <td class="px-6 py-3 text-xs font-mono text-slate-500 dark:text-slate-400">X301</td>
+                                <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white" id="mon-x301">0</td>
+                                <td class="px-6 py-3"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold" id="mon-x301-status">OFF</span></td>
                             </tr>
                             <tr class="hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                                 <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white">System Reset</td>
