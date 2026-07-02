@@ -3,7 +3,7 @@ const TOGGLE_ADDRESSES = {
     'sys-power': 'X200',
     'auto-mode': 'X300',
     'manual-mode': 'X301',
-    'empty-mode': 'X204',
+    'empty-mode': 'X304',
     'servo-on': 'X210'
 };
 
@@ -296,6 +296,33 @@ Object.keys(TOGGLE_ADDRESSES).forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener('change', function() { handleToggleSwitch(this); });
 });
+
+// ===== Pulse Button (rising edge only: write 1, no auto-reset) =====
+function plcPulse(btn) {
+    if (!plcConnected) { alert('Please connect to PLC first'); return; }
+    const address = btn.dataset.address;
+
+    btn.disabled = true;
+    btn.classList.add('opacity-60', 'cursor-not-allowed');
+
+    fetch(PLC_CONFIG.apiUrlCommand, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': PLC_CONFIG.csrfToken },
+        body: JSON.stringify({ command: address, value: 1, readback: false })
+    })
+    .then(res => res.json())
+    .then(data => {
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.classList.remove('opacity-60', 'cursor-not-allowed');
+        }, 500);
+    })
+    .catch(err => {
+        console.error('Pulse error:', err);
+        btn.disabled = false;
+        btn.classList.remove('opacity-60', 'cursor-not-allowed');
+    });
+}
 
 // ===== Momentary Button =====
 function plcMomentary(btn) {

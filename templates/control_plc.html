@@ -153,25 +153,12 @@
                         </div>
                     </div>
 
-                    <!-- System Reset -->
-                    <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-                        <div class="flex flex-col items-center justify-between h-full">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                            <button onclick="plcMomentary(this)" data-address="X203"
-                                class="reset-btn mt-2 px-5 py-2 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 text-white text-[10px] font-bold uppercase tracking-wider shadow-md hover:shadow-lg hover:from-blue-700 hover:to-cyan-500 active:scale-95 transition-all duration-150">
-                                Press Reset
-                            </button>
-                            <p class="text-[10px] font-bold uppercase truncate text-slate-800 dark:text-white mt-1">System Reset</p>
-                            <p class="text-[10px] text-slate-500 dark:text-slate-400" id="reset-sys-status">Ready</p>
-                        </div>
-                    </div>
-
                     <!-- Empty Mode -->
                     <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-between">
                             <svg class="w-6 h-6 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             <div class="relative inline-block w-10 align-middle select-none">
-                                <input type="checkbox" id="empty-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X204" />
+                                <input type="checkbox" id="empty-mode" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-slate-700 border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out" data-address="X304" />
                                 <label for="empty-mode" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
                             </div>
                         </div>
@@ -230,7 +217,7 @@
                     <!-- ORIGIN -->
                     <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-center items-center h-full">
-                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-tl from-blue-600 to-cyan-400 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" data-address="X222" data-action="momentary" onclick="plcMomentary(this)">
+                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-tl from-blue-600 to-cyan-400 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" data-address="X111" onclick="plcMomentary(this)">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="2"></circle><path d="M12 2v4m0 12v4M2 12h4m12 0h4" stroke-linecap="round" stroke-width="2"></path></svg>
                                 <span class="text-[10px] font-bold uppercase">ORIGIN</span>
                             </button>
@@ -241,7 +228,7 @@
                     <!-- STEP RUN -->
                     <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-center items-center h-full">
-                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-tl from-blue-600 to-cyan-400 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" data-address="X223" data-action="momentary" onclick="plcMomentary(this)">
+                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-tl from-blue-600 to-cyan-400 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" data-address="X112" onclick="plcMomentary(this)">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                                 <span class="text-[10px] font-bold uppercase">STEP RUN</span>
                             </button>
@@ -252,7 +239,7 @@
                     <!-- START -->
                     <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-center items-center h-full">
-                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" style="background: linear-gradient(to bottom right, #22c55e, #06b6d4);" data-address="X232" data-action="momentary" onclick="plcMomentary(this)">
+                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" style="background: linear-gradient(to bottom right, #22c55e, #06b6d4);" data-address="X125" onclick="plcMomentary(this)">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="currentColor"/></svg>
                                 <span class="text-[10px] font-bold uppercase">START</span>
                             </button>
@@ -263,7 +250,7 @@
                     <!-- STOP -->
                     <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between h-32 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                         <div class="flex justify-center items-center h-full">
-                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" style="background: linear-gradient(to bottom right, #ef4444, #f97316);" data-address="X231" data-action="momentary" onclick="plcMomentary(this)">
+                            <button class="w-full h-full flex flex-col items-center justify-center gap-2 hover:opacity-90 text-white rounded-xl transition-all shadow-sm" style="background: linear-gradient(to bottom right, #ef4444, #f97316);" data-address="X124" onclick="plcMomentary(this)">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect height="12" rx="2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="12" x="6" y="6"></rect></svg>
                                 <span class="text-[10px] font-bold uppercase">STOP</span>
                             </button>
@@ -346,9 +333,9 @@
                             </tr>
                             <tr class="hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
                                 <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white">Empty Mode</td>
-                                <td class="px-6 py-3 text-xs font-mono text-slate-500 dark:text-slate-400">X204</td>
-                                <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white" id="mon-x204">0</td>
-                                <td class="px-6 py-3"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold" id="mon-x204-status">OFF</span></td>
+                                <td class="px-6 py-3 text-xs font-mono text-slate-500 dark:text-slate-400">X304</td>
+                                <td class="px-6 py-3 text-xs font-bold text-slate-700 dark:text-white" id="mon-x304">0</td>
+                                <td class="px-6 py-3"><span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 font-bold" id="mon-x304-status">OFF</span></td>
                             </tr>
                         </tbody>
                     </table>

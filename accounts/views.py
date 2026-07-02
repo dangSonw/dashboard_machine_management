@@ -3,6 +3,7 @@ import datetime
 import mimetypes
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
@@ -83,24 +84,27 @@ def _list_image_files(root_dir: str, rel_dir: str):
         return results
 
     image_exts = ('.png', '.jpg', '.jpeg', '.jfz', '.bmp', '.webp')
-    for name in os.listdir(abs_dir):
-        if name.startswith('.'):
-            continue
-        abs_path = os.path.join(abs_dir, name)
-        if not os.path.isfile(abs_path):
-            continue
-        if not name.lower().endswith(image_exts):
-            continue
-
-        stats = os.stat(abs_path)
-        mod_time = datetime.datetime.fromtimestamp(stats.st_mtime)
-        results.append(
-            {
-                'name': name,
-                'mod_time': mod_time.strftime('%Y-%m-%d %H:%M:%S'),
-                'rel_path': os.path.relpath(abs_path, root_dir).replace('\\', '/'),
-            }
-        )
+    for root, dirs, files in os.walk(abs_dir):
+        # Skip hidden directories
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        for name in files:
+            if name.startswith('.'):
+                continue
+            if not name.lower().endswith(image_exts):
+                continue
+            abs_path = os.path.join(root, name)
+            try:
+                stats = os.stat(abs_path)
+                mod_time = datetime.datetime.fromtimestamp(stats.st_mtime)
+                results.append(
+                    {
+                        'name': name,
+                        'mod_time': mod_time.strftime('%Y-%m-%d %H:%M:%S'),
+                        'rel_path': os.path.relpath(abs_path, root_dir).replace('\\', '/'),
+                    }
+                )
+            except Exception:
+                pass
 
     results.sort(key=lambda x: x['mod_time'], reverse=True)
     return results
