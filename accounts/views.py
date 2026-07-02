@@ -118,9 +118,7 @@ def logs_images(request):
         current_path = os.path.abspath(base_dir)
         subpath = ''
         
-    parent_path = ''
-    if subpath and subpath not in ['\\', '/']:
-        parent_path = os.path.dirname(subpath.rstrip('\\/'))
+    parent_path = os.path.dirname(subpath.rstrip('\\/')) if subpath.strip('/\\') else ''
         
     files_info = []
     if os.path.exists(current_path) and os.path.isdir(current_path):
@@ -141,7 +139,7 @@ def logs_images(request):
                 else:
                     ext = os.path.splitext(item)[1].upper()
                     item_type = f"{ext.replace('.', '')} File" if ext else "File"
-                    icon = "zmdi-image text-success" if item.lower().endswith(('.png', '.jpg', '.jpeg', '.jfz', '.bmp')) else "zmdi-file text-primary"
+                    icon = "zmdi-image text-success" if item.lower().endswith(('.png', '.jpg', '.jpeg', '.jfz', '.bmp', '.webp')) else "zmdi-file text-primary"
                     
                     if size < 1024:
                         size_str = f"{size} B"
@@ -168,7 +166,7 @@ def logs_images(request):
     files_info.sort(key=lambda x: (not x['is_dir'], x['name'].lower()))
 
     # Root split view: show recent images from OK/NG folders nicely
-    normalized_subpath = (subpath or '').strip('/\\')
+    normalized_subpath = subpath.strip('/\\')
     ok_images = []
     ng_images = []
     ok_total = 0
