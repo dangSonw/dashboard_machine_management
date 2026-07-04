@@ -165,28 +165,55 @@ def logs_images(request):
             
     files_info.sort(key=lambda x: (not x['is_dir'], x['name'].lower()))
 
-    # Root split view: show recent images from OK/NG folders nicely
+    # Root split view: show recent images from OK/NG folders combined and sorted by mtime desc
     normalized_subpath = subpath.strip('/\\')
-    ok_images = []
-    ng_images = []
+    
+    feed_page_obj = None
+    status_filter = request.GET.get('status', 'all').upper()
+    search_query = request.GET.get('search', '').strip().lower()
+    quality = 'high'
+    
     ok_total = 0
     ng_total = 0
+    
     if normalized_subpath == '':
         ok_all = _list_image_files(base_dir, 'OK')
         ng_all = _list_image_files(base_dir, 'NG')
+        
         ok_total = len(ok_all)
         ng_total = len(ng_all)
-        ok_images = ok_all[:60]
-        ng_images = ng_all[:60]
+        
+        for img in ok_all:
+            img['status'] = 'OK'
+        for img in ng_all:
+            img['status'] = 'NG'
+            
+        all_images = ok_all + ng_all
+        # Sort strictly by time desc
+        all_images.sort(key=lambda x: x['mod_time'], reverse=True)
+        
+        # Apply filters
+        if status_filter in ('OK', 'NG'):
+            all_images = [img for img in all_images if img['status'] == status_filter]
+        if search_query:
+            all_images = [img for img in all_images if search_query in img['name'].lower()]
+            
+        # Paginate
+        from django.core.paginator import Paginator
+        paginator = Paginator(all_images, 30) # 30 images per page
+        page_number = request.GET.get('page', 1)
+        feed_page_obj = paginator.get_page(page_number)
 
     context = {
         'files': files_info,
         'subpath': subpath,
         'parent_path': parent_path.replace('\\', '/'),
-        'ok_images': ok_images,
-        'ng_images': ng_images,
+        'feed_page_obj': feed_page_obj,
         'ok_total': ok_total,
         'ng_total': ng_total,
+        'status_filter': status_filter,
+        'search_query': search_query,
+        'quality': quality,
     }
     return render(request, 'logs_images.html', context)
 
@@ -206,4 +233,20 @@ def serve_log_image(request):
     if not content_type:
         content_type = 'image/jpeg' if filepath.lower().endswith('.jfz') else 'application/octet-stream'
         
+    # Optional low quality thumbnail generation for fast page loads
+    quality = request.GET.get('quality', 'high')
+    if quality == 'low' and content_type.startswith('image/'):
+        try:
+            from io import BytesIO
+            from PIL import Image
+            with Image.open(filepath) as img:
+                img.thumbnail((300, 300))
+                buffer = BytesIO()
+                img.save(buffer, format="JPEG", quality=75)
+                buffer.seek(0)
+                return FileResponse(buffer, content_type='image/jpeg')
+        except Exception as e:
+            # Fallback to full image if thumbnail generation fails
+            pass
+            
     return FileResponse(open(filepath, 'rb'), content_type=content_type)

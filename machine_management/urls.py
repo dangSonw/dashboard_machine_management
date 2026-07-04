@@ -10,17 +10,12 @@ def page_not_found(request, *args, **kwargs):
 urlpatterns = [
     path('', views.home, name='home'),
     path('list-pcb/', views.list_pcb, name='list-pcb'),
-    path('plc-control/', views.plc_control, name='plc-control'),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('authentication/', include('authentication.urls')),
     
     # PLC API endpoints
-    path('api/plc/connect/', views.api_connect_plc, name='api_connect_plc'),
     path('api/plc/status/', views.api_plc_status, name='api_plc_status'),
-    path('api/plc/command/', views.api_plc_command, name='api_plc_command'),
-    path('api/plc/write_params/', views.api_plc_write_params, name='api_plc_write_params'),
-    path('api/plc/read_device/', views.api_plc_read_device, name='api_plc_read_device'),
 
     # Blog
     path('blog/', views.blog, name='blog'),

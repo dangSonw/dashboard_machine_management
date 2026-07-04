@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="apple-touch-icon" sizes="76x76" href="{%static 'img/apple-icon.png' %}" />
     <link rel="icon" type="image/png" href="{%static 'img/favicon.png' %}" />
-    <title>User List - NSUTC2026</title>
+    <title>Information Machine - NSUTC2026</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
@@ -33,10 +33,10 @@
                             <span class="text-gray-500 dark:text-white">Pages</span>
                         </li>
                         <li class="text-sm pl-2 leading-normal before:float-left before:pr-2 before:text-gray-600 before:content-['/']">
-                            <span class="text-gray-500 dark:text-white">User List</span>
+                            <span class="text-gray-500 dark:text-white">Information Machine</span>
                         </li>
                     </ol>
-                    <h6 class="mb-0 font-bold capitalize dark:text-white">User List</h6>
+                    <h6 class="mb-0 font-bold capitalize dark:text-white">Information Machine</h6>
                 </nav>
 
                 <div class="flex items-center">
@@ -79,77 +79,206 @@
             </div>
         </nav>
 
-        <div class="w-full px-6 py-6 mx-auto">
-            <div class="flex flex-wrap -mx-3">
-                <div class="w-full px-3 mb-6">
-                    <h4 class="text-2xl font-bold text-slate-700 dark:text-white">User Management</h4>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Total Users: {{ users.count }}</p>
-                </div>
-            </div>
-
-            <div class="flex flex-wrap -mx-3">
-                <div class="w-full px-3">
-                    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xs p-6">
-                        <div class="mb-6">
-                            <h5 class="text-xl font-bold text-slate-700 dark:text-white">All Users</h5>
+        <div class="w-full p-6 mx-auto">
+            <!-- Machine Showcase Gallery (No large main preview, 3 constrained columns) -->
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <!-- Image 1 -->
+                <div class="w-full max-w-full px-3 mb-6 sm:w-6/12 lg:w-4/12 shrink-0">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-3">
+                        <div class="w-full rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-gray-150 dark:border-gray-850 flex items-center justify-center h-48">
+                            <img src="{% static 'img/machine/machine1.png' %}" alt="Machine Overview" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-300 hover:scale-103" onclick="openImageModal(this.src, 'Machine Overview')" />
                         </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">ID</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Username</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Email</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">First Name</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Last Name</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Staff Status</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Active</th>
-                                        <th class="px-4 py-3 text-sm font-semibold text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">Date Joined</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for user in users %}
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.id }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800 font-medium">{{ user.username }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.email|default:"-" }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.first_name|default:"-" }}</td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.last_name|default:"-" }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
-                                            {% if user.is_staff %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">Staff</span>
-                                            {% else %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-gray-500 rounded-full">User</span>
-                                            {% endif %}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-100 dark:border-gray-800">
-                                            {% if user.is_active %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Active</span>
-                                            {% else %}
-                                            <span class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Inactive</span>
-                                            {% endif %}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-slate-700 dark:text-white border-b border-gray-100 dark:border-gray-800">{{ user.date_joined|date:"Y-m-d H:i" }}</td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="8" class="px-4 py-8 text-center text-slate-500 dark:text-slate-400">No users found.</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                    </div>
+                </div>
+                <!-- Image 2 -->
+                <div class="w-full max-w-full px-3 mb-6 sm:w-6/12 lg:w-4/12 shrink-0">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-3">
+                        <div class="w-full rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-gray-150 dark:border-gray-850 flex items-center justify-center h-48">
+                            <img src="{% static 'img/machine/machine2.png' %}" alt="Machine Detail View" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-300 hover:scale-103" onclick="openImageModal(this.src, 'Machine Detail View')" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Image 3 -->
+                <div class="w-full max-w-full px-3 mb-6 sm:w-6/12 lg:w-4/12 shrink-0">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-3">
+                        <div class="w-full rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-gray-150 dark:border-gray-850 flex items-center justify-center h-48">
+                            <img src="{% static 'img/machine/machine.jpg' %}" alt="Machine General" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-300 hover:scale-103" onclick="openImageModal(this.src, 'Machine General')" />
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Hardware Architecture & Technical Specifications -->
+            <div class="flex flex-wrap -mx-3">
+                <!-- Card 1: General Specs -->
+                <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 shrink-0 flex flex-col">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-5 flex-1 justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b border-gray-50 dark:border-gray-905 pb-3 mb-4">
+                                <h5 class="font-bold text-slate-700 dark:text-white m-0 text-base">General Information</h5>
+                                <span class="p-2.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl"><i class="fas fa-info-circle"></i></span>
+                            </div>
+                            <div class="space-y-3.5 text-xs">
+                                <div>
+                                    <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Machine Name</span>
+                                    <span class="font-semibold text-slate-700 dark:text-white text-sm">PCB BOARD INSPECTION MACHINE</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Developed By</span>
+                                    <span class="font-semibold text-slate-700 dark:text-white text-sm">NSUTC2501 - UTC UNIVERSITY</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Main Power Input</span>
+                                    <span class="font-semibold text-slate-700 dark:text-white text-sm">1 Phase, 220VAC, 50Hz</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Rated Power</span>
+                                    <span class="font-semibold text-slate-700 dark:text-white text-sm">0.6kW</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-50 dark:border-gray-900 flex items-center justify-between">
+                            <span class="text-[11px] text-slate-400">Status</span>
+                            <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 inline-flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> ONLINE
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Control & Computation -->
+                <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 shrink-0 flex flex-col">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-5 flex-1">
+                        <div class="flex items-center justify-between border-b border-gray-50 dark:border-gray-905 pb-3 mb-4">
+                            <h5 class="font-bold text-slate-700 dark:text-white m-0 text-base">Control & Processor</h5>
+                            <span class="p-2.5 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-xl"><i class="fas fa-microchip"></i></span>
+                        </div>
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Programmable Controller</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">PLC FX5U (Mitsubishi)</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Executes sequence controls, logic signals, and index cycle coordination.</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">AI Computing Unit</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">Jetson Nano Super</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Hosts neural networks for real-time defect analysis on captured PCB image frames.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Motion & Indexing -->
+                <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 shrink-0 flex flex-col">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-5 flex-1">
+                        <div class="flex items-center justify-between border-b border-gray-50 dark:border-gray-905 pb-3 mb-4">
+                            <h5 class="font-bold text-slate-700 dark:text-white m-0 text-base">Motion & Indexing</h5>
+                            <span class="p-2.5 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-xl"><i class="fas fa-dharmachakra"></i></span>
+                        </div>
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Step Driver</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">MR-JE-40A</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Translates PLC drive signals to precision current commands for motor stepping.</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Step Motor & Table</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">ZBT130-10-14-50-70-M4-A</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Drives rotating index table by 60° increments to cycle boards to camera zone.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Peripherals & Vision -->
+                <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 shrink-0 flex flex-col">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-5 flex-1">
+                        <div class="flex items-center justify-between border-b border-gray-50 dark:border-gray-905 pb-3 mb-4">
+                            <h5 class="font-bold text-slate-700 dark:text-white m-0 text-base">Vision & Interaction</h5>
+                            <span class="p-2.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-xl"><i class="fas fa-camera"></i></span>
+                        </div>
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Camera Sensor</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">Camera Pi V2</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">High-definition module connected to Jetson Nano for PCB image logging.</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Operator Display</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">HMI Panel</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Visualizes local cycle alarms, parameters and toggle control operations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Hosts & Communication -->
+                <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 shrink-0 flex flex-col">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-5 flex-1">
+                        <div class="flex items-center justify-between border-b border-gray-50 dark:border-gray-905 pb-3 mb-4">
+                            <h5 class="font-bold text-slate-700 dark:text-white m-0 text-base">Host Server & Network</h5>
+                            <span class="p-2.5 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 rounded-xl"><i class="fas fa-network-wired"></i></span>
+                        </div>
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Industrial PC (IPC)</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">IPC MI5122</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Host machine hosting database logs, control scripts, and local web dashboard.</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">Network Backbone</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">Industrial Ethernet Switch</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Bridges communications between PLC FX5U, Jetson Nano, HMI, and IPC server.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Power Architecture -->
+                <div class="w-full max-w-full px-3 mb-6 md:w-6/12 lg:w-4/12 shrink-0 flex flex-col">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white dark:bg-gray-950 shadow-soft-xl rounded-2xl bg-clip-border p-5 flex-1">
+                        <div class="flex items-center justify-between border-b border-gray-50 dark:border-gray-905 pb-3 mb-4">
+                            <h5 class="font-bold text-slate-700 dark:text-white m-0 text-base">Power Architecture</h5>
+                            <span class="p-2.5 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-450 rounded-xl"><i class="fas fa-plug"></i></span>
+                        </div>
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">AC Mains Network</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">220VAC Power Grid</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Supplies step driver, PLC internal power, and IPC power inputs.</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 dark:text-slate-500 uppercase font-bold tracking-wider block">DC Power Converter</span>
+                                <span class="font-semibold text-slate-700 dark:text-white text-sm">24VDC, 10A DC Grid</span>
+                                <p class="text-[11px] text-slate-400 m-0 mt-0.5">Powers Industrial Ethernet Switch, logic sensors, and HMI display screen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zoom Image Modal -->
+            <div id="imageZoomModal" class="fixed inset-0 z-990 hidden bg-black/80 flex items-center justify-center p-4" onclick="closeImageModal()">
+                <div class="relative max-w-4xl w-full bg-white dark:bg-gray-950 rounded-2xl overflow-hidden shadow-soft-2xl border border-gray-200 dark:border-gray-800 p-2" onclick="event.stopPropagation()">
+                    <button class="absolute top-4 right-4 bg-black/50 hover:bg-black/85 text-white w-8 h-8 rounded-full flex items-center justify-center focus:outline-none z-10" onclick="closeImageModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="aspect-auto w-full max-h-[80vh] flex items-center justify-center bg-slate-900">
+                        <img id="zoomModalImg" src="" alt="Zoom" class="max-w-full max-h-[75vh] object-contain" />
+                    </div>
+                    <div class="p-4 flex items-center justify-between">
+                        <h6 id="zoomModalTitle" class="font-bold text-slate-700 dark:text-white m-0 text-sm">Image</h6>
+                        <span class="text-xs text-slate-400 font-semibold">Click outside to close</span>
+                    </div>
+                </div>
+            </div>
+        </div>>
     </main>
 
     <div fixed-plugin>
         <a fixed-plugin-button class="fixed px-4 py-2 bg-white cursor-pointer bottom-7 right-7 text-xl z-990 shadow-soft-lg rounded-circle text-slate-700" aria-expanded="false">
             <i class="py-2 pointer-events-none fa fa-cog"> </i>
         </a>
-        <!-- -right-90 in loc de 0-->
         <div fixed-plugin-card class="dark:bg-gray-950/80 z-sticky shadow-soft-3xl w-90 ease-soft -right-90 fixed top-0 left-auto flex h-full min-w-0 flex-col break-words rounded-none border-0 bg-white/80 bg-clip-border px-2.5 backdrop-blur-2xl backdrop-saturate-200 duration-200">
             <div class="px-6 pt-4 pb-0 mb-0 border-b-0 rounded-t-2xl">
                 <div class="float-left">
@@ -161,11 +290,9 @@
                         <i class="fa fa-close"></i>
                     </button>
                 </div>
-                <!-- End Toggle Button -->
             </div>
             <hr class="h-px mx-0 my-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
             <div class="flex-auto p-6 pt-0 sm:pt-4">
-                <!-- Sidebar Backgrounds -->
                 <div>
                     <h6 class="mb-0 dark:text-white">Sidebar Colors</h6>
                 </div>
@@ -179,7 +306,6 @@
                         <span class="py-2.2 text-xs px-2.2 rounded-circle h-5.6 mr-1.25 w-5.6 ease-soft-in-out bg-gradient-to-tl from-red-600 to-rose-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700" data-color-from="red-600" data-color-to="rose-400" onclick="sidebarColor(this)"></span>
                     </div>
                 </a>
-                <!-- Sidenav Type -->
                 <div class="mt-4">
                     <h6 class="mb-0 dark:text-white">Sidenav Type</h6>
                     <p class="leading-normal text-sm dark:opacity-60">Choose between 2 different sidenav types.</p>
@@ -189,7 +315,6 @@
                     <button white-style-btn class="inline-block w-full px-4 py-3 mb-2 ml-2 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-blue-600 xl-max:to-cyan-400 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-blue-500 bg-none text-blue-500 hover:border-blue-500 dark:pointer-events-none dark:cursor-not-allowed" data-class="bg-white">White</button>
                 </div>
                 <p class="block mt-2 leading-normal text-sm xl:hidden">You can change the sidenav type just on desktop view.</p>
-                <!-- Navbar Fixed -->
                 <div class="mt-4">
                     <h6 class="mb-0 dark:text-white">Navbar Fixed</h6>
                 </div>
@@ -216,5 +341,31 @@
     </div>
     <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
     <script src="{% static 'js/soft-ui-dashboard-pro-tailwind.min.js' %}"></script>
+    <script>
+        function openImageModal(src, title) {
+            const modal = document.getElementById('imageZoomModal');
+            const img = document.getElementById('zoomModalImg');
+            const t = document.getElementById('zoomModalTitle');
+            
+            img.src = src;
+            t.textContent = title || 'Machine Image';
+            
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            const img = document.getElementById('zoomModalImg');
+            
+            modal.classList.add('hidden');
+            img.src = '';
+            document.body.classList.remove('overflow-hidden');
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeImageModal();
+        });
+    </script>
 </body>
 </html>

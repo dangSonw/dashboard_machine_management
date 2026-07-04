@@ -79,40 +79,12 @@ def list_pcb(request):
     }
     return render(request, "list_pcb.html", context)
 
-@login_required(login_url="/authentication/login")
-def plc_control(request):
-    return render(request, "control_plc.html")
+
 
 def custom_404(request, exception):
     return render(request, 'page_404.html', status=404)
 
-@csrf_exempt
-def api_connect_plc(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            ip = data.get('ip') or os.getenv('HOST_PLC')
-            port_str = data.get('port') or os.getenv('PORT_TCP')
-            
-            if not ip or not port_str:
-                return JsonResponse({'status': 'error', 'message': 'PLC Connection configuration (IP/Port) is missing in .env'})
-                
-            port = int(port_str)
-            action = data.get('action', 'connect')
-            
-            if action == 'connect':
-                success = plc_comm.connect_plc(ip, port)
-                if success:
-                    return JsonResponse({'status': 'ok', 'connected': True})
-                else:
-                    return JsonResponse({'status': 'failed', 'connected': False, 'message': 'Cannot connect (Timeout or invalid IP/Port)'})
-            elif action == 'disconnect':
-                plc_comm.connected = False
-                return JsonResponse({'status': 'ok', 'connected': False})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
-    
-    return JsonResponse({'status': 'ok', 'connected': plc_comm.connected})
+
 
 @csrf_exempt
 def api_plc_status(request):
@@ -178,108 +150,7 @@ def api_plc_status(request):
     except Exception as e:
         return JsonResponse({'status': 'error', 'message': str(e)})
 
-@csrf_exempt
-def api_plc_command(request):
-    if not plc_comm.connected:
-        return JsonResponse({'status': 'failed', 'message': 'Not connected'})
-    
-    if request.method == 'POST':
-        try:
-            import time as _time
-            data = json.loads(request.body)
-            command = data.get('command')
-            value = int(data.get('value', 1))
-            readback = data.get('readback', False)
-            if not command:
-                return JsonResponse({'status': 'error', 'message': 'No command'})
-            
-            is_pulse = data.get('pulse', False)
-            pulse_ms = int(data.get('pulse_ms', 200))
 
-            if is_pulse:
-                success, msg = plc_comm.pulse_device(command, pulse_ms)
-            else:
-                success, msg = plc_comm.write_device(command, [value])
-            
-            if not success:
-                return JsonResponse({
-                    'status': 'failed',
-                    'command': command,
-                    'write_value': value,
-                    'message': msg if 'msg' in locals() else 'Write failed'
-                })
-            
-            result = {
-                'status': 'ok',
-                'command': command,
-                'write_value': value,
-                'write_success': success,
-            }
-            
-            # Đọc lại để xác nhận (read-back verification)
-            if readback:
-                _time.sleep(0.05)  # 50ms delay trước khi đọc lại
-                try:
-                    rb = plc_comm.read_device(command)
-                    actual_value = rb[0] if rb else None
-                    result['readback_value'] = actual_value
-                    result['readback_match'] = (actual_value == value)
-                    if actual_value != value:
-                        result['readback_warning'] = (
-                            f'Wrote {value} but read back {actual_value} — '
-                            f'PLC might not have received the command or X address cannot be forced'
-                        )
-                except Exception as rb_err:
-                    result['readback_error'] = str(rb_err)
-            
-            return JsonResponse(result)
-            
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
-            
-    return JsonResponse({'status': 'failed'})
-
-@csrf_exempt
-def api_plc_read_device(request):
-    if not plc_comm.connected:
-        return JsonResponse({'status': 'failed', 'message': 'Not connected'})
-    
-    address = request.GET.get('address', '')
-    if not address:
-        return JsonResponse({'status': 'error', 'message': 'No address'})
-    
-    try:
-        result = plc_comm.read_device(address)
-        value = result[0] if result else 0
-        return JsonResponse({'status': 'ok', 'address': address, 'value': value})
-    except Exception as e:
-        return JsonResponse({'status': 'error', 'message': str(e)})
-
-@csrf_exempt
-def api_plc_write_params(request):
-    if not plc_comm.connected:
-        return JsonResponse({'status': 'failed', 'message': 'Not connected'})
-    
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            failed_keys = []
-            for key, val in data.items():
-                if key.startswith('D'):
-                    if val == "" or val is None:
-                        val = 0
-                    success, msg = plc_comm.write_device(key, [int(val)])
-                    if not success:
-                        failed_keys.append(f"{key}: {msg}")
-            
-            if failed_keys:
-                return JsonResponse({'status': 'error', 'message': "Error writing parameters: " + ", ".join(failed_keys)})
-                
-            return JsonResponse({'status': 'ok', 'message': 'Parameters updated successfully'})
-        except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)})
-            
-    return JsonResponse({'status': 'failed'})
 
 
 @login_required(login_url="/authentication/login")
